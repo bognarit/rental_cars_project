@@ -1253,6 +1253,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Renter Fields Ext - Field Gender - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Profile 3550479092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rental Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Profile RentalManagerProfile - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 3234822284 - EnumValue 723849998 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diverse</source>
           <note from="Developer" annotates="general" priority="2"></note>

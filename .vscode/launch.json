@@ -3,13 +3,15 @@
     "configurations": [ 
         {
             "name": "Microsoft cloud sandbox",
-            "tenant": "54428dd3-1eac-46c1-9b28-86dd703df80b",
+            "tenant": "46edc519-22aa-4684-8f4b-5cf7d1b00cd1",
             "request": "launch",
             "type": "al",
             "environmentType": "Sandbox", 
-            "environmentName": "TestABO01",
+            "environmentName": "SandboxDE",
             "breakOnError": "All",
             "launchBrowser": true,
+            "startupObjectType": "Page",
+            "startupObjectId": 50105,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
             "schemaUpdateMode": "ForceSync"
