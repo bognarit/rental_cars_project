@@ -308,6 +308,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rent Setup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3939478382 - Field 3075530458 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car List No. Series</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rent Setup - Field Car List No. Series - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3939478382 - Field 295196514 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rental List No. Series</source>
           <note from="Developer" annotates="general" priority="2"></note>

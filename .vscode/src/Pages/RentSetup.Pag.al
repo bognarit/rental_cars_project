@@ -14,6 +14,11 @@ page 50107 "Rent Setup"
             {
                 Caption = 'General';
 
+                field("Car List No. Series"; Rec."Car List No. Series")
+                {
+                    ApplicationArea = All;
+                    Importance = Promoted;
+                }
                 field("Rental List No. Series"; Rec."Rental List No. Series")
                 {
                     ApplicationArea = All;

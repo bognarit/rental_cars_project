@@ -105,4 +105,18 @@ page 50108 "Car Card"
             }
         }
     }
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    var
+        NoSeries: Codeunit "No. Series";
+        RentSetup: Record "Rent Setup";
+    begin
+        RentSetup.Get();
+        RentSetup.TestField("Car List No. Series");
+        if Rec."No." <> '' then begin
+            NoSeries.TestManual(RentSetup."Car List No. Series")
+        end else begin
+            Rec."No." := NoSeries.GetNextNo(RentSetup."Car List No. Series", WorkDate(), false);
+        end;
+    end;
 }

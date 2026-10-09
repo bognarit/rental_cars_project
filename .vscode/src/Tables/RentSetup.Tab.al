@@ -11,17 +11,22 @@ table 50104 "Rent Setup"
         {
             Caption = 'Primary Key', Locked = true;
         }
-        field(2; "Rental List No. Series"; Code[20])
+        field(2; "Car List No. Series"; Code[20])
+        {
+            Caption = 'Car List No. Series';
+            TableRelation = "No. Series";
+        }
+        field(3; "Rental List No. Series"; Code[20])
         {
             Caption = 'Rental List No. Series';
             TableRelation = "No. Series";
         }
-        field(3; "Renter Data No. Series"; Code[20])
+        field(4; "Renter Data No. Series"; Code[20])
         {
             Caption = 'Renter Data No. Series';
             TableRelation = "No. Series";
         }
-        field(4; "Service Data No. Series"; Code[20])
+        field(5; "Service Data No. Series"; Code[20])
         {
             Caption = 'Service Data No. Series';
             TableRelation = "No. Series";
