@@ -87,4 +87,30 @@ page 50113 "Closed Rental List"
             }
         }
     }
+
+    actions
+    {
+        area(processing)
+        {
+            action(DeleteAllLines)
+            {
+                ApplicationArea = All;
+                Caption = 'Delete All Lines';
+                Image = Delete;
+                Promoted = true;
+                PromotedCategory = Process;
+                ToolTip = 'Deletes all lines from the subpage.';
+
+                trigger OnAction()
+                var
+                    ConfirmDeleteQst: Label 'Are you sure you want to delete all lines?';
+                begin
+                    if Confirm(ConfirmDeleteQst, false) then begin
+                        Rec.DeleteAll(true);
+                        CurrPage.Update(false);
+                    end;
+                end;
+            }
+        }
+    }
 }

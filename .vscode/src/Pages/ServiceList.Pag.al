@@ -59,6 +59,32 @@ page 50112 "Service Lists"
         }
     }
 
+    actions
+    {
+        area(processing)
+        {
+            action(DeleteAllLines)
+            {
+                ApplicationArea = All;
+                Caption = 'Delete All Lines';
+                Image = Delete;
+                Promoted = true;
+                PromotedCategory = Process;
+                ToolTip = 'Deletes all lines from the subpage.';
+
+                trigger OnAction()
+                var
+                    ConfirmDeleteQst: Label 'Are you sure you want to delete all lines?';
+                begin
+                    if Confirm(ConfirmDeleteQst, false) then begin
+                        Rec.DeleteAll(true);
+                        CurrPage.Update(false);
+                    end;
+                end;
+            }
+        }
+    }
+
     trigger OnNewRecord(BelowxRec: Boolean)
     var
         NoSeries: Codeunit "No. Series";

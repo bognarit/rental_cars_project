@@ -344,7 +344,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please choose a Car No. und a Registration No. first!</source>
+          <source>Please choose a Renter, a Car No. und a Registration No. first!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text003Err</note>
         </trans-unit>
@@ -928,6 +928,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 441029884 - Action 805304927 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deletes all lines from the subpage.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 441029884 - Action 805304927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete All Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 441029884 - Action 805304927 - Method 1377591017 - NamedType 2396470215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to delete all lines?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Method OnAction - NamedType ConfirmDeleteQst</note>
+        </trans-unit>
         <trans-unit id="Page 3939478382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rent Setup</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1177,6 +1192,21 @@
           <source>Service List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4085664776 - Action 805304927 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deletes all lines from the subpage.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4085664776 - Action 805304927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete All Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4085664776 - Action 805304927 - Method 1377591017 - NamedType 2396470215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to delete all lines?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Method OnAction - NamedType ConfirmDeleteQst</note>
         </trans-unit>
         <trans-unit id="Report 2487714733 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental Invoices</source>

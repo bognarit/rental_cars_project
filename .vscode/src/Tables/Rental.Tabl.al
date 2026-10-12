@@ -138,13 +138,12 @@ table 50102 "Rental"
             Caption = 'From Date';
             trigger OnValidate()
             begin
-                if (Rec."Car No." = '') or (Rec."Registration No." = '') then
-                    Error(Text003Err)
-                else begin
-                    ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
-                    BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
-                    Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
-                end;
+                if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
+                    Error(Text003Err);
+
+                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
+                BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
+                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
             end;
         }
         field(100; "To Date"; Date)
@@ -152,13 +151,12 @@ table 50102 "Rental"
             Caption = 'To Date';
             trigger OnValidate()
             begin
-                if (Rec."Car No." = '') or (Rec."Registration No." = '') then
-                    Error(Text003Err)
-                else begin
-                    ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
-                    BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
-                    Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
-                end;
+                if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
+                    Error(Text003Err);
+
+                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
+                BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
+                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
             end;
         }
         field(105; "Rental Day(s)"; Integer)
@@ -188,6 +186,8 @@ table 50102 "Rental"
                             Rec."Mileage Cost" := 60;
                         2001 .. 5000:
                             Rec."Mileage Cost" := 70;
+                        else
+                            Rec."Mileage Cost" := 80;
                     end;
                 end;
 
@@ -362,8 +362,18 @@ table 50102 "Rental"
         end;
     end;
 
-    procedure ConfigureRentalDaysAndErrorWarning(FromDate: Date; ToDate: Date)
+    procedure ConfigureRentalDaysAndErrorWarning(var FromDate: Date; var ToDate: Date)
     begin
+        if FromDate = 0D then
+            FromDate := ToDate;
+        if ToDate = 0D then
+            ToDate := FromDate;
+
+        if FromDate > ToDate then
+            Error(Text001Err, FromDate, ToDate);
+        if (FromDate < Today) or (ToDate < Today) then
+            Error(Text004Err);
+
         if (FromDate <> 0D) and (ToDate <> 0D) then begin
             Rec."Rental Day(s)" := (ToDate + 1) - FromDate;
             case Rec."Rental Day(s)" of
@@ -371,20 +381,15 @@ table 50102 "Rental"
                     Rec."Rental Day(s) Cost" := 70;
                 2 .. 7:
                     Rec."Rental Day(s) Cost" := 60 * Rec."Rental Day(s)";
-                7 .. 30:
+                8 .. 30:
                     Rec."Rental Day(s) Cost" := 50 * Rec."Rental Day(s)";
+                else
+                    Rec."Rental Day(s) Cost" := 40 * Rec."Rental Day(s)";
             end;
-        end else
+        end else begin
             Rec."Rental Day(s)" := 0;
-
-        if FromDate = 0D then
-            FromDate := ToDate;
-        if ToDate = 0D then
-            ToDate := FromDate;
-        if FromDate > ToDate then
-            Error(Text001Err, FromDate, ToDate);
-        if (FromDate < Today) or (ToDate < Today) then
-            Error(Text004Err);
+            Rec."Rental Day(s) Cost" := 0;
+        end;
     end;
 
     procedure BookedCarAtTheAppointedTime(FromDate: Date; ToDate: Date)
@@ -393,43 +398,42 @@ table 50102 "Rental"
         OldClosedRental: Record "Closed Rental";
         Service: Record "Service";
     begin
+        if (FromDate = 0D) or (ToDate = 0D) then
+            exit;
+
         OldRental.SetRange("Car No.", Rec."Car No.");
         OldRental.SetRange("Registration No.", Rec."Registration No.");
+
+        if Rec."No." <> '' then
+            OldRental.SetFilter("No.", '<>%1', Rec."No.");
+
+        OldRental.SetFilter("From Date", '<=%1', ToDate);
+        OldRental.SetFilter("To Date", '>=%1', FromDate);
+
+        if not OldRental.IsEmpty then
+            Error(Text002Err);
+
         OldClosedRental.SetRange("Car No.", Rec."Car No.");
         OldClosedRental.SetRange("Registration No.", Rec."Registration No.");
+        OldClosedRental.SetFilter("From Date", '<=%1', ToDate);
+        OldClosedRental.SetFilter("To Date", '>=%1', FromDate);
+
+        if not OldClosedRental.IsEmpty then
+            Error(Text002Err);
+
         Service.SetRange("Registration No.", Rec."Registration No.");
-        if OldRental.FindSet() then begin
-            repeat
-                if (OldRental."From Date" <= FromDate) and (OldRental."To Date" >= FromDate) then
-                    Error(Text002Err)
-                else if (OldRental."To Date" >= ToDate) and (OldRental."From Date" <= ToDate) then
-                    Error(Text002Err);
-            until OldRental.Next() = 0;
-        end;
+        Service.SetRange(Status, Service.Status::Service);
+        Service.SetFilter("From Date", '<=%1', ToDate);
+        Service.SetFilter("To Date", '>=%1|%2', FromDate, 0D);
 
-        if OldClosedRental.FindSet() then begin
-            repeat
-                if (OldClosedRental."From Date" <= FromDate) and (OldClosedRental."To Date" >= FromDate) then
-                    Error(Text002Err)
-                else if (OldClosedRental."To Date" >= ToDate) and (OldClosedRental."From Date" <= ToDate) then
-                    Error(Text002Err);
-            until OldClosedRental.Next() = 0;
-        end;
-
-        if Service.FindSet() then begin
-            repeat
-                if (Service."From Date" <= FromDate) and (Service."To Date" >= FromDate) then
-                    Error(Text005Err)
-                else if (Service."To Date" >= ToDate) and (Service."From Date" <= ToDate) then
-                    Error(Text005Err);
-            until Service.Next() = 0;
-        end;
+        if not Service.IsEmpty then
+            Error(Text005Err);
     end;
 
     var
         Text001Err: Label 'The From Date %1 must not be behind To Date %2.';
         Text002Err: Label 'The car is booked at a specified date. Please choose an other date or car!';
-        Text003Err: Label 'Please choose a Car No. und a Registration No. first!';
+        Text003Err: Label 'Please choose a Renter, a Car No. und a Registration No. first!';
         Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
         Text005Err: Label 'The car currently is being serviced. Please choose an other car!';
         Text006Err: Label 'The mileage cannot be negative.';
