@@ -143,7 +143,6 @@ table 50102 "Rental"
 
                 ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
                 BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
-                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
             end;
         }
         field(100; "To Date"; Date)
@@ -156,7 +155,8 @@ table 50102 "Rental"
 
                 ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
                 BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
-                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+
+                UpdateTotalCost();
             end;
         }
         field(105; "Rental Day(s)"; Integer)
@@ -191,7 +191,7 @@ table 50102 "Rental"
                     end;
                 end;
 
-                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+                UpdateTotalCost();
             end;
         }
         field(120; "Mileage Cost"; Decimal)
@@ -214,7 +214,8 @@ table 50102 "Rental"
                 if not Rec."Car Insurance" then begin
                     Rec."Car Insurance Types" := Rec."Car Insurance Types"::" ";
                     Rec."Car Insurance Cost" := 0;
-                    Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+
+                    UpdateTotalCost();
                 end;
             end;
         }
@@ -233,7 +234,8 @@ table 50102 "Rental"
                     Rec."Car Insurance Types"::HundredPercent:
                         Rec."Car Insurance Cost" := 100;
                 end;
-                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+
+                UpdateTotalCost();
             end;
         }
         field(145; "Previous Damages"; Boolean)
@@ -279,7 +281,8 @@ table 50102 "Rental"
                     Clear(Rec."New Damage Picture 2");
                     Rec."Service From Date" := 0D;
                 end;
-                Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+
+                UpdateTotalCost();
             end;
         }
         field(170; "New Damage Details"; Text[250])
@@ -358,7 +361,8 @@ table 50102 "Rental"
                 Rec."Car Insurance Types"::HundredPercent:
                     Rec."Repair Costs" := 0;
             end;
-            Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
+
+            UpdateTotalCost();
         end;
     end;
 
@@ -428,6 +432,11 @@ table 50102 "Rental"
 
         if not Service.IsEmpty then
             Error(Text005Err);
+    end;
+
+    local procedure UpdateTotalCost()
+    begin
+        Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";
     end;
 
     var
