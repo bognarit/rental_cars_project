@@ -99,9 +99,13 @@ table 50107 "Closed Rental"
         {
             Caption = 'Rental Day(s) Cost';
         }
-        field(115; "Mileage"; Integer)
+        field(114; "Starting Mileage"; Integer)
         {
-            Caption = 'Mileage(Km)';
+            Caption = 'Starting Mileage';
+        }
+        field(115; "Ending Mileage"; Integer)
+        {
+            Caption = 'Ending Mileage';
         }
         field(120; "Mileage Cost"; Decimal)
         {

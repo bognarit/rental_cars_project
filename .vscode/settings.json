@@ -1,4 +1,5 @@
 {
     "git.ignoreLimitWarning": false,
-    "git.enabled": true
+    "git.enabled": true,
+    "xliffSync.baseFile": "RentalCars.g.xlf"
 }

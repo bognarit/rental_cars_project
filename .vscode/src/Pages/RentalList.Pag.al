@@ -56,7 +56,11 @@ page 50102 "Rental List"
                 {
                     ApplicationArea = All;
                 }
-                field(Mileage; Rec."Mileage")
+                field("Starting Mileage"; Rec."Starting Mileage")
+                {
+                    ApplicationArea = All;
+                }
+                field("Ending Mileage"; Rec."Ending Mileage")
                 {
                     ApplicationArea = All;
                 }

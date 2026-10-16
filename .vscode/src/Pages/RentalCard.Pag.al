@@ -167,7 +167,12 @@ page 50103 "Rental Card"
                     Editable = false;
                     Style = Strong;
                 }
-                field(Km; Rec."Mileage")
+                field("Starting Km"; Rec."Starting Mileage")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field("Ending Km"; Rec."Ending Mileage")
                 {
                     ApplicationArea = All;
                     Editable = (Rec."Service Status" = Rec."Service Status"::" " = true);

@@ -132,6 +132,22 @@ table 50102 "Rental"
         {
             Caption = 'Registration Number';
             TableRelation = "Car Card Lines"."Registration No." where("No." = field("Car No."));
+            trigger OnValidate()
+            var
+                CarCardLines: Record "Car Card Lines";
+            begin
+                if Rec."Registration No." <> '' then begin
+                    CarCardLines.SetRange("No.", Rec."Car No.");
+                    CarCardLines.SetRange("Registration No.", Rec."Registration No.");
+
+                    if CarCardLines.FindFirst() then begin
+                        CarCardLines.CalcFields("Mileage");
+                        Rec."Starting Mileage" := CarCardLines."Mileage";
+                    end;
+                end else begin
+                    Rec."Starting Mileage" := 0;
+                end;
+            end;
         }
         field(95; "From Date"; Date)
         {
@@ -167,17 +183,27 @@ table 50102 "Rental"
         {
             Caption = 'Rental Day(s) Cost(€)';
         }
-        field(115; "Mileage"; Integer)
+        field(114; "Starting Mileage"; Integer)
         {
-            Caption = 'Mileage(Km)';
+            Caption = 'Starting Mileage';
+        }
+        field(115; "Ending Mileage"; Integer)
+        {
+            Caption = 'Ending Mileage';
             trigger OnValidate()
+            var
+                Milage: Integer;
             begin
-                if Rec."Mileage" < 0 then
+                if Rec."Ending Mileage" < 0 then
                     Error(Text006Err)
-                else if Rec.Mileage = 0 then
+                else if Rec."Ending Mileage" = 0 then
                     Rec."Mileage Cost" := 0
+                else if Rec."Ending Mileage" < Rec."Starting Mileage" then
+                    Error(Text011Err)
                 else begin
-                    case Rec."Mileage" of
+                    Milage := Rec."Ending Mileage" - Rec."Starting Mileage";
+
+                    case Milage of
                         1 .. 500:
                             Rec."Mileage Cost" := 40;
                         501 .. 1000:
@@ -445,9 +471,10 @@ table 50102 "Rental"
         Text003Err: Label 'Please choose a Renter, a Car No. und a Registration No. first!';
         Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
         Text005Err: Label 'The car currently is being serviced. Please choose an other car!';
-        Text006Err: Label 'The mileage cannot be negative.';
+        Text006Err: Label 'The ending mileage cannot be negative.';
         Text007Err: Label 'The car currently is being serviced.';
         Text008Err: Label 'The car has been repaired.';
         Text009Err: Label 'The To Date %1 must not be behind Service From Date %2';
         Text010Err: Label 'Please choose a From Date und a To Date first!';
+        Text011Err: Label 'The ending mileage must be greater than the starting mileage.';
 }

@@ -61,6 +61,16 @@ report 50100 "Rental Invoice - Word"
             column(TotalCost; "Total Cost")
             {
             }
+
+            trigger OnAfterGetRecord()
+            var
+                ClosedRental: Record "Closed Rental";
+            begin
+                Mileage := 0;
+
+                if ClosedRental.Get("No.", "Renter No.") then
+                    Mileage := ClosedRental."Ending Mileage" - ClosedRental."Starting Mileage";
+            end;
         }
     }
 
@@ -74,4 +84,7 @@ report 50100 "Rental Invoice - Word"
             Summary = 'Word Layout of Rental Invoice.';
         }
     }
+
+    var
+        Mileage: Integer;
 }

@@ -49,7 +49,10 @@ report 50102 "Closed Rental Invoices - Word"
             column(RentalDayCost; "Rental Day(s) Cost")
             {
             }
-            column(Mileage; Mileage)
+            column(StartingMileage; "Starting Mileage")
+            {
+            }
+            column(EndingMileage; "Ending Mileage")
             {
             }
             column(MileageCost; "Mileage Cost")

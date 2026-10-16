@@ -4,7 +4,8 @@ page 50114 "Closed Rental Card"
     Caption = 'Closed Rental';
     PageType = Card;
     SourceTable = "Closed Rental";
-    Editable = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
 
     layout
     {
@@ -130,7 +131,11 @@ page 50114 "Closed Rental Card"
                     ApplicationArea = All;
                     Style = Strong;
                 }
-                field(Km; Rec."Mileage")
+                field("Starting Km"; Rec."Starting Mileage")
+                {
+                    ApplicationArea = All;
+                }
+                field("Ending Km"; Rec."Ending Mileage")
                 {
                     ApplicationArea = All;
                 }

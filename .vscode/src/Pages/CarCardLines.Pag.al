@@ -43,16 +43,4 @@ page 50109 "Car Card Lines"
             }
         }
     }
-
-    trigger OnAfterGetRecord()
-    var
-        Rental: Record "Rental";
-        ClosedRental: Record "Closed Rental";
-    begin
-        Rental.SetRange("Registration No.", Rec."Registration No.");
-        Rental.CalcSums("Mileage");
-        ClosedRental.SetRange("Registration No.", Rec."Registration No.");
-        ClosedRental.CalcSums("Mileage");
-        Rec.Mileage := Rental.Mileage + ClosedRental."Mileage";
-    end;
 }

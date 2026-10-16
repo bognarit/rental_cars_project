@@ -6,7 +6,8 @@ page 50113 "Closed Rental List"
     UsageCategory = Lists;
     CardPageId = "Closed Rental Card";
     SourceTable = "Closed Rental";
-    Editable = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
 
     layout
     {
@@ -56,7 +57,11 @@ page 50113 "Closed Rental List"
                 {
                     ApplicationArea = All;
                 }
-                field(Mileage; Rec."Mileage")
+                field("Starting Mileage"; Rec."Starting Mileage")
+                {
+                    ApplicationArea = All;
+                }
+                field("Ending Mileage"; Rec."Ending Mileage")
                 {
                     ApplicationArea = All;
                 }
@@ -84,32 +89,6 @@ page 50113 "Closed Rental List"
                 {
                     ApplicationArea = All;
                 }
-            }
-        }
-    }
-
-    actions
-    {
-        area(processing)
-        {
-            action(DeleteAllLines)
-            {
-                ApplicationArea = All;
-                Caption = 'Delete All Lines';
-                Image = Delete;
-                Promoted = true;
-                PromotedCategory = Process;
-                ToolTip = 'Deletes all lines from the subpage.';
-
-                trigger OnAction()
-                var
-                    ConfirmDeleteQst: Label 'Are you sure you want to delete all lines?';
-                begin
-                    if Confirm(ConfirmDeleteQst, false) then begin
-                        Rec.DeleteAll(true);
-                        CurrPage.Update(false);
-                    end;
-                end;
             }
         }
     }

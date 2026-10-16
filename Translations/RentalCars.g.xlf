@@ -178,15 +178,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Country/Region Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 548883390 - Field 1976629947 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Mileage</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Ending Mileage - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 548883390 - Field 2110632758 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>From Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field From Date - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 548883390 - Field 736648186 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Mileage(Km)</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Mileage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 548883390 - Field 3408391663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mileage Cost</source>
@@ -293,6 +293,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Service To Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 548883390 - Field 88997938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Mileage</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Starting Mileage - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 548883390 - Field 2565971985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>To Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -359,7 +364,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text005Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The mileage cannot be negative.</source>
+          <source>The ending mileage cannot be negative.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text006Err</note>
         </trans-unit>
@@ -382,6 +387,11 @@
           <source>Please choose a From Date und a To Date first!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text010Err</note>
+        </trans-unit>
+        <trans-unit id="Table 2513429772 - NamedType 2362165204" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The ending mileage must be greater than the starting mileage.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text011Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
@@ -463,15 +473,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Country/Region Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 1976629947 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Mileage</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Ending Mileage - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 2110632758 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>From Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field From Date - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2513429772 - Field 736648186 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Mileage(Km)</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Mileage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - Field 3408391663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mileage Cost(€)</source>
@@ -577,6 +587,11 @@
           <source>Service To Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Service To Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 88997938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Mileage</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Starting Mileage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - Field 2565971985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>To Date</source>
@@ -928,21 +943,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Control General - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 441029884 - Action 805304927 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deletes all lines from the subpage.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 441029884 - Action 805304927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete All Lines</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 441029884 - Action 805304927 - Method 1377591017 - NamedType 2396470215" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure you want to delete all lines?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Action DeleteAllLines - Method OnAction - NamedType ConfirmDeleteQst</note>
-        </trans-unit>
         <trans-unit id="Page 3939478382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rent Setup</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1192,21 +1192,6 @@
           <source>Service List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4085664776 - Action 805304927 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deletes all lines from the subpage.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 4085664776 - Action 805304927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete All Lines</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4085664776 - Action 805304927 - Method 1377591017 - NamedType 2396470215" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure you want to delete all lines?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Action DeleteAllLines - Method OnAction - NamedType ConfirmDeleteQst</note>
         </trans-unit>
         <trans-unit id="Report 2487714733 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental Invoices</source>
