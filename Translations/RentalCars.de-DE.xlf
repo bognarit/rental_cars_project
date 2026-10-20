@@ -165,6 +165,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field BillRequired - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 548883390 - Field 3844911025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Canceled</source>
+          <target>Storniert</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field Canceled - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 548883390 - Field 3699353877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Brand</source>
           <target>Marke</target>
@@ -1106,6 +1112,12 @@
           <target>Mietrechnung</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Action BillToRenterWord - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2803459194 - Action 2213707234 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel and Reopen</source>
+          <target>Stornieren und wieder öffnen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Action CancelAndReopen - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3482772317 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental Lines</source>

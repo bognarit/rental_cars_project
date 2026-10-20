@@ -4,8 +4,7 @@ page 50114 "Closed Rental Card"
     Caption = 'Closed Rental';
     PageType = Card;
     SourceTable = "Closed Rental";
-    ModifyAllowed = false;
-    DeleteAllowed = false;
+    Editable = false;
 
     layout
     {
@@ -18,6 +17,12 @@ page 50114 "Closed Rental Card"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                    StyleExpr = PageStyle;
+                }
+                field(Canceled; Rec.Canceled)
+                {
+                    ApplicationArea = All;
+                    Style = Unfavorable;
                 }
                 field("Renter No."; Rec."Renter No.")
                 {
@@ -253,6 +258,44 @@ page 50114 "Closed Rental Card"
                     end;
                 end;
             }
+
+            action(CancelAndReopen)
+            {
+                Caption = 'Cancel and Reopen';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Undo;
+                Enabled = not Rec.Canceled; // Csak akkor futhat, ha nincs még sztornózva
+
+                trigger OnAction()
+                var
+                    NewActiveRental: Record "Rental";
+                begin
+                    if Confirm('Are you sure you want to cancel this closed rental and create a correctable draft?', true) then begin
+                        NewActiveRental := Rec.PerformCancelAndReopen(Rec);
+
+                        Commit(); // Kényszerítjük az SQL mentést a háttérben
+
+                        // Felugró ablak nélkül megnyitjuk az új, szerkeszthető aktív kártyát
+                        Page.Run(Page::"Rental Card", NewActiveRental);
+                        CurrPage.Update(false);
+                    end;
+                end;
+            }
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        if Rec.Canceled then
+            PageStyle := 'Subordinate'
+        else
+            PageStyle := 'Standard';
+    end;
+
+    var
+        PageStyle: Text;
 }

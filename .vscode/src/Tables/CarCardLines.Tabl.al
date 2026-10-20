@@ -27,7 +27,10 @@ table 50105 "Car Card Lines"
         {
             Caption = 'Mileage(km)';
             FieldClass = FlowField;
-            CalcFormula = max("Closed Rental"."Ending Mileage" where("Car No." = field("No."), "Registration No." = field("Registration No.")));
+            CalcFormula = max("Closed Rental"."Ending Mileage" where(
+                "Car No." = field("No."),
+                "Registration No." = field("Registration No."),
+                Canceled = const(false)));
             Editable = false;
         }
         field(6; Transmission; Option)

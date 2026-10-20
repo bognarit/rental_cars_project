@@ -191,31 +191,15 @@ table 50102 "Rental"
         {
             Caption = 'Ending Mileage';
             trigger OnValidate()
-            var
-                Milage: Integer;
             begin
+                // Biztonsági ellenőrzések
                 if Rec."Ending Mileage" < 0 then
-                    Error(Text006Err)
-                else if Rec."Ending Mileage" = 0 then
-                    Rec."Mileage Cost" := 0
-                else if Rec."Ending Mileage" < Rec."Starting Mileage" then
-                    Error(Text011Err)
-                else begin
-                    Milage := Rec."Ending Mileage" - Rec."Starting Mileage";
+                    Error(Text006Err);
+                if (Rec."Ending Mileage" <> 0) and (Rec."Ending Mileage" < Rec."Starting Mileage") then
+                    Error(Text011Err);
 
-                    case Milage of
-                        1 .. 500:
-                            Rec."Mileage Cost" := 40;
-                        501 .. 1000:
-                            Rec."Mileage Cost" := 50;
-                        1001 .. 2000:
-                            Rec."Mileage Cost" := 60;
-                        2001 .. 5000:
-                            Rec."Mileage Cost" := 70;
-                        else
-                            Rec."Mileage Cost" := 80;
-                    end;
-                end;
+                // Meghívjuk a javított, kiszervezett funkciót
+                Rec.CalculateMileageAndRunCorrection();
 
                 UpdateTotalCost();
             end;
@@ -458,6 +442,93 @@ table 50102 "Rental"
 
         if not Service.IsEmpty then
             Error(Text005Err);
+    end;
+
+    procedure CalculateMileageAndRunCorrection()
+    var
+        CarCardLines: Record "Car Card Lines";
+        Milage: Integer; // Ez csak egy belső változó a megtett út kiszámításához
+        MileageDifference: Integer;
+    begin
+        // 1. Ha 0 a záró km, nullázzuk a kilométer-költséget
+        if Rec."Ending Mileage" = 0 then begin
+            Rec."Mileage Cost" := 0;
+            exit;
+        end;
+
+        // 2. Kiszámoljuk a megtett kilométert a helyi változóba
+        Milage := Rec."Ending Mileage" - Rec."Starting Mileage";
+
+        // 3. Sávos árazás meghatározása
+        case Milage of
+            1 .. 500:
+                Rec."Mileage Cost" := 40;
+            501 .. 1000:
+                Rec."Mileage Cost" := 50;
+            1001 .. 2000:
+                Rec."Mileage Cost" := 60;
+            2001 .. 5000:
+                Rec."Mileage Cost" := 70;
+            else
+                Rec."Mileage Cost" := 80;
+        end;
+
+        // 4. NORMÁL ESET: Ha ez egy sima bérlet (nincs benne a '-REV')
+        if StrPos(Rec."No.", '-REV') = 0 then begin
+            // Beolvassuk a konkrét autót az adatbázisból a kulcsok alapján
+            if CarCardLines.Get(Rec."Car No.", Rec."Registration No.") then begin
+                // Az autó aktuális óraállását (Mileage) beállítjuk a bérlet záró óraállására
+                CarCardLines."Mileage" := Rec."Ending Mileage";
+                CarCardLines.Modify(true); // Elmentjük az SQL-be
+            end;
+        end;
+
+        // 5. REVIZIÓS ESET: Ha ez egy újranyitott módosítás
+        if StrPos(Rec."No.", '-REV') > 0 then begin
+            // Kiszámoljuk a hiba mértékét: Új beírt záró km MINUSZ a módosítás előtti hibás záró km
+            MileageDifference := Rec."Ending Mileage" - xRec."Ending Mileage";
+
+            if MileageDifference <> 0 then begin
+                // Meghívjuk a már korábban megírt UpdateSequenceMileages eljárásodat
+                Rec.UpdateSequenceMileages(Rec."Car No.", Rec."Registration No.", xRec."Ending Mileage", MileageDifference);
+            end;
+        end;
+    end;
+
+    procedure UpdateSequenceMileages(CarNo: Code[20]; RegNo: Text[50]; OldEndingMileage: Integer; Diff: Integer)
+    var
+        CarCardLines: Record "Car Card Lines";
+        ClosedRental: Record "Closed Rental";
+        Rental: Record "Rental";
+    begin
+        // A) Autó frissítése
+        if CarCardLines.Get(CarNo, RegNo) then begin
+            CarCardLines."Mileage" += Diff;
+            CarCardLines.Modify(true);
+        end;
+
+        // B) Későbbi lezárt bérlések eltolása
+        ClosedRental.SetRange("Car No.", CarNo);
+        ClosedRental.SetRange("Registration No.", RegNo);
+        ClosedRental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
+        ClosedRental.SetRange(Canceled, false);
+        if ClosedRental.FindSet() then
+            repeat
+                ClosedRental."Starting Mileage" += Diff;
+                ClosedRental."Ending Mileage" += Diff;
+                ClosedRental.Modify(false); // Átüti a ModifyAllowed = false-t
+            until ClosedRental.Next() = 0;
+
+        // C) Jövőbeli aktív foglalások eltolása
+        Rental.SetRange("Car No.", CarNo);
+        Rental.SetRange("Registration No.", RegNo);
+        Rental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
+        if Rental.FindSet() then
+            repeat
+                Rental."Starting Mileage" += Diff;
+                Rental."Ending Mileage" += Diff;
+                Rental.Modify(true);
+            until Rental.Next() = 0;
     end;
 
     local procedure UpdateTotalCost()

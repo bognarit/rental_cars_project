@@ -179,6 +179,11 @@ table 50107 "Closed Rental"
         {
             Caption = 'Repair Costs(€)';
         }
+        field(205; Canceled; Boolean)
+        {
+            Caption = 'Canceled';
+            Editable = false;
+        }
     }
 
     keys
@@ -198,4 +203,34 @@ table 50107 "Closed Rental"
         {
         }
     }
+
+    procedure PerformCancelAndReopen(var SourceClosedRental: Record "Closed Rental") NewRental: Record "Rental"
+    var
+        ActiveRentalCheck: Record "Rental";
+        NewNo: Code[20];
+        Counter: Integer;
+    begin
+        if SourceClosedRental.Canceled then
+            Error('This rental has already been canceled!');
+
+        // 1. Intelligens sorszám generálás (B001 -> B001-REV -> B001-REV1 stb.)
+        Counter := 0;
+        NewNo := SourceClosedRental."No." + '-REV';
+        while ActiveRentalCheck.Get(NewNo, SourceClosedRental."Renter No.") do begin
+            Counter += 1;
+            NewNo := SourceClosedRental."No." + '-REV' + Format(Counter);
+        end;
+
+        // 2. Az eredeti hibás rekord megjelölése sztornózottként (Kiskapu a ModifyAllowed ellen)
+        SourceClosedRental.Canceled := true;
+        SourceClosedRental.Modify(false);
+
+        // 3. Pontos másolat készítése az aktív Rental táblába (a hibás értékekkel együtt)
+        NewRental.Init();
+        NewRental.TransferFields(SourceClosedRental);
+        NewRental."No." := NewNo;
+
+        NewRental.Insert(false); // Az Insert(false) miatt átugorja a dátum-ellenőrzési hibákat
+        exit(NewRental);
+    end;
 }
