@@ -117,6 +117,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 548883390 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A correction draft (%1) already exists for this rental. You cannot modify it again!</source>
+          <target>Ein Änderungsentwurf (%1) liegt für diesen Mietvorgang bereits vor. Dieser kann nem erneut modifiziert werden!</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - NamedType Text001Err</note>
+        </trans-unit>
         <trans-unit id="Table 548883390 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
           <target>Adresse</target>
@@ -1064,6 +1070,18 @@
           <target>Abgeschlossene Miete</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2803459194 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
+          <target>Dieser Vertrag (%1) liegt bereits in einer korrigierten Fassung vor. Bereits korrigierte Verträge können nicht nochmals geändert werden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Page 2803459194 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This rental has already been canceled!</source>
+          <target>Dieser Mietvorgang ist bereits storniert.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Page 2803459194 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>

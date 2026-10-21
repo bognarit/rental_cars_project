@@ -210,16 +210,10 @@ table 50107 "Closed Rental"
         NewNo: Code[20];
         Counter: Integer;
     begin
-        if SourceClosedRental.Canceled then
-            Error('This rental has already been canceled!');
-
-        // 1. Intelligens sorszám generálás (B001 -> B001-REV -> B001-REV1 stb.)
-        Counter := 0;
         NewNo := SourceClosedRental."No." + '-REV';
-        while ActiveRentalCheck.Get(NewNo, SourceClosedRental."Renter No.") do begin
-            Counter += 1;
-            NewNo := SourceClosedRental."No." + '-REV' + Format(Counter);
-        end;
+
+        if ActiveRentalCheck.Get(NewNo, SourceClosedRental."Renter Name") then
+            Error(Text001Err, NewNo);
 
         // 2. Az eredeti hibás rekord megjelölése sztornózottként (Kiskapu a ModifyAllowed ellen)
         SourceClosedRental.Canceled := true;
@@ -233,4 +227,7 @@ table 50107 "Closed Rental"
         NewRental.Insert(false); // Az Insert(false) miatt átugorja a dátum-ellenőrzési hibákat
         exit(NewRental);
     end;
+
+    var
+        Text001Err: Label 'A correction draft (%1) already exists for this rental. You cannot modify it again!';
 }

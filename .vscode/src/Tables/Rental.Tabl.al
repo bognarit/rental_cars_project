@@ -192,13 +192,11 @@ table 50102 "Rental"
             Caption = 'Ending Mileage';
             trigger OnValidate()
             begin
-                // Biztonsági ellenőrzések
                 if Rec."Ending Mileage" < 0 then
                     Error(Text006Err);
                 if (Rec."Ending Mileage" <> 0) and (Rec."Ending Mileage" < Rec."Starting Mileage") then
                     Error(Text011Err);
 
-                // Meghívjuk a javított, kiszervezett funkciót
                 Rec.CalculateMileageAndRunCorrection();
 
                 UpdateTotalCost();
@@ -447,7 +445,7 @@ table 50102 "Rental"
     procedure CalculateMileageAndRunCorrection()
     var
         CarCardLines: Record "Car Card Lines";
-        Milage: Integer; // Ez csak egy belső változó a megtett út kiszámításához
+        Milage: Integer;
         MileageDifference: Integer;
     begin
         // 1. Ha 0 a záró km, nullázzuk a kilométer-költséget

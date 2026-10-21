@@ -274,6 +274,12 @@ page 50114 "Closed Rental Card"
                 var
                     NewActiveRental: Record "Rental";
                 begin
+                    if StrPos(Rec."No.", '-REV') > 0 then
+                        Error(Text001Err, Rec."No.");
+
+                    if Rec.Canceled then
+                        Error(Text002Err);
+
                     if Confirm('Are you sure you want to cancel this closed rental and create a correctable draft?', true) then begin
                         NewActiveRental := Rec.PerformCancelAndReopen(Rec);
 
@@ -298,4 +304,6 @@ page 50114 "Closed Rental Card"
 
     var
         PageStyle: Text;
+        Text001Err: Label 'This contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
+        Text002Err: Label 'This rental has already been canceled!';
 }
