@@ -25,54 +25,53 @@ page 50117 "Service Card Lines"
                 field("Line No."; Rec."Line No.")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Status = Rec.Status::Repaired = false);
                 }
                 field("Type"; Rec."Type")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Status = Rec.Status::Repaired = false);
                 }
                 field("Car Part"; Rec."Car Part")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec.Status = Rec.Status::Repaired = false);
+                    Editable = (Rec.Type = Rec.Type::Wage = false);
                 }
                 field(Manufacturer; Rec.Manufacturer)
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec.Status = Rec.Status::Repaired = false);
+                    Editable = (Rec.Type = Rec.Type::Wage = false);
                 }
                 field("Order Necessary"; Rec."Order Necessary")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec.Status = Rec.Status::Repaired = false);
                 }
                 field("Order Date"; Rec."Order Date")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec.Status = Rec.Status::Repaired = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
+                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
                 }
                 field("Delivery Date"; Rec."Delivery Date")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec.Status = Rec.Status::Repaired = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
+                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Status = Rec.Status::Repaired = false);
+
                     trigger OnValidate()
                     begin
                         Rec.Cost := Rec.Quantity * Rec."Unit Price";
+                        CurrPage.Update(true);
                     end;
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Status = Rec.Status::Repaired = false);
+
                     trigger OnValidate()
                     begin
                         Rec.Cost := Rec.Quantity * Rec."Unit Price";
+                        CurrPage.Update(true);
                     end;
                 }
                 field(Cost; Rec.Cost)
@@ -96,9 +95,17 @@ page 50117 "Service Card Lines"
 
                 trigger OnAction()
                 var
+                    ServiceHeader: Record "Service";
                     ServiceList: Record "Service Card Lines";
                     ServiceInvoicesLayout: Report "Service Invoices - Word";
                 begin
+                    ServiceHeader.SetRange("Service No.", Rec."Service No.");
+
+                    if ServiceHeader.FindFirst() then begin
+                        if ServiceHeader.Status = ServiceHeader.Status::Service then
+                            Error(Text001Err);
+                    end;
+
                     ServiceList.SetRange("Service No.", Rec."Service No.");
 
                     ServiceInvoicesLayout.SetTableView(ServiceList);
@@ -109,5 +116,5 @@ page 50117 "Service Card Lines"
     }
 
     var
-        ServiceList: Record "Service";
+        Text001Err: Label 'The car has not yet been Repaired!';
 }

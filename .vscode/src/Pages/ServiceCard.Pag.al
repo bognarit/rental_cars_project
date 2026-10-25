@@ -18,6 +18,11 @@ page 50115 "Service Card"
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field(Canceled; Rec.Canceled)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 field("Rental No."; Rec."Rental No.")
                 {
                     ApplicationArea = All;
@@ -75,6 +80,7 @@ page 50115 "Service Card"
                 Caption = 'Service Lines';
                 ApplicationArea = All;
                 SubPageLink = "Service No." = field("Service No.");
+                Editable = IsLinesEditable;
             }
         }
     }
@@ -91,23 +97,30 @@ page 50115 "Service Card"
                 PromotedIsBig = true;
                 PromotedOnly = true;
                 Image = Close;
+                Enabled = (Rec.Status = Rec.Status::Service);
 
                 trigger OnAction()
                 var
                     RentalList: Record "Rental";
                     ServiceCardLines: Record "Service Card Lines";
-                    Email: Codeunit Email;
-                    EmailMessage: Codeunit "Email Message";
+                    ServiceLines: Page "Service Card Lines";
+                // Email: Codeunit Email;
+                // EmailMessage: Codeunit "Email Message";
                 begin
-                    if (ServiceCardLines."Order Date" > Rec."To Date") and (ServiceCardLines."Delivery Date" > Rec."To Date") then
-                        Error(Text003Err, ServiceCardLines."Delivery Date", Rec."To Date");
+                    ServiceCardLines.SetRange("Service No.", Rec."Service No.");
+                    if ServiceCardLines.FindSet() then begin
+                        repeat
+                            if (ServiceCardLines."Order Date" > Rec."To Date") and (ServiceCardLines."Delivery Date" > Rec."To Date") then
+                                Error(Text003Err, ServiceCardLines."Delivery Date", Rec."To Date");
+                        until ServiceCardLines.Next() = 0;
+                    end;
 
                     if (Rec."To Date" <> 0D) and (Rec."Service Costs" <> 0) and (Rec.Status = Rec.Status::Service) then begin
+                        Rec.Canceled := false;
                         Rec.Status := Rec.Status::Repaired;
                         Rec.Modify();
 
                         // No Editable Fields of Service Card Lines
-                        ServiceCardLines.SetRange("Service No.", Rec."Service No.");
                         if ServiceCardLines.Findset() then begin
                             repeat
                                 ServiceCardLines.Status := ServiceCardLines.Status::Repaired;
@@ -116,16 +129,20 @@ page 50115 "Service Card"
                         end;
 
                         // Update Rental List
-                        RentalList.SetRange("No.", Rec."Rental No.");
-                        RentalList.FindFirst();
+                        if Rec."Rental No." <> '' then begin
+                            RentalList.SetRange("No.", Rec."Rental No.");
+                            if RentalList.FindFirst() then begin
+                                RentalList."Service Status" := RentalList."Service Status"::Repaired;
+                                RentalList."Service To Date" := Rec."To Date";
+                                RentalList."Repair Costs" := Rec."Service Costs";
+                                RentalList.CountTheRepairCosts(Rec);
+                                RentalList.Modify();
+                            end;
+                        end;
 
-                        RentalList."Service Status" := RentalList."Service Status"::Repaired;
-                        RentalList."Service To Date" := Rec."To Date";
-                        RentalList."Repair Costs" := Rec."Service Costs";
-                        RentalList.CountTheRepairCosts(Rec);
-                        RentalList.Modify();
                         Message(Text001);
-
+                        IsLinesEditable := false;
+                        CurrPage.Update(false);
                         // Automatic email sending
                         // EmailMessage.Create('akos.bognar@hejnav.com', 'Repair', 'Dear Sir or Madam, Your car has been repaired. You can collect it at our Service Center. Kind regards, Service Company');
                         // Email.Send(EmailMessage, "Email Scenario"::Notification)
@@ -136,12 +153,51 @@ page 50115 "Service Card"
                     end;
                 end;
             }
+            action(CancelAndReopen)
+            {
+                Caption = 'Cancel and Reopen';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Undo;
+                Enabled = (Rec.Status = Rec.Status::Repaired);
+
+                trigger OnAction()
+                var
+                    NewActiveService: Record "Service";
+                begin
+                    if StrPos(Rec."Service No.", '-SER') > 0 then
+                        Error(Text001Err, Rec."Service No.");
+
+                    if Rec.Canceled then
+                        Error(Text005Err);
+
+                    if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
+                        NewActiveService := Rec.PerformCancelAndReopen(Rec);
+
+                        Commit();
+
+                        Page.Run(Page::"Service Card", NewActiveService);
+                        CurrPage.Close();
+                    end;
+                end;
+            }
         }
     }
 
+    trigger OnAfterGetRecord()
+    begin
+        IsLinesEditable := (Rec.Status <> Rec.Status::Repaired)
+    end;
+
     var
+        IsLinesEditable: Boolean;
         Text001: Label 'The Service has been closed.';
         Text001Err: Label 'The Service is already closed.';
         Text002Err: Label 'Please fill ''To Date'' and ''Cost'' fields!';
         Text003Err: Label 'The Delivery Date %1 must not be behind To Date %2';
+        Text004Err: Label 'This contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
+        Text005Err: Label 'This rental has already been canceled!';
 }

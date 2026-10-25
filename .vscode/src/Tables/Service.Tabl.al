@@ -85,6 +85,11 @@ table 50106 "Service"
             CalcFormula = Sum("Service Card Lines".Cost where("Service No." = field("Service No.")));
             FieldClass = FlowField;
         }
+        field(55; Canceled; Boolean)
+        {
+            Caption = 'Canceled';
+            Editable = false;
+        }
     }
     keys
     {
@@ -93,6 +98,16 @@ table 50106 "Service"
             Clustered = true;
         }
     }
+
+    trigger OnDelete()
+    var
+        ServiceLines: Record "Service Card Lines";
+    begin
+        ServiceLines.SetRange("Service No.", Rec."Service No.");
+
+        if not ServiceLines.IsEmpty() then
+            ServiceLines.DeleteAll(true);
+    end;
 
     procedure ConfigureRentalDaysAndErrorWarning(FromDate: Date; ToDate: Date)
     var
@@ -106,6 +121,39 @@ table 50106 "Service"
             Error(Text001Err, FromDate, ToDate);
         if (FromDate < Today) or (ToDate < Today) then
             Error(Text002Err);
+    end;
+
+    procedure PerformCancelAndReopen(var SourceService: Record Service) NewService: Record Service
+    var
+        SourceLines: Record "Service Card Lines";
+        NewLines: Record "Service Card Lines";
+        NewNo: Code[20];
+    begin
+        SourceService.Canceled := true;
+        SourceService.Modify();
+
+        NewNo := SourceService."Service No." + '-SER';
+
+        NewService.Init();
+        NewService.TransferFields(SourceService);
+        NewService."Service No." := NewNo;
+        NewService.Canceled := false;
+        NewService.Status := NewService.Status::Service;
+        NewService.Insert(true);
+
+        SourceLines.SetRange("Service No.", SourceService."Service No.");
+
+        if SourceLines.FindSet() then begin
+            repeat
+                NewLines.Init();
+                NewLines.TransferFields(SourceLines);
+                NewLines."Service No." := NewNo;
+                NewLines.Status := NewLines.Status::Service;
+                NewLines.Insert();
+            until SourceLines.Next() = 0;
+        end;
+
+        exit(NewService);
     end;
 
     var

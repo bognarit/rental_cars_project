@@ -678,6 +678,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text004Err</note>
         </trans-unit>
+        <trans-unit id="Table 2187938695 - Field 3844911025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Canceled</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service - Field Canceled - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2187938695 - Field 3699353877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Brand</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1188,6 +1193,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text003Err</note>
         </trans-unit>
+        <trans-unit id="Page 2833564323 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Page 2833564323 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This rental has already been canceled!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text005Err</note>
+        </trans-unit>
         <trans-unit id="Page 2833564323 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1198,6 +1213,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - Control SeviceCardLines - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2833564323 - Action 2213707234 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel and Reopen</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - Action CancelAndReopen - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2833564323 - Action 428249469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Close Service</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1207,6 +1227,11 @@
           <source>Service Lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3297013664 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car has not yet been Repaired!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card Lines - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Page 3297013664 - Action 1002420131 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Print</source>
