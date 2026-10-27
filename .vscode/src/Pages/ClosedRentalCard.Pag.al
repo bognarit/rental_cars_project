@@ -281,7 +281,7 @@ page 50114 "Closed Rental Card"
                         Error(Text002Err);
 
                     if Confirm('Are you sure you want to cancel this closed rental and create a correctable draft?', true) then begin
-                        NewActiveRental := Rec.PerformCancelAndReopen(Rec);
+                        NewActiveRental := Rec.PerformRentalCancelAndReopen(Rec);
 
                         Commit(); // Kényszerítjük az SQL mentést a háttérben
 

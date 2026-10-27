@@ -353,19 +353,19 @@ table 50102 "Rental"
         }
     }
 
-    procedure CountTheRepairCosts(var Service: Record "Service")
+    procedure CountTheRepairCosts(var ServiceHeader: Record "Service")
     begin
         if Rec."Service Status" = Rec."Service Status"::Repaired then begin
-            Service.SetRange("Rental No.", Rec."No.");
-            Service.FindFirst();
+            ServiceHeader.SetRange("Rental No.", Rec."No.");
+            ServiceHeader.CalcFields("Service Costs");
 
             case Rec."Car Insurance Types" of
                 Rec."Car Insurance Types"::" ":
-                    Rec."Repair Costs" := Service."Service Costs";
+                    Rec."Repair Costs" := ServiceHeader."Service Costs";
                 Rec."Car Insurance Types"::TwentyFivePercent:
-                    Rec."Repair Costs" := 0.75 * Service."Service Costs";
+                    Rec."Repair Costs" := (ServiceHeader."Service Costs" * 75) / 100;
                 Rec."Car Insurance Types"::FiftyPercent:
-                    Rec."Repair Costs" := 0.5 * Service."Service Costs";
+                    Rec."Repair Costs" := (ServiceHeader."Service Costs" * 50) / 100;
                 Rec."Car Insurance Types"::HundredPercent:
                     Rec."Repair Costs" := 0;
             end;

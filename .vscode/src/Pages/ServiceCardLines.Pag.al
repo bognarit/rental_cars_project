@@ -116,5 +116,5 @@ page 50117 "Service Card Lines"
     }
 
     var
-        Text001Err: Label 'The car has not yet been Repaired!';
+        Text001Err: Label 'The car has not yet been repaired!';
 }

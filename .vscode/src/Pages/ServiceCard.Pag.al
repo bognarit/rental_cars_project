@@ -100,58 +100,10 @@ page 50115 "Service Card"
                 Enabled = (Rec.Status = Rec.Status::Service);
 
                 trigger OnAction()
-                var
-                    RentalList: Record "Rental";
-                    ServiceCardLines: Record "Service Card Lines";
-                    ServiceLines: Page "Service Card Lines";
-                // Email: Codeunit Email;
-                // EmailMessage: Codeunit "Email Message";
                 begin
-                    ServiceCardLines.SetRange("Service No.", Rec."Service No.");
-                    if ServiceCardLines.FindSet() then begin
-                        repeat
-                            if (ServiceCardLines."Order Date" > Rec."To Date") and (ServiceCardLines."Delivery Date" > Rec."To Date") then
-                                Error(Text003Err, ServiceCardLines."Delivery Date", Rec."To Date");
-                        until ServiceCardLines.Next() = 0;
-                    end;
-
-                    if (Rec."To Date" <> 0D) and (Rec."Service Costs" <> 0) and (Rec.Status = Rec.Status::Service) then begin
-                        Rec.Canceled := false;
-                        Rec.Status := Rec.Status::Repaired;
-                        Rec.Modify();
-
-                        // No Editable Fields of Service Card Lines
-                        if ServiceCardLines.Findset() then begin
-                            repeat
-                                ServiceCardLines.Status := ServiceCardLines.Status::Repaired;
-                                ServiceCardLines.Modify();
-                            until ServiceCardLines.Next() = 0;
-                        end;
-
-                        // Update Rental List
-                        if Rec."Rental No." <> '' then begin
-                            RentalList.SetRange("No.", Rec."Rental No.");
-                            if RentalList.FindFirst() then begin
-                                RentalList."Service Status" := RentalList."Service Status"::Repaired;
-                                RentalList."Service To Date" := Rec."To Date";
-                                RentalList."Repair Costs" := Rec."Service Costs";
-                                RentalList.CountTheRepairCosts(Rec);
-                                RentalList.Modify();
-                            end;
-                        end;
-
-                        Message(Text001);
-                        IsLinesEditable := false;
-                        CurrPage.Update(false);
-                        // Automatic email sending
-                        // EmailMessage.Create('akos.bognar@hejnav.com', 'Repair', 'Dear Sir or Madam, Your car has been repaired. You can collect it at our Service Center. Kind regards, Service Company');
-                        // Email.Send(EmailMessage, "Email Scenario"::Notification)
-                    end else if Rec.Status = Rec.Status::Repaired then
-                            Error(Text001Err)
-                    else if (Rec."To Date" = 0D) or (Rec."Service Costs" = 0) then begin
-                        Error(Text002Err);
-                    end;
+                    ProcessServiceClosure();
                 end;
+
             }
             action(CancelAndReopen)
             {
@@ -168,14 +120,14 @@ page 50115 "Service Card"
                 var
                     NewActiveService: Record "Service";
                 begin
-                    if StrPos(Rec."Service No.", '-SER') > 0 then
-                        Error(Text001Err, Rec."Service No.");
+                    // if StrPos(Rec."Service No.", '-SER') > 0 then
+                    //     Error(Text004Err, Rec."Service No.");
 
-                    if Rec.Canceled then
-                        Error(Text005Err);
+                    // if Rec.Canceled then
+                    //     Error(Text005Err);
 
                     if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
-                        NewActiveService := Rec.PerformCancelAndReopen(Rec);
+                        NewActiveService := Rec.PerformServiceCancelAndReopen(Rec);
 
                         Commit();
 
@@ -190,6 +142,60 @@ page 50115 "Service Card"
     trigger OnAfterGetRecord()
     begin
         IsLinesEditable := (Rec.Status <> Rec.Status::Repaired)
+    end;
+
+    procedure ProcessServiceClosure()
+    var
+        RentalList: Record "Rental";
+        ServiceCardLines: Record "Service Card Lines";
+        ServiceLines: Page "Service Card Lines";
+    // Email: Codeunit Email;
+    // EmailMessage: Codeunit "Email Message";
+    begin
+        ServiceCardLines.SetRange("Service No.", Rec."Service No.");
+        if ServiceCardLines.FindSet() then begin
+            repeat
+                if (ServiceCardLines."Order Date" > Rec."To Date") and (ServiceCardLines."Delivery Date" > Rec."To Date") then
+                    Error(Text003Err, ServiceCardLines."Delivery Date", Rec."To Date");
+            until ServiceCardLines.Next() = 0;
+        end;
+
+        if (Rec."To Date" <> 0D) and (Rec."Service Costs" <> 0) and (Rec.Status = Rec.Status::Service) then begin
+            Rec.Status := Rec.Status::Repaired;
+            Rec.Modify();
+
+            // No Editable Fields of Service Card Lines
+            if ServiceCardLines.Findset() then begin
+                repeat
+                    ServiceCardLines.Status := ServiceCardLines.Status::Repaired;
+                    ServiceCardLines.Modify();
+                until ServiceCardLines.Next() = 0;
+            end;
+
+            // Update Rental List
+            if Rec."Rental No." <> '' then begin
+                RentalList.SetRange("No.", Rec."Rental No.");
+                if RentalList.FindFirst() then begin
+                    RentalList."Service Status" := RentalList."Service Status"::Repaired;
+                    RentalList."Service To Date" := Rec."To Date";
+                    RentalList."Repair Costs" := Rec."Service Costs";
+                    RentalList.CountTheRepairCosts(Rec);
+                    RentalList.Modify();
+                end;
+            end;
+
+            Message(Text001);
+            IsLinesEditable := false;
+            CurrPage.Update(false);
+
+            // Automatic email sending
+            // EmailMessage.Create('akos.bognar@hejnav.com', 'Repair', 'Dear Sir or Madam, Your car has been repaired. You can collect it at our Service Center. Kind regards, Service Company');
+            // Email.Send(EmailMessage, "Email Scenario"::Notification)
+        end else if Rec.Status = Rec.Status::Repaired then
+                Error(Text001Err)
+        else if (Rec."To Date" = 0D) or (Rec."Service Costs" = 0) then begin
+            Error(Text002Err);
+        end;
     end;
 
     var

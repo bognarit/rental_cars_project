@@ -123,7 +123,7 @@ table 50106 "Service"
             Error(Text002Err);
     end;
 
-    procedure PerformCancelAndReopen(var SourceService: Record Service) NewService: Record Service
+    procedure PerformServiceCancelAndReopen(var SourceService: Record Service) NewService: Record Service
     var
         SourceLines: Record "Service Card Lines";
         NewLines: Record "Service Card Lines";

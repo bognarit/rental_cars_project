@@ -204,7 +204,7 @@ table 50107 "Closed Rental"
         }
     }
 
-    procedure PerformCancelAndReopen(var SourceClosedRental: Record "Closed Rental") NewRental: Record "Rental"
+    procedure PerformRentalCancelAndReopen(var SourceClosedRental: Record "Closed Rental") NewRental: Record "Rental"
     var
         ActiveRentalCheck: Record "Rental";
         NewNo: Code[20];
@@ -215,16 +215,14 @@ table 50107 "Closed Rental"
         if ActiveRentalCheck.Get(NewNo, SourceClosedRental."Renter Name") then
             Error(Text001Err, NewNo);
 
-        // 2. Az eredeti hibás rekord megjelölése sztornózottként (Kiskapu a ModifyAllowed ellen)
         SourceClosedRental.Canceled := true;
         SourceClosedRental.Modify(false);
 
-        // 3. Pontos másolat készítése az aktív Rental táblába (a hibás értékekkel együtt)
         NewRental.Init();
         NewRental.TransferFields(SourceClosedRental);
         NewRental."No." := NewNo;
-
         NewRental.Insert(false); // Az Insert(false) miatt átugorja a dátum-ellenőrzési hibákat
+
         exit(NewRental);
     end;
 

@@ -290,7 +290,7 @@ page 50103 "Rental Card"
 
                 trigger OnAction()
                 begin
-                    CloseRentalOfCar();
+                    ProcessRentalClosure();
                 end;
             }
             action(BookRental)
@@ -324,6 +324,7 @@ page 50103 "Rental Card"
                 PromotedIsBig = true;
                 PromotedOnly = true;
                 Image = ServiceSetup;
+
                 trigger OnAction()
                 begin
                     SendTheCarToTheService()
@@ -346,7 +347,7 @@ page 50103 "Rental Card"
         end;
     end;
 
-    local procedure CloseRentalOfCar()
+    local procedure ProcessRentalClosure()
     var
         ClosedRental: Record "Closed Rental";
     begin

@@ -1229,7 +1229,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card Lines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3297013664 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car has not yet been Repaired!</source>
+          <source>The car has not yet been repaired!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card Lines - NamedType Text001Err</note>
         </trans-unit>
