@@ -11,6 +11,10 @@ table 50102 "Rental"
         {
             Caption = 'No.';
         }
+        field(3; "Rental Status"; Enum "Rental Status")
+        {
+            Caption = 'Rental Status';
+        }
         field(5; "Renter No."; Code[20])
         {
             Caption = 'Renter No.';
@@ -190,11 +194,12 @@ table 50102 "Rental"
         field(115; "Ending Mileage"; Integer)
         {
             Caption = 'Ending Mileage';
+
             trigger OnValidate()
             begin
                 if Rec."Ending Mileage" < 0 then
                     Error(Text006Err);
-                if (Rec."Ending Mileage" <> 0) and (Rec."Ending Mileage" < Rec."Starting Mileage") then
+                if (Rec."Ending Mileage" < Rec."Starting Mileage") then
                     Error(Text011Err);
 
                 Rec.CalculateMileageAndRunCorrection();

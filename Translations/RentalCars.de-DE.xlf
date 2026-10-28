@@ -681,6 +681,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Rental Day(s) Cost - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 4198375208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rental Status</source>
+          <target>Buchungsstatus</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Rental Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 4040000967 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Renter Name</source>
           <target>Mietername</target>
@@ -1275,17 +1281,23 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Control Service - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3975361464 - Action 4047247379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Book Rental</source>
-          <target>Miete buchen</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action BookRental - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3975361464 - Action 3446564810 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Close Rental</source>
           <target>Miete abschließen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action CloseRental - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - Action 610841115 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Release Car</source>
+          <target>Fahrzeug übergeben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action ReleaseRental - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - Action 1806681846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Car</source>
+          <target>Fahrzeug zurückgeben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action ReturnRental - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Action 619073910 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Send to Service</source>
@@ -1610,6 +1622,24 @@
           <target>Herr</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Gender Group - EnumValue Male - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 4198375208 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <target>Offen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Rental Status - EnumValue Open - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 4198375208 - EnumValue 4020758431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Released</source>
+          <target>Freigegeben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Rental Status - EnumValue Released - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 4198375208 - EnumValue 3687201325 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Returned</source>
+          <target>Beendet</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Rental Status - EnumValue Returned - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1418061539 - EnumValue 448741416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Repaired</source>

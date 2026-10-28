@@ -120,11 +120,11 @@ page 50115 "Service Card"
                 var
                     NewActiveService: Record "Service";
                 begin
-                    // if StrPos(Rec."Service No.", '-SER') > 0 then
-                    //     Error(Text004Err, Rec."Service No.");
+                    if StrPos(Rec."Service No.", '-SER') > 0 then
+                        Error(Text004Err, Rec."Service No.");
 
-                    // if Rec.Canceled then
-                    //     Error(Text005Err);
+                    if Rec.Canceled then
+                        Error(Text005Err);
 
                     if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
                         NewActiveService := Rec.PerformServiceCancelAndReopen(Rec);
