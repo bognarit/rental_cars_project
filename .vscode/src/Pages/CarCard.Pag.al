@@ -95,9 +95,9 @@ page 50108 "Car Card"
                 trigger OnAction()
                 begin
                     if not Rec."Car Picture".HasValue then
-                        Message('There is not uploaded picture.')
+                        Message(Text001Err)
                     else
-                        if Confirm('Would you like to delete the picture?') then begin
+                        if Confirm(Text001) then begin
                             Clear(Rec."Car Picture");
                             Rec.Modify(true);
                         end;
@@ -119,4 +119,8 @@ page 50108 "Car Card"
             Rec."No." := NoSeries.GetNextNo(RentSetup."Car List No. Series", WorkDate(), false);
         end;
     end;
+
+    var
+        Text001Err: Label 'There is not uploaded picture.';
+        Text001: Label 'Would you like to delete the picture?';
 }

@@ -280,7 +280,7 @@ page 50114 "Closed Rental Card"
                     if Rec.Canceled then
                         Error(Text002Err);
 
-                    if Confirm('Are you sure you want to cancel this closed rental and create a correctable draft?', true) then begin
+                    if Confirm(Text001, true) then begin
                         NewActiveRental := Rec.PerformRentalCancelAndReopen(Rec);
 
                         Commit(); // Kényszerítjük az SQL mentést a háttérben
@@ -304,6 +304,7 @@ page 50114 "Closed Rental Card"
 
     var
         PageStyle: Text;
+        Text001: Label 'Are you sure you want to cancel this closed rental and create a correctable draft?';
         Text001Err: Label 'This contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
         Text002Err: Label 'This rental has already been canceled!';
 }

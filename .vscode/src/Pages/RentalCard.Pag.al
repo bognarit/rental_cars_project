@@ -313,7 +313,7 @@ page 50103 "Rental Card"
 
                 trigger OnAction()
                 begin
-                    if Confirm('Are you sure you want to release the car? This will lock the renter details and departure date.', true) then begin
+                    if Confirm(Text001, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Released;
                         Rec.Modify(true);
                         CurrPage.Update(false);
@@ -338,7 +338,7 @@ page 50103 "Rental Card"
                     if Rec."Ending Mileage" = 0 then
                         Error(Text005Err);
 
-                    if Confirm('Are you sure the car has been returned? This will lock the return date.', true) then begin
+                    if Confirm(Text002, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Returned;
                         Rec.Modify(true);
                         CurrPage.Update(false);
@@ -386,7 +386,7 @@ page 50103 "Rental Card"
             Error(Text004Err)
         else if Rec."New Damages" and (Rec."Service Status" = Rec."Service Status"::Service) then
             Error(Text001Err)
-        else if Confirm(StrSubstNo(Text001, Rec."No.")) then begin
+        else if Confirm(StrSubstNo(Text003, Rec."No.")) then begin
             ClosedRental.Init();
             ClosedRental.TransferFields(Rec);
             ClosedRental.Insert();
@@ -433,9 +433,9 @@ page 50103 "Rental Card"
     end;
 
     var
-        Text001: Label 'Are you sure to close the %1 rental?';
-        Text002: Label 'Dear %1, %2 %3 was successfully booked you from %4 to %5. Kind Regards RentCar GmbH';
-        Text003: Label 'Rental notification was sent the renter by email.';
+        Text001: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
+        Text002: Label 'Are you sure the car has been returned? This will lock the return date.';
+        Text003: Label 'Are you sure to close the %1 rental?';
         Text004: Label 'The car was sent to the service.';
         Text001Err: Label 'The car currently is being serviced.';
         Text002Err: Label 'The car has been repaired.';

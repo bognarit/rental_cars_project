@@ -126,7 +126,7 @@ page 50115 "Service Card"
                     if Rec.Canceled then
                         Error(Text005Err);
 
-                    if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
+                    if Confirm(Text001, true) then begin
                         NewActiveService := Rec.PerformServiceCancelAndReopen(Rec);
 
                         Commit();
@@ -184,7 +184,7 @@ page 50115 "Service Card"
                 end;
             end;
 
-            Message(Text001);
+            Message(Text002);
             IsLinesEditable := false;
             CurrPage.Update(false);
 
@@ -200,7 +200,8 @@ page 50115 "Service Card"
 
     var
         IsLinesEditable: Boolean;
-        Text001: Label 'The Service has been closed.';
+        Text001: Label 'Are you sure you want to cancel this closed service and create a correctable draft?';
+        Text002: Label 'The Service has been closed.';
         Text001Err: Label 'The Service is already closed.';
         Text002Err: Label 'Please fill ''To Date'' and ''Cost'' fields!';
         Text003Err: Label 'The Delivery Date %1 must not be behind To Date %2';

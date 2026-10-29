@@ -1011,6 +1011,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Car Card - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1634653456 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Would you like to delete the picture?</source>
+          <target>Möchten Sie das Bild wirklich löschen?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Car Card - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Page 1634653456 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is not uploaded picture.</source>
+          <target>Es wurde kein Bild hochgeladen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Car Card - NamedType Text001Err</note>
+        </trans-unit>
         <trans-unit id="Page 1634653456 - Control 2321228003 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Lines</source>
           <target>Wagenzeilen</target>
@@ -1082,6 +1094,12 @@
           <target>Abgeschlossene Miete</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2803459194 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to cancel this closed rental and create a correctable draft?</source>
+          <target>Sind Sie sicher, dass Sie diese abgeschlossene Vermietung stornieren und einen korrigierbaren Entwurf erstellen möchten?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 2803459194 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
           <source>This contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
@@ -1192,8 +1210,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure to close the %1 rental?</source>
-          <target>Sind Sie sicher, die %1 Miete abzuschließen?</target>
+          <source>Are you sure you want to release the car? This will lock the renter details and departure date.</source>
+          <target>Sind Sie sicher, dass Sie das Fahrzeug übergeben möchten? Dadurch werden die Mieterdaten und das Abreisedatum gesperrt.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001</note>
         </trans-unit>
@@ -1204,8 +1222,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Dear %1, %2 %3 was successfully booked you from %4 to %5. Kind Regards RentCar GmbH</source>
-          <target>Sehr geehrte(r) %1, %2 %3 wurde für Sie erfolgreich von %4 bis %5 gebucht. Mit freundlichen Grüßen RentCar GmbH</target>
+          <source>Are you sure the car has been returned? This will lock the return date.</source>
+          <target>Sind Sie sicher, dass das Fahrzeug zurückgegeben wurde? Dadurch wird das Rückgabedatum gesperrt.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002</note>
         </trans-unit>
@@ -1216,8 +1234,8 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Rental notification was sent the renter by email.</source>
-          <target>Die Mietbenachrichtigung wurde dem Mieter per E-Mail zugesandt.</target>
+          <source>Are you sure to close the %1 rental?</source>
+          <target>Sind Sie sicher, dass Sie die Vermietung %1 abschließen möchten?</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003</note>
         </trans-unit>
@@ -1238,6 +1256,12 @@
           <target>Das Auto wurde zum Service nicht gesendet.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
+          <target>Der Endkilometerstand darf bei der Rückgabe des Fahrzeugs nicht 0 sein. Bitte geben Sie den aktuellen Kilometerstand ein!</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>
@@ -1420,16 +1444,22 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2833564323 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Service has been closed.</source>
-          <target>Das Service wurde abgeschlossen.</target>
+          <source>Are you sure you want to cancel this closed service and create a correctable draft?</source>
+          <target>Sind Sie sicher, dass Sie die geschlossene Vermietung %1 stornieren und einen Korrigierbaren Entwurf erstellen?</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 2833564323 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
           <source>The Service is already closed.</source>
-          <target>Das Service wurde bereits abgegeschlossen</target>
+          <target>Das Service wurde bereits abgegeschlossen.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Page 2833564323 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Service has been closed.</source>
+          <target>Das Service wurde abgeschlossen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text002</note>
         </trans-unit>
         <trans-unit id="Page 2833564323 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please fill 'To Date' and 'Cost' fields!</source>
