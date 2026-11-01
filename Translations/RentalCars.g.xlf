@@ -593,6 +593,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Service From Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 3692294822 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Service No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 1418061539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Service Status</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1049,9 +1054,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
+          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>

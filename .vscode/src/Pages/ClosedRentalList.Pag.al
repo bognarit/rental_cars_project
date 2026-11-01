@@ -6,7 +6,6 @@ page 50113 "Closed Rental List"
     UsageCategory = Lists;
     CardPageId = "Closed Rental Card";
     SourceTable = "Closed Rental";
-    ModifyAllowed = false;
     DeleteAllowed = false;
 
     layout

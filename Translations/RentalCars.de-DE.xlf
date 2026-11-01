@@ -1258,10 +1258,17 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
+          <target>Bitte füllen Sie die Felder 'Mieter', 'Wagennr.', 'Kennzeichen' und 'Startdatum' aus!</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
           <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
           <target>Der Endkilometerstand darf bei der Rückgabe des Fahrzeugs nicht 0 sein. Bitte geben Sie den aktuellen Kilometerstand ein!</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>

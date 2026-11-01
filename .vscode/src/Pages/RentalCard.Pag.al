@@ -256,10 +256,15 @@ page 50103 "Rental Card"
             {
                 Caption = 'Service';
 
+                field("Service No."; Rec."Service No.")
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
                 field("Service From Date"; Rec."Service From Date")
                 {
                     ApplicationArea = All;
-                    Editable = Rec."New Damages" and (Rec."Rental Status" = Rec."Rental Status"::Returned);
+                    Editable = Rec."New Damages" and (Rec."Rental Status" = Rec."Rental Status"::Returned) and (Rec."Service Status" = Rec."Service Status"::" ");
                 }
                 field("Service To Date"; Rec."Service To Date")
                 {
@@ -313,6 +318,9 @@ page 50103 "Rental Card"
 
                 trigger OnAction()
                 begin
+                    if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') or (Rec."From Date" = 0D) then
+                        Error(Text005Err);
+
                     if Confirm(Text001, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Released;
                         Rec.Modify(true);
@@ -336,7 +344,7 @@ page 50103 "Rental Card"
                     CurrPage.SaveRecord();
 
                     if Rec."Ending Mileage" = 0 then
-                        Error(Text005Err);
+                        Error(Text006Err);
 
                     if Confirm(Text002, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Returned;
@@ -441,5 +449,6 @@ page 50103 "Rental Card"
         Text002Err: Label 'The car has been repaired.';
         Text003Err: Label 'Please fill in the Service ''New Damage Details'' and ''From Date'' fields!';
         Text004Err: Label 'The car wasn''t sent to the service.';
-        Text005Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
+        Text005Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'' and ''From Date'' fields!';
+        Text006Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
 }

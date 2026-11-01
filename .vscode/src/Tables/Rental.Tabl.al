@@ -312,6 +312,10 @@ table 50102 "Rental"
             Caption = 'New Damage Picture';
             Subtype = Bitmap;
         }
+        field(182; "Service No."; Code[20])
+        {
+            Caption = 'Service No.';
+        }
         field(185; "Service From Date"; Date)
         {
             Caption = 'Service From Date';
@@ -347,6 +351,9 @@ table 50102 "Rental"
             Clustered = true;
         }
         key(Key2; "Renter Name")
+        {
+        }
+        key(Key3; "Service No.")
         {
         }
     }

@@ -149,8 +149,6 @@ page 50115 "Service Card"
         RentalList: Record "Rental";
         ServiceCardLines: Record "Service Card Lines";
         ServiceLines: Page "Service Card Lines";
-    // Email: Codeunit Email;
-    // EmailMessage: Codeunit "Email Message";
     begin
         ServiceCardLines.SetRange("Service No.", Rec."Service No.");
         if ServiceCardLines.FindSet() then begin
@@ -188,9 +186,6 @@ page 50115 "Service Card"
             IsLinesEditable := false;
             CurrPage.Update(false);
 
-            // Automatic email sending
-            // EmailMessage.Create('akos.bognar@hejnav.com', 'Repair', 'Dear Sir or Madam, Your car has been repaired. You can collect it at our Service Center. Kind regards, Service Company');
-            // Email.Send(EmailMessage, "Email Scenario"::Notification)
         end else if Rec.Status = Rec.Status::Repaired then
                 Error(Text001Err)
         else if (Rec."To Date" = 0D) or (Rec."Service Costs" = 0) then begin

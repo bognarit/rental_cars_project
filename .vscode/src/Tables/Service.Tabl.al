@@ -128,9 +128,20 @@ table 50106 "Service"
         SourceLines: Record "Service Card Lines";
         NewLines: Record "Service Card Lines";
         NewNo: Code[20];
+        Rental: Record Rental;
     begin
         SourceService.Canceled := true;
         SourceService.Modify();
+
+        if SourceService."Rental No." <> '' then begin
+            Rental.SetRange("No.", Rec."Rental No.");
+            if Rental.FindFirst() then begin
+                Rental.SetRange("Service To Date", Rec."To Date");
+                Rental."Service To Date" := 0D;
+                Rental."Service Status" := Rental."Service Status"::Service;
+                Rental.Modify(true);
+            end;
+        end;
 
         NewNo := SourceService."Service No." + '-SER';
 
@@ -139,6 +150,7 @@ table 50106 "Service"
         NewService."Service No." := NewNo;
         NewService.Canceled := false;
         NewService.Status := NewService.Status::Service;
+        NewService."To Date" := 0D;
         NewService.Insert(true);
 
         SourceLines.SetRange("Service No.", SourceService."Service No.");
