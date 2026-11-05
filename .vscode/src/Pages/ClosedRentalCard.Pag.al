@@ -268,7 +268,7 @@ page 50114 "Closed Rental Card"
                 PromotedIsBig = true;
                 PromotedOnly = true;
                 Image = Undo;
-                Enabled = not Rec.Canceled; // Csak akkor futhat, ha nincs még sztornózva
+                Enabled = not Rec.Canceled;
 
                 trigger OnAction()
                 var
@@ -283,9 +283,8 @@ page 50114 "Closed Rental Card"
                     if Confirm(Text001, true) then begin
                         NewActiveRental := Rec.PerformRentalCancelAndReopen(Rec);
 
-                        Commit(); // Kényszerítjük az SQL mentést a háttérben
+                        Commit();
 
-                        // Felugró ablak nélkül megnyitjuk az új, szerkeszthető aktív kártyát
                         Page.Run(Page::"Rental Card", NewActiveRental);
                         CurrPage.Update(false);
                     end;

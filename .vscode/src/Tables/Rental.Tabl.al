@@ -157,24 +157,48 @@ table 50102 "Rental"
         {
             Caption = 'From Date';
             trigger OnValidate()
+            var
+                RentalMgt: Codeunit "Rental Management";
             begin
                 if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
-                    Error(Text003Err);
+                    Error(Text001Err);
 
-                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
-                BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
+                RentalMgt.ConfigureRentalDaysAndErrorWarning(Rec, Rec."From Date", Rec."To Date");
+
+                if StrPos(Rec."No.", '-REV') = 0 then begin
+                    RentalMgt.BookedCarAtTheAppointedTime(Rec, Rec."From Date", Rec."To Date");
+                end;
+
+                UpdateTotalCost();
             end;
         }
         field(100; "To Date"; Date)
         {
             Caption = 'To Date';
             trigger OnValidate()
+            var
+                DaysToShift: Integer;
+                RentalMgt: Codeunit "Rental Management";
             begin
                 if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
-                    Error(Text003Err);
+                    Error(Text001Err);
 
-                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
-                BookedCarAtTheAppointedTime(Rec."From Date", Rec."To Date");
+                // 1. Kiszámoljuk a dátumeltolódást a normál foglalásokhoz
+                if (xRec."To Date" <> 0D) and (Rec."To Date" <> 0D) then
+                    DaysToShift := Rec."To Date" - xRec."To Date";
+
+                // 2. KÖZPONTI SZÁMÍTÁS: A Codeunit kiszámolja a napokat és a sávos árakat 
+                // a normál ÉS a -REV bérleteknél is, de a múltbéli hibát (-REV) nem fogja letiltani!
+                RentalMgt.ConfigureRentalDaysAndErrorWarning(Rec, Rec."From Date", Rec."To Date");
+
+                // 3. NAPTÁR-ÜTKÖZÉSVizsgálat: Csak a vadonatúj, normál foglalásoknál ellenőrizzük az ütközést
+                if StrPos(Rec."No.", '-REV') = 0 then begin
+                    RentalMgt.BookedCarAtTheAppointedTime(Rec, Rec."From Date", Rec."To Date");
+
+                    // 4. JÖVŐBELI TOLÁS: Csak az éles, normál szerződéseknél toljuk el a jövőt, ha változott a dátum
+                    // if DaysToShift <> 0 then
+                    //     Rec.ShiftFutureRentals(Rec."Car No.", Rec."Registration No.", xRec."To Date", DaysToShift);
+                end;
 
                 UpdateTotalCost();
             end;
@@ -196,13 +220,16 @@ table 50102 "Rental"
             Caption = 'Ending Mileage';
 
             trigger OnValidate()
+            var
+                CostCalc: Codeunit "Insurance & Cost Calculator";
             begin
                 if Rec."Ending Mileage" < 0 then
-                    Error(Text006Err);
-                if (Rec."Ending Mileage" < Rec."Starting Mileage") then
-                    Error(Text011Err);
+                    Error(Text002Err);
 
-                Rec.CalculateMileageAndRunCorrection();
+                if Rec."Ending Mileage" < Rec."Starting Mileage" then
+                    Error(Text003Err);
+
+                CostCalc.CalculateMileageAndRunCorrection(Rec, xRec);
 
                 UpdateTotalCost();
             end;
@@ -284,10 +311,10 @@ table 50102 "Rental"
             begin
                 if Rec."Service Status" = Rec."Service Status"::Service then begin
                     Rec."New Damages" := true;
-                    Error(Text007Err)
+                    Error(Text004Err)
                 end else if Rec."Service Status" = Rec."Service Status"::Repaired then begin
                     Rec."New Damages" := true;
-                    Error(Text008Err)
+                    Error(Text005Err)
                 end else if not Rec."New Damages" then begin
                     Rec."New Damage Details" := '';
                     Clear(Rec."New Damage Picture 1");
@@ -323,11 +350,11 @@ table 50102 "Rental"
             trigger OnValidate()
             begin
                 if Rec."Service From Date" < Today then
-                    Error(Text004Err)
+                    Error(Text006Err)
                 else if Rec."To Date" >= Rec."Service From Date" then
-                    Error(Text009Err, Rec."Service From Date", Rec."To Date")
+                    Error(Text007Err, Rec."Service From Date", Rec."To Date")
                 else if (Rec."From Date" = 0D) and (Rec."To Date" = 0D) then
-                    Error(Text010Err);
+                    Error(Text009Err);
             end;
         }
         field(190; "Service To Date"; Date)
@@ -365,180 +392,8 @@ table 50102 "Rental"
         }
     }
 
-    procedure CountTheRepairCosts(var ServiceHeader: Record "Service")
+    trigger OnDelete()
     begin
-        if Rec."Service Status" = Rec."Service Status"::Repaired then begin
-            ServiceHeader.SetRange("Rental No.", Rec."No.");
-            ServiceHeader.CalcFields("Service Costs");
-
-            case Rec."Car Insurance Types" of
-                Rec."Car Insurance Types"::" ":
-                    Rec."Repair Costs" := ServiceHeader."Service Costs";
-                Rec."Car Insurance Types"::TwentyFivePercent:
-                    Rec."Repair Costs" := (ServiceHeader."Service Costs" * 75) / 100;
-                Rec."Car Insurance Types"::FiftyPercent:
-                    Rec."Repair Costs" := (ServiceHeader."Service Costs" * 50) / 100;
-                Rec."Car Insurance Types"::HundredPercent:
-                    Rec."Repair Costs" := 0;
-            end;
-
-            UpdateTotalCost();
-        end;
-    end;
-
-    procedure ConfigureRentalDaysAndErrorWarning(var FromDate: Date; var ToDate: Date)
-    begin
-        if FromDate = 0D then
-            FromDate := ToDate;
-        if ToDate = 0D then
-            ToDate := FromDate;
-
-        if FromDate > ToDate then
-            Error(Text001Err, FromDate, ToDate);
-        if (FromDate < Today) or (ToDate < Today) then
-            Error(Text004Err);
-
-        if (FromDate <> 0D) and (ToDate <> 0D) then begin
-            Rec."Rental Day(s)" := (ToDate + 1) - FromDate;
-            case Rec."Rental Day(s)" of
-                1:
-                    Rec."Rental Day(s) Cost" := 70;
-                2 .. 7:
-                    Rec."Rental Day(s) Cost" := 60 * Rec."Rental Day(s)";
-                8 .. 30:
-                    Rec."Rental Day(s) Cost" := 50 * Rec."Rental Day(s)";
-                else
-                    Rec."Rental Day(s) Cost" := 40 * Rec."Rental Day(s)";
-            end;
-        end else begin
-            Rec."Rental Day(s)" := 0;
-            Rec."Rental Day(s) Cost" := 0;
-        end;
-    end;
-
-    procedure BookedCarAtTheAppointedTime(FromDate: Date; ToDate: Date)
-    var
-        OldRental: Record "Rental";
-        OldClosedRental: Record "Closed Rental";
-        Service: Record "Service";
-    begin
-        if (FromDate = 0D) or (ToDate = 0D) then
-            exit;
-
-        OldRental.SetRange("Car No.", Rec."Car No.");
-        OldRental.SetRange("Registration No.", Rec."Registration No.");
-
-        if Rec."No." <> '' then
-            OldRental.SetFilter("No.", '<>%1', Rec."No.");
-
-        OldRental.SetFilter("From Date", '<=%1', ToDate);
-        OldRental.SetFilter("To Date", '>=%1', FromDate);
-
-        if not OldRental.IsEmpty then
-            Error(Text002Err);
-
-        OldClosedRental.SetRange("Car No.", Rec."Car No.");
-        OldClosedRental.SetRange("Registration No.", Rec."Registration No.");
-        OldClosedRental.SetFilter("From Date", '<=%1', ToDate);
-        OldClosedRental.SetFilter("To Date", '>=%1', FromDate);
-
-        if not OldClosedRental.IsEmpty then
-            Error(Text002Err);
-
-        Service.SetRange("Registration No.", Rec."Registration No.");
-        Service.SetRange(Status, Service.Status::Service);
-        Service.SetFilter("From Date", '<=%1', ToDate);
-        Service.SetFilter("To Date", '>=%1|%2', FromDate, 0D);
-
-        if not Service.IsEmpty then
-            Error(Text005Err);
-    end;
-
-    procedure CalculateMileageAndRunCorrection()
-    var
-        CarCardLines: Record "Car Card Lines";
-        Milage: Integer;
-        MileageDifference: Integer;
-    begin
-        // 1. Ha 0 a záró km, nullázzuk a kilométer-költséget
-        if Rec."Ending Mileage" = 0 then begin
-            Rec."Mileage Cost" := 0;
-            exit;
-        end;
-
-        // 2. Kiszámoljuk a megtett kilométert a helyi változóba
-        Milage := Rec."Ending Mileage" - Rec."Starting Mileage";
-
-        // 3. Sávos árazás meghatározása
-        case Milage of
-            1 .. 500:
-                Rec."Mileage Cost" := 40;
-            501 .. 1000:
-                Rec."Mileage Cost" := 50;
-            1001 .. 2000:
-                Rec."Mileage Cost" := 60;
-            2001 .. 5000:
-                Rec."Mileage Cost" := 70;
-            else
-                Rec."Mileage Cost" := 80;
-        end;
-
-        // 4. NORMÁL ESET: Ha ez egy sima bérlet (nincs benne a '-REV')
-        if StrPos(Rec."No.", '-REV') = 0 then begin
-            // Beolvassuk a konkrét autót az adatbázisból a kulcsok alapján
-            if CarCardLines.Get(Rec."Car No.", Rec."Registration No.") then begin
-                // Az autó aktuális óraállását (Mileage) beállítjuk a bérlet záró óraállására
-                CarCardLines."Mileage" := Rec."Ending Mileage";
-                CarCardLines.Modify(true); // Elmentjük az SQL-be
-            end;
-        end;
-
-        // 5. REVIZIÓS ESET: Ha ez egy újranyitott módosítás
-        if StrPos(Rec."No.", '-REV') > 0 then begin
-            // Kiszámoljuk a hiba mértékét: Új beírt záró km MINUSZ a módosítás előtti hibás záró km
-            MileageDifference := Rec."Ending Mileage" - xRec."Ending Mileage";
-
-            if MileageDifference <> 0 then begin
-                // Meghívjuk a már korábban megírt UpdateSequenceMileages eljárásodat
-                Rec.UpdateSequenceMileages(Rec."Car No.", Rec."Registration No.", xRec."Ending Mileage", MileageDifference);
-            end;
-        end;
-    end;
-
-    procedure UpdateSequenceMileages(CarNo: Code[20]; RegNo: Text[50]; OldEndingMileage: Integer; Diff: Integer)
-    var
-        CarCardLines: Record "Car Card Lines";
-        ClosedRental: Record "Closed Rental";
-        Rental: Record "Rental";
-    begin
-        // A) Autó frissítése
-        if CarCardLines.Get(CarNo, RegNo) then begin
-            CarCardLines."Mileage" += Diff;
-            CarCardLines.Modify(true);
-        end;
-
-        // B) Későbbi lezárt bérlések eltolása
-        ClosedRental.SetRange("Car No.", CarNo);
-        ClosedRental.SetRange("Registration No.", RegNo);
-        ClosedRental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
-        ClosedRental.SetRange(Canceled, false);
-        if ClosedRental.FindSet() then
-            repeat
-                ClosedRental."Starting Mileage" += Diff;
-                ClosedRental."Ending Mileage" += Diff;
-                ClosedRental.Modify(false); // Átüti a ModifyAllowed = false-t
-            until ClosedRental.Next() = 0;
-
-        // C) Jövőbeli aktív foglalások eltolása
-        Rental.SetRange("Car No.", CarNo);
-        Rental.SetRange("Registration No.", RegNo);
-        Rental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
-        if Rental.FindSet() then
-            repeat
-                Rental."Starting Mileage" += Diff;
-                Rental."Ending Mileage" += Diff;
-                Rental.Modify(true);
-            until Rental.Next() = 0;
     end;
 
     local procedure UpdateTotalCost()
@@ -547,15 +402,12 @@ table 50102 "Rental"
     end;
 
     var
-        Text001Err: Label 'The From Date %1 must not be behind To Date %2.';
-        Text002Err: Label 'The car is booked at a specified date. Please choose an other date or car!';
-        Text003Err: Label 'Please choose a Renter, a Car No. und a Registration No. first!';
-        Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text005Err: Label 'The car currently is being serviced. Please choose an other car!';
-        Text006Err: Label 'The ending mileage cannot be negative.';
-        Text007Err: Label 'The car currently is being serviced.';
-        Text008Err: Label 'The car has been repaired.';
-        Text009Err: Label 'The To Date %1 must not be behind Service From Date %2';
-        Text010Err: Label 'Please choose a From Date und a To Date first!';
-        Text011Err: Label 'The ending mileage must be greater than the starting mileage.';
+        Text001Err: Label 'Please choose a Renter, a Car No. und a Registration No. first!';
+        Text002Err: Label 'The ending mileage cannot be negative.';
+        Text003Err: Label 'The ending mileage must be greater than the starting mileage.';
+        Text004Err: Label 'The car currently is being serviced.';
+        Text005Err: Label 'The car has been repaired.';
+        Text006Err: Label 'You cannot choose an earlier date. Please choose another date!';
+        Text007Err: Label 'The To Date %1 must not be behind Service From Date %2';
+        Text009Err: Label 'Please choose a From Date und a To Date first!';
 }

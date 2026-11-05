@@ -711,6 +711,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Service From Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 3692294822 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service No.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Service No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 1418061539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Service Status</source>
           <target>Servicestatus</target>
@@ -1260,7 +1266,6 @@
         <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
           <target>Bitte füllen Sie die Felder 'Mieter', 'Wagennr.', 'Kennzeichen' und 'Startdatum' aus!</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
         </trans-unit>

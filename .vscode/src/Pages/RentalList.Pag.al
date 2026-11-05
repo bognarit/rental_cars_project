@@ -6,7 +6,7 @@ page 50102 "Rental List"
     UsageCategory = Lists;
     CardPageId = "Rental Card";
     SourceTable = "Rental";
-    Editable = false;
+    DeleteAllowed = false;
 
     layout
     {
@@ -19,6 +19,11 @@ page 50102 "Rental List"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                }
+                field("Rental Status"; Rec."Rental Status")
+                {
+                    ApplicationArea = All;
+                    StyleExpr = StatusStyle;
                 }
                 field("Renter No."; Rec."Renter No.")
                 {
@@ -91,4 +96,28 @@ page 50102 "Rental List"
             }
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        if Rec."Rental Status" = Rec."Rental Status"::Released then
+            StatusStyle := 'Unfavorable'
+        else if Rec."Rental Status" = Rec."Rental Status"::Returned then
+            StatusStyle := 'Favorable'
+        else
+            StatusStyle := 'Standard';
+    end;
+
+    trigger OnDeleteRecord(): Boolean
+    begin
+        if (Rec."Rental Status" = Rec."Rental Status"::Released) or (Rec."Rental Status" = Rec."Rental Status"::Returned) then begin
+            Message(Text001);
+            exit(false);
+        end;
+
+        exit(true);
+    end;
+
+    var
+        StatusStyle: Text;
+        Text001: Label 'You can only delete a rental record if its status is Open!';
 }

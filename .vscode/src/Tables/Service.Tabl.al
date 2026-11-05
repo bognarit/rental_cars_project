@@ -49,7 +49,7 @@ table 50106 "Service"
             Caption = 'From Date';
             trigger OnValidate()
             begin
-                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
+                ConfigureServiceDaysAndErrorWarning();
             end;
         }
         field(35; "To Date"; Date)
@@ -59,15 +59,15 @@ table 50106 "Service"
             var
                 ServiceDataLines: Record "Service Card Lines";
             begin
-                ConfigureRentalDaysAndErrorWarning(Rec."From Date", Rec."To Date");
+                ConfigureServiceDaysAndErrorWarning();
 
                 ServiceDataLines.SetRange("Service No.", Rec."Service No.");
                 if ServiceDataLines.FindSet() then
                     repeat
                         if (ServiceDataLines."Order Necessary" = ServiceDataLines."Order Necessary"::Yes) and ((ServiceDataLines."Order Date" = 0D) or (ServiceDataLines."Delivery Date" = 0D)) then
-                            Error(Text003Err);
+                            Error(Text001Err);
                         if ServiceDataLines."Delivery Date" > Rec."To Date" then
-                            Error(Text004Err, ServiceDataLines."Delivery Date", Rec."To Date");
+                            Error(Text002Err, ServiceDataLines."Delivery Date", Rec."To Date");
                     until ServiceDataLines.Next() = 0;
             end;
         }
@@ -109,68 +109,28 @@ table 50106 "Service"
             ServiceLines.DeleteAll(true);
     end;
 
-    procedure ConfigureRentalDaysAndErrorWarning(FromDate: Date; ToDate: Date)
-    var
-        ServiceDataLines: Record "Service Card Lines";
+    procedure ConfigureServiceDaysAndErrorWarning()
     begin
-        if FromDate = 0D then
-            FromDate := ToDate;
-        if ToDate = 0D then
-            ToDate := FromDate;
-        if FromDate > ToDate then
-            Error(Text001Err, FromDate, ToDate);
-        if (FromDate < Today) or (ToDate < Today) then
-            Error(Text002Err);
-    end;
+        if Rec."From Date" = 0D then
+            Rec."From Date" := Rec."To Date";
+        if Rec."To Date" = 0D then
+            Rec."To Date" := Rec."From Date";
 
-    procedure PerformServiceCancelAndReopen(var SourceService: Record Service) NewService: Record Service
-    var
-        SourceLines: Record "Service Card Lines";
-        NewLines: Record "Service Card Lines";
-        NewNo: Code[20];
-        Rental: Record Rental;
-    begin
-        SourceService.Canceled := true;
-        SourceService.Modify();
+        if (Rec."From Date" = 0D) or (Rec."To Date" = 0D) then
+            exit;
 
-        if SourceService."Rental No." <> '' then begin
-            Rental.SetRange("No.", Rec."Rental No.");
-            if Rental.FindFirst() then begin
-                Rental.SetRange("Service To Date", Rec."To Date");
-                Rental."Service To Date" := 0D;
-                Rental."Service Status" := Rental."Service Status"::Service;
-                Rental.Modify(true);
-            end;
+        if Rec."From Date" > Rec."To Date" then
+            Error(Text003Err, Rec."From Date", Rec."To Date");
+
+        if StrPos(Rec."Service No.", '-SER') = 0 then begin
+            if (Rec."From Date" < Today) or (Rec."To Date" < Today) then
+                Error(Text004Err);
         end;
-
-        NewNo := SourceService."Service No." + '-SER';
-
-        NewService.Init();
-        NewService.TransferFields(SourceService);
-        NewService."Service No." := NewNo;
-        NewService.Canceled := false;
-        NewService.Status := NewService.Status::Service;
-        NewService."To Date" := 0D;
-        NewService.Insert(true);
-
-        SourceLines.SetRange("Service No.", SourceService."Service No.");
-
-        if SourceLines.FindSet() then begin
-            repeat
-                NewLines.Init();
-                NewLines.TransferFields(SourceLines);
-                NewLines."Service No." := NewNo;
-                NewLines.Status := NewLines.Status::Service;
-                NewLines.Insert();
-            until SourceLines.Next() = 0;
-        end;
-
-        exit(NewService);
     end;
 
     var
-        Text001Err: Label 'The From Date %1 must not be behind To Date %2.';
-        Text002Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text003Err: Label 'Please choose ''Order Date'' and ''Delivery Date'' in the Service Data Lines first!';
-        Text004Err: Label 'The Delivery Date %1 must not be behind To Date %2.';
+        Text001Err: Label 'Please choose ''Order Date'' and ''Delivery Date'' in the Service Data Lines first!';
+        Text002Err: Label 'The Delivery Date %1 must not be behind To Date %2.';
+        Text003Err: Label 'The From Date %1 must not be behind To Date %2.';
+        Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
 }

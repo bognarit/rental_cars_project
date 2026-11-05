@@ -24,6 +24,7 @@ page 50103 "Rental Card"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    StyleExpr = StatusStyle;
                 }
                 field("Renter No."; Rec."Renter No.")
                 {
@@ -74,7 +75,7 @@ page 50103 "Rental Card"
                 field("Bill-to Data"; Rec."Bill-to Same Data")
                 {
                     ApplicationArea = All;
-                    Editable = Rec.BillRequired;
+                    Editable = Rec.BillRequired and ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released));
                 }
                 field("Bill-to Name"; Rec."Bill-to Name")
                 {
@@ -301,8 +302,11 @@ page 50103 "Rental Card"
                 Enabled = (Rec."Rental Status" = Rec."Rental Status"::Returned);
 
                 trigger OnAction()
+                var
+                    RentalMgt: Codeunit "Rental Management";
                 begin
-                    ProcessRentalClosure();
+                    RentalMgt.ProcessRentalClosure(Rec);
+                    CurrPage.Close();
                 end;
             }
             action(ReleaseRental)
@@ -319,7 +323,7 @@ page 50103 "Rental Card"
                 trigger OnAction()
                 begin
                     if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') or (Rec."From Date" = 0D) then
-                        Error(Text005Err);
+                        Error(Text001Err);
 
                     if Confirm(Text001, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Released;
@@ -344,7 +348,7 @@ page 50103 "Rental Card"
                     CurrPage.SaveRecord();
 
                     if Rec."Ending Mileage" = 0 then
-                        Error(Text006Err);
+                        Error(Text002Err);
 
                     if Confirm(Text002, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Returned;
@@ -362,15 +366,61 @@ page 50103 "Rental Card"
                 PromotedIsBig = true;
                 PromotedOnly = true;
                 Image = ServiceSetup;
-                Enabled = (Rec."Rental Status" = Rec."Rental Status"::Returned) and Rec."New Damages";
+                Enabled = (Rec."Rental Status" = Rec."Rental Status"::Returned) and (Rec."Service Status" = Rec."Service Status"::" ") and Rec."New Damages";
 
                 trigger OnAction()
+                var
+                    ServiceMgt: Codeunit "Service Management";
                 begin
-                    SendTheCarToTheService()
+                    ServiceMgt.SendTheCarToTheService(Rec);
+                    Rec.Modify(true);
+                    CurrPage.Update(false);
+                end;
+            }
+            action(ReopenServiceFromRental)
+            {
+                Caption = 'Reopen Service for Modification';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = ReOpen;
+                Enabled = (Rec."Service Status" = Rec."Service Status"::Repaired);
+
+                trigger OnAction()
+                var
+                    ServiceHeader: Record Service;
+                    NewActiveService: Record Service;
+                    ServiceMgt: Codeunit "Service Management";
+                begin
+                    if ServiceHeader.Get(Rec."Service No.", Rec."No.") then begin
+                        if StrPos(ServiceHeader."Service No.", '-SER') > 0 then
+                            Error(Text003Err, ServiceHeader."Service No.");
+
+                        if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
+                            NewActiveService := ServiceMgt.PerformServiceCancelAndReopen(ServiceHeader);
+
+                            Commit();
+
+                            Page.Run(Page::"Service Card", NewActiveService);
+                            CurrPage.Update(false);
+                        end;
+                    end;
                 end;
             }
         }
     }
+
+    trigger OnAfterGetRecord()
+    begin
+        if Rec."Rental Status" = Rec."Rental Status"::Released then
+            StatusStyle := 'Unfavorable'
+        else if Rec."Rental Status" = Rec."Rental Status"::Returned then
+            StatusStyle := 'Favorable'
+        else
+            StatusStyle := 'Standard';
+    end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     var
@@ -386,69 +436,11 @@ page 50103 "Rental Card"
         end;
     end;
 
-    local procedure ProcessRentalClosure()
     var
-        ClosedRental: Record "Closed Rental";
-    begin
-        if Rec."New Damages" and (Rec."Service Status" = Rec."Service Status"::" ") then
-            Error(Text004Err)
-        else if Rec."New Damages" and (Rec."Service Status" = Rec."Service Status"::Service) then
-            Error(Text001Err)
-        else if Confirm(StrSubstNo(Text003, Rec."No.")) then begin
-            ClosedRental.Init();
-            ClosedRental.TransferFields(Rec);
-            ClosedRental.Insert();
-            Rec.Delete();
-        end;
-    end;
-
-    local procedure SendTheCarToTheService()
-    var
-        ServiceList: Record "Service";
-        RentSetup: Record "Rent Setup";
-        NoSeries: Codeunit "No. Series";
-    begin
-        if (Rec."Service From Date" <> 0D) and (Rec."New Damage Details" <> '') and (Rec."Service Status" = Rec."Service Status"::" ") then begin
-            Rec."Service Status" := Rec."Service Status"::Service;
-            ServiceList.Init();
-
-            // Get New Service No.
-            RentSetup.Get();
-            RentSetup.TestField("Service Data No. Series");
-            if ServiceList."Service No." <> '' then begin
-                NoSeries.TestManual(RentSetup."Service Data No. Series")
-            end else begin
-                ServiceList."Service No." := NoSeries.GetNextNo(RentSetup."Service Data No. Series", WorkDate(), false);
-            end;
-
-            // Add Necessary Data
-            ServiceList."Rental No." := Rec."No.";
-            ServiceList."Car No." := Rec."Car No.";
-            ServiceList."Car Brand" := Rec."Car Brand";
-            ServiceList."Car Model" := Rec."Car Model";
-            ServiceList."Registration No." := Rec."Registration No.";
-            ServiceList."From Date" := Rec."Service From Date";
-            ServiceList.Status := ServiceList.Status::Service;
-            ServiceList.Details := Rec."New Damage Details";
-            ServiceList.Insert();
-            Message(Text004);
-        end else if Rec."Service Status" = Rec."Service Status"::Service then
-                Error(Text001Err)
-        else if Rec."Service Status" = Rec."Service Status"::Repaired then
-            Error(Text002Err)
-        else
-            Error(Text003Err);
-    end;
-
-    var
+        StatusStyle: Text;
         Text001: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
         Text002: Label 'Are you sure the car has been returned? This will lock the return date.';
-        Text003: Label 'Are you sure to close the %1 rental?';
-        Text004: Label 'The car was sent to the service.';
-        Text001Err: Label 'The car currently is being serviced.';
-        Text002Err: Label 'The car has been repaired.';
-        Text003Err: Label 'Please fill in the Service ''New Damage Details'' and ''From Date'' fields!';
-        Text004Err: Label 'The car wasn''t sent to the service.';
-        Text005Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'' and ''From Date'' fields!';
-        Text006Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
+        Text001Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'' and ''From Date'' fields!';
+        Text002Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
+        Text003Err: Label 'This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
 }

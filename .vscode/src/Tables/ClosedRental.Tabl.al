@@ -221,7 +221,7 @@ table 50107 "Closed Rental"
         NewRental.Init();
         NewRental.TransferFields(SourceClosedRental);
         NewRental."No." := NewNo;
-        NewRental.Insert(false); // Az Insert(false) miatt átugorja a dátum-ellenőrzési hibákat
+        NewRental.Insert(false);
 
         exit(NewRental);
     end;

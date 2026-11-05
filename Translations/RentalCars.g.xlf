@@ -349,59 +349,44 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The From Date %1 must not be behind To Date %2.</source>
+          <source>Please choose a Renter, a Car No. und a Registration No. first!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car is booked at a specified date. Please choose an other date or car!</source>
+          <source>The ending mileage cannot be negative.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please choose a Renter, a Car No. und a Registration No. first!</source>
+          <source>The ending mileage must be greater than the starting mileage.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <source>The car currently is being serviced.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text004Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car currently is being serviced. Please choose an other car!</source>
+          <source>The car has been repaired.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text005Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The ending mileage cannot be negative.</source>
+          <source>You cannot choose an earlier date. Please choose another date!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 998548441" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car currently is being serviced.</source>
+          <source>The To Date %1 must not be behind Service From Date %2</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text007Err</note>
         </trans-unit>
-        <trans-unit id="Table 2513429772 - NamedType 2364520756" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car has been repaired.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text008Err</note>
-        </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 1504301347" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The To Date %1 must not be behind Service From Date %2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text009Err</note>
-        </trans-unit>
-        <trans-unit id="Table 2513429772 - NamedType 3007010371" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please choose a From Date und a To Date first!</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text010Err</note>
-        </trans-unit>
-        <trans-unit id="Table 2513429772 - NamedType 2362165204" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The ending mileage must be greater than the starting mileage.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text011Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text009Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
@@ -669,22 +654,22 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2187938695 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The From Date %1 must not be behind To Date %2.</source>
+          <source>Please choose 'Order Date' and 'Delivery Date' in the Service Data Lines first!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Table 2187938695 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <source>The Delivery Date %1 must not be behind To Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Table 2187938695 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please choose 'Order Date' and 'Delivery Date' in the Service Data Lines first!</source>
+          <source>The From Date %1 must not be behind To Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Table 2187938695 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Delivery Date %1 must not be behind To Date %2.</source>
+          <source>You cannot choose an earlier date. Please choose another date!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text004Err</note>
         </trans-unit>
@@ -842,6 +827,86 @@
           <source>Unit Price</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - Field Unit Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure to close the %1 rental?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car wasn't sent to the service.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The rental contract %1 has been successfully closed and archived.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car currently is being serviced.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text002Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The From Date %1 must not be behind To Date %2.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car is booked at a specified date. Please choose an other date or car!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car currently is being serviced. Please choose an other car!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text006Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Service has been closed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Service is already closed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car was sent to the service.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please fill 'To Date' and 'Cost' fields!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text002Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Delivery Date %1 must not be behind To Date %2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text003Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car currently is being serviced.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The car has been repaired.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please fill in the Service 'New Damage Details' and 'From Date' fields!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Page 1634653456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car</source>
@@ -1019,7 +1084,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car currently is being serviced.</source>
+          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001Err</note>
         </trans-unit>
@@ -1029,39 +1094,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car has been repaired.</source>
+          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002Err</note>
         </trans-unit>
-        <trans-unit id="Page 3975361464 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure to close the %1 rental?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003</note>
-        </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please fill in the Service 'New Damage Details' and 'From Date' fields!</source>
+          <source>This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003Err</note>
-        </trans-unit>
-        <trans-unit id="Page 3975361464 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car was sent to the service.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004</note>
-        </trans-unit>
-        <trans-unit id="Page 3975361464 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car wasn't sent to the service.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004Err</note>
-        </trans-unit>
-        <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
-        </trans-unit>
-        <trans-unit id="Page 3975361464 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>
@@ -1108,6 +1148,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action ReleaseRental - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3975361464 - Action 10209132 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reopen Service for Modification</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action ReopenServiceFromRental - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3975361464 - Action 1806681846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Car</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1127,6 +1172,11 @@
           <source>Rental List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 340846110 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You can only delete a rental record if its status is Open!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental List - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 340846110 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
@@ -1219,34 +1269,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 2833564323 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Service is already closed.</source>
+          <source>This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text001Err</note>
         </trans-unit>
-        <trans-unit id="Page 2833564323 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Service has been closed.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text002</note>
-        </trans-unit>
         <trans-unit id="Page 2833564323 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please fill 'To Date' and 'Cost' fields!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text002Err</note>
-        </trans-unit>
-        <trans-unit id="Page 2833564323 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Delivery Date %1 must not be behind To Date %2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text003Err</note>
-        </trans-unit>
-        <trans-unit id="Page 2833564323 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text004Err</note>
-        </trans-unit>
-        <trans-unit id="Page 2833564323 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
           <source>This rental has already been canceled!</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text005Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Card - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Page 2833564323 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>

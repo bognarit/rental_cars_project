@@ -12,7 +12,7 @@ codeunit 50100 "Excel Tools"
     begin
         if Buffer.Get(Row, GetColumnNumber(col)) then begin
             Evaluate(D, Buffer."Cell Value as Text");
-            exit(D);
+            exit(d);
         end;
     end;
 
