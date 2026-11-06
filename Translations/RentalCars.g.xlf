@@ -1098,6 +1098,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002Err</note>
         </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to cancel this closed service and create a correctable draft?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003</note>
+        </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
           <source>This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1317,6 +1322,11 @@
           <source>Service List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4085664776 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleting service orders is strictly prohibited in this system for security reasons!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Service Lists - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Report 2487714733 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental Invoices</source>

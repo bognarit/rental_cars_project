@@ -392,10 +392,6 @@ table 50102 "Rental"
         }
     }
 
-    trigger OnDelete()
-    begin
-    end;
-
     local procedure UpdateTotalCost()
     begin
         Rec."Total Cost" := Rec."Rental Day(s) Cost" + Rec."Mileage Cost" + Rec."Car Insurance Cost" + Rec."Repair Costs";

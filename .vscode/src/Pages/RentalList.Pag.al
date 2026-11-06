@@ -6,7 +6,6 @@ page 50102 "Rental List"
     UsageCategory = Lists;
     CardPageId = "Rental Card";
     SourceTable = "Rental";
-    DeleteAllowed = false;
 
     layout
     {

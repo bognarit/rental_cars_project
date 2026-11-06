@@ -6,7 +6,6 @@ page 50112 "Service Lists"
     UsageCategory = Lists;
     CardPageId = "Service Card";
     SourceTable = "Service";
-    Editable = false;
 
     layout
     {
@@ -59,6 +58,12 @@ page 50112 "Service Lists"
         }
     }
 
+    trigger OnDeleteRecord(): Boolean
+    begin
+        Message(Text001);
+        exit(false);
+    end;
+
     trigger OnNewRecord(BelowxRec: Boolean)
     var
         NoSeries: Codeunit "No. Series";
@@ -72,4 +77,7 @@ page 50112 "Service Lists"
             Rec."Service No." := NoSeries.GetNextNo(RentSetup."Service Data No. Series", WorkDate(), false);
         end;
     end;
+
+    var
+        Text001: Label 'Deleting service orders is strictly prohibited in this system for security reasons!';
 }

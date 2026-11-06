@@ -398,7 +398,7 @@ page 50103 "Rental Card"
                         if StrPos(ServiceHeader."Service No.", '-SER') > 0 then
                             Error(Text003Err, ServiceHeader."Service No.");
 
-                        if Confirm('Are you sure you want to cancel this closed service and create a correctable draft?', true) then begin
+                        if Confirm(Text003, true) then begin
                             NewActiveService := ServiceMgt.PerformServiceCancelAndReopen(ServiceHeader);
 
                             Commit();
@@ -440,6 +440,7 @@ page 50103 "Rental Card"
         StatusStyle: Text;
         Text001: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
         Text002: Label 'Are you sure the car has been returned? This will lock the return date.';
+        Text003: Label 'Are you sure you want to cancel this closed service and create a correctable draft?';
         Text001Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'' and ''From Date'' fields!';
         Text002Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
         Text003Err: Label 'This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
