@@ -43,6 +43,7 @@ page 50117 "Service Card Lines"
                 field("Order Necessary"; Rec."Order Necessary")
                 {
                     ApplicationArea = All;
+                    Editable = (Rec.Type = Rec.Type::Wage = false);
                 }
                 field("Order Date"; Rec."Order Date")
                 {

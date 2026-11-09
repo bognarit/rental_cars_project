@@ -26,11 +26,17 @@ page 50103 "Rental Card"
                     Editable = false;
                     StyleExpr = StatusStyle;
                 }
+
+                field(Availability; Rec.Availability)
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
                 field("Renter No."; Rec."Renter No.")
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec.Availability = Rec.Availability::Available) and (Rec."Rental Status" = Rec."Rental Status"::Open);
                 }
                 field("Renter Name"; Rec."Renter Name")
                 {
@@ -70,7 +76,7 @@ page 50103 "Rental Card"
                 field(BillRequired; Rec."BillRequired")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released);
+                    Editable = ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released)) and IsFieldEditable;
                 }
                 field("Bill-to Data"; Rec."Bill-to Same Data")
                 {
@@ -116,7 +122,7 @@ page 50103 "Rental Card"
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec.Availability = Rec.Availability::Available) and (Rec."Rental Status" = Rec."Rental Status"::Open);
                 }
                 field("Car Brand"; Rec."Car Brand")
                 {
@@ -132,19 +138,23 @@ page 50103 "Rental Card"
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) and IsFieldEditable;
                 }
                 field("From Date"; Rec."From Date")
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec.Availability = Rec.Availability::Available) and (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    trigger OnValidate()
+                    begin
+                        SetFieldEditableStatus();
+                    end;
                 }
                 field("To Date"; Rec."To Date")
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released);
+                    Editable = (Rec.Availability = Rec.Availability::Available) or (Rec."Rental Status" = Rec."Rental Status"::Released);
                 }
                 field("Rental Day(s)"; Rec."Rental Day(s)")
                 {
@@ -155,12 +165,12 @@ page 50103 "Rental Card"
                 field("Car Insurance"; Rec."Car Insurance")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) and IsFieldEditable;
                 }
                 field("Car Insurance Types"; Rec."Car Insurance Types")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) and IsFieldEditable;
                 }
                 field("Car Insurance Cost"; Rec."Car Insurance Cost")
                 {
@@ -182,7 +192,7 @@ page 50103 "Rental Card"
                 field("Ending Km"; Rec."Ending Mileage")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released);
+                    Editable = ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released)) and IsFieldEditable;
                     ShowMandatory = true;
                 }
                 field("Mileage Cost"; Rec."Mileage Cost")
@@ -205,7 +215,7 @@ page 50103 "Rental Card"
                 group(PreviousDamages)
                 {
                     Caption = 'Previous Damages';
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) and IsFieldEditable;
 
                     field("Previous Damages"; Rec."Previous Damages")
                     {
@@ -230,7 +240,7 @@ page 50103 "Rental Card"
                 group(NewDamages)
                 {
                     Caption = 'New Damages';
-                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released);
+                    Editable = (Rec."Rental Status" = Rec."Rental Status"::Released);
 
                     field("New Damages"; Rec."New Damages")
                     {
@@ -309,6 +319,36 @@ page 50103 "Rental Card"
                     CurrPage.Close();
                 end;
             }
+            action(BookRental)
+            {
+                Caption = 'Book Rental';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Approve;
+                Enabled = (Rec."Rental Status" = Rec."Rental Status"::Open) and (Rec.Availability = Rec.Availability::Available) and (Rec."Registration No." = '');
+
+                trigger OnAction()
+                begin
+                    if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."From Date" = 0D) or (Rec."To Date" = 0D) then
+                        Error(Text001Err);
+
+                    if (Rec."From Date" = Today) then
+                        Error(Text002Err);
+
+                    if Rec."From Date" > Rec."To Date" then
+                        Error(Text003Err, Rec."From Date", Rec."To Date");
+
+                    if Confirm(Text001, true) then begin
+                        Rec.Availability := Rec.Availability::Booked;
+                        Rec."Registration No." := '';
+                        Rec.Modify(true);
+                        CurrPage.Update(false);
+                    end;
+                end;
+            }
             action(ReleaseRental)
             {
                 Caption = 'Release Car';
@@ -322,11 +362,15 @@ page 50103 "Rental Card"
 
                 trigger OnAction()
                 begin
-                    if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') or (Rec."From Date" = 0D) then
-                        Error(Text001Err);
+                    if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') or (Rec."From Date" = 0D) or (Rec."To Date" = 0D) then
+                        Error(Text004Err);
 
-                    if Confirm(Text001, true) then begin
+                    if Rec."From Date" > Rec."To Date" then
+                        Error(Text003Err, Rec."From Date", Rec."To Date");
+
+                    if Confirm(Text002, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Released;
+                        Rec.Availability := Rec.Availability::Booked;
                         Rec.Modify(true);
                         CurrPage.Update(false);
                     end;
@@ -347,10 +391,13 @@ page 50103 "Rental Card"
                 begin
                     CurrPage.SaveRecord();
 
-                    if Rec."Ending Mileage" = 0 then
-                        Error(Text002Err);
+                    if Rec."From Date" > Rec."To Date" then
+                        Error(Text003Err, Rec."From Date", Rec."To Date");
 
-                    if Confirm(Text002, true) then begin
+                    if Rec."Ending Mileage" = 0 then
+                        Error(Text005Err);
+
+                    if Confirm(Text003, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Returned;
                         Rec.Modify(true);
                         CurrPage.Update(false);
@@ -396,9 +443,9 @@ page 50103 "Rental Card"
                 begin
                     if ServiceHeader.Get(Rec."Service No.", Rec."No.") then begin
                         if StrPos(ServiceHeader."Service No.", '-SER') > 0 then
-                            Error(Text003Err, ServiceHeader."Service No.");
+                            Error(Text006Err, ServiceHeader."Service No.");
 
-                        if Confirm(Text003, true) then begin
+                        if Confirm(Text004, true) then begin
                             NewActiveService := ServiceMgt.PerformServiceCancelAndReopen(ServiceHeader);
 
                             Commit();
@@ -420,6 +467,8 @@ page 50103 "Rental Card"
             StatusStyle := 'Favorable'
         else
             StatusStyle := 'Standard';
+
+        SetFieldEditableStatus();
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
@@ -436,12 +485,26 @@ page 50103 "Rental Card"
         end;
     end;
 
+    procedure SetFieldEditableStatus()
+    begin
+        if Today < Rec."From Date" then
+            IsFieldEditable := false
+        else begin
+            IsFieldEditable := true
+        end;
+    end;
+
     var
         StatusStyle: Text;
-        Text001: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
-        Text002: Label 'Are you sure the car has been returned? This will lock the return date.';
-        Text003: Label 'Are you sure you want to cancel this closed service and create a correctable draft?';
-        Text001Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'' and ''From Date'' fields!';
-        Text002Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
-        Text003Err: Label 'This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
+        IsFieldEditable: Boolean;
+        Text001: Label 'Are you sure you want to book this car for the selected period?';
+        Text002: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
+        Text003: Label 'Are you sure the car has been returned? This will lock the return date.';
+        Text004: Label 'Are you sure you want to cancel this closed service and create a correctable draft?';
+        Text001Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''From Date'' and ''To Date'' fields!';
+        Text002Err: Label 'For rentals starting today, please select a Registration Number and use the ''Release Car'' button instead.';
+        Text003Err: Label 'The From Date %1 cannot be after the To Date %2.';
+        Text004Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'', ''From Date'' and ''To Date'' fields!';
+        Text005Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
+        Text006Err: Label 'This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
 }

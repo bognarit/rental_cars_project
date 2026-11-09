@@ -471,6 +471,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Address - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 2336152139 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Status</source>
+          <target>Mietvertrag reservieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Availability - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 2336152139 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Available,Booked</source>
+          <target>Verfügbar,Reserviert</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Availability - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 831017837 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bill to Address</source>
           <target>Rech. an Adresse</target>
@@ -1017,29 +1029,25 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text002Err</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The renter, %1 already has an active car rental during the selected period!</source>
+          <target>Der Mieter, %1 hat im ausgewählten Zeitraum bereits eine aktive Fahrzeuganmietung!</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1666565541 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The From Date %1 must not be behind To Date %2.</source>
-          <target>Das Startdatum %1 darf nicht nach dem Enddatum %2 liegen.</target>
+          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <target>Sie können ein früheres Datum nicht wählen. Bitte wählen Sie ein anderes Datum!</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Codeunit 1666565541 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You cannot choose an earlier date. Please choose another date!</source>
-          <target>Sie können ein früheres Datum nicht wählen. Bitte wählen Sie ein anderes Datum!</target>
+          <source>The selected car is not available for this period. Please choose another vehicle or date!</source>
+          <target>Das ausgewählte Fahrzeug ist für diesen Zeitraum nicht verfügbar. Bitte wählen Sie ein anderes Fahrzeug oder Datum!</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text004Err</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1666565541 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car is booked at a specified date. Please choose an other date or car!</source>
-          <target>Der Wagen wurde im angegebenen Termin schon reserviert. Bitte wählen Sie ein anderes Datum oder Wagen!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text005Err</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1666565541 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The car currently is being serviced. Please choose an other car!</source>
-          <target>Der Wagen befindet sich derzeit in der Wartung. Bitte wählen Sie einen anderen Wagen aus!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Codeunit 1284549866 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
           <source>The Service has been closed.</source>
@@ -1294,40 +1302,64 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure you want to release the car? This will lock the renter details and departure date.</source>
-          <target>Sind Sie sicher, dass Sie das Fahrzeug übergeben möchten? Dadurch werden die Mieterdaten und das Abreisedatum gesperrt.</target>
+          <source>Are you sure you want to book this car for the selected period?</source>
+          <target>Möchten Sie dieses Fahrzeug wirklich für den ausgewählten Zeitraum reservieren?</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.' and 'From Date' fields!</source>
-          <target>Bitte füllen Sie die Felder 'Mieter', 'Wagennr.', 'Kennzeichen' und 'Startdatum' aus!</target>
+          <source>Please fill 'Renter No.', 'Car No.', 'From Date' and 'To Date' fields!</source>
+          <target>Bitte füllen Sie die Felder 'Mieter', 'Wagennr.', 'Startdatum' und 'Enddatum' aus!</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure the car has been returned? This will lock the return date.</source>
-          <target>Sind Sie sicher, dass das Fahrzeug zurückgegeben wurde? Dadurch wird das Rückgabedatum gesperrt.</target>
+          <source>Are you sure you want to release the car? This will lock the renter details and departure date.</source>
+          <target>Sind Sie sicher, dass Sie das Fahrzeug übergeben möchten? Dadurch werden die Mieterdaten und das Abreisedatum gesperrt.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
-          <target>Der Endkilometerstand darf bei der Rückgabe des Fahrzeugs nicht 0 sein. Bitte geben Sie den aktuellen Kilometerstand ein!</target>
+          <source>For rentals starting today, please select a Registration Number and use the 'Release Car' button instead.</source>
+          <target>Für Vermietungen, die heute beginnen, wählen Sie bitte ein Kennzeichen aus und nutzen Sie stattdessen die Funktion 'Fahrzeug freigeben'.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Are you sure you want to cancel this closed service and create a correctable draft?</source>
-          <target>Sind Sie sicher, dass Sie die geschlossene Vermietung %1 stornieren und einen Korrigierbaren Entwurf erstellen?</target>
+          <source>Are you sure the car has been returned? This will lock the return date.</source>
+          <target>Sind Sie sicher, dass das Fahrzeug zurückgegeben wurde? Dadurch wird das Rückgabedatum gesperrt.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The From Date %1 cannot be after the To Date %2.</source>
+          <target>Das Startdatum %1 darf nicht nach dem Enddatum %2 liegen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to cancel this closed service and create a correctable draft?</source>
+          <target>Sind Sie sicher, dass Sie die geschlossene Vermietung %1 stornieren und einen Korrigierbaren Entwurf erstellen?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please fill 'Renter No.', 'Car No.', 'Registration No.', 'From Date' and 'To Date' fields!</source>
+          <target>Bitte füllen Sie die Felder 'Mieter', 'Wagennr.', 'Kennzeichen', 'Startdatum' und 'Enddatum' aus!</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!</source>
+          <target>Der Endkilometerstand darf bei der Rückgabe des Fahrzeugs nicht 0 sein. Bitte geben Sie den aktuellen Kilometerstand ein!</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
           <source>This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!</source>
           <target>Dieser Servicevertrag (%1) liegt bereits in einer korrigierten Fassung vor. Bereits korrigierte Verträge können nicht nochmals geändert werden.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text003Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>
@@ -1370,6 +1402,12 @@
           <target>Service</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Control Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - Action 4047247379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Book Rental</source>
+          <target>Mietvertrag reservieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - Action BookRental - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Action 3446564810 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Close Rental</source>

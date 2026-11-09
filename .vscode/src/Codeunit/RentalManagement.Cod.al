@@ -27,12 +27,9 @@ codeunit 50102 "Rental Management"
         if ToDate = 0D then
             ToDate := FromDate;
 
-        if FromDate > ToDate then
-            Error(Text003Err, FromDate, ToDate);
-
         if StrPos(Rental."No.", '-REV') = 0 then begin
-            if (FromDate < Today) or (ToDate < Today) then
-                Error(Text004Err);
+            if ((FromDate <> 0D) and (FromDate < Today)) or ((ToDate <> 0D) and (ToDate < Today)) then
+                Error(Text003Err);
         end;
 
         if (FromDate <> 0D) and (ToDate <> 0D) then begin
@@ -55,40 +52,51 @@ codeunit 50102 "Rental Management"
 
     procedure BookedCarAtTheAppointedTime(var Rental: Record Rental; FromDate: Date; ToDate: Date)
     var
-        OldRental: Record "Rental";
-        OldClosedRental: Record "Closed Rental";
-        Service: Record "Service";
+        ActiveRentalsCount: Integer;
+        ActiveServicesCount: Integer;
+        TotalCarsInFlotta: Integer;
+        AvailableCars: Integer;
+        CarCardLines: Record "Car Card Lines";
+        OldRental: Record Rental;
+        Service: Record Service;
+        RenterRentalCheck: Record Rental;
     begin
         if (FromDate = 0D) or (ToDate = 0D) then
             exit;
 
-        OldRental.SetRange("Car No.", Rental."Car No.");
-        OldRental.SetRange("Registration No.", Rental."Registration No.");
-
-        if Rental."No." <> '' then
+        if Rental."No." <> '' then begin
             OldRental.SetFilter("No.", '<>%1', Rental."No.");
+            RenterRentalCheck.SetFilter("No.", '<>%1', Rental."No.");
+        end;
 
+        RenterRentalCheck.SetRange("Renter No.", Rental."Renter No.");
+        RenterRentalCheck.SetFilter("From Date", '<=%1', ToDate);
+        RenterRentalCheck.SetFilter("To Date", '>=%1', FromDate);
+        RenterRentalCheck.SetFilter("Rental Status", '<>%1', Rental."Rental Status"::Returned);
+
+        if not RenterRentalCheck.IsEmpty then
+            Error(Text003, Rental."Renter Name");
+
+        CarCardLines.SetRange("No.", Rental."Car No.");
+        TotalCarsInFlotta := CarCardLines.Count();
+
+        OldRental.SetRange("Car No.", Rental."Car No.");
         OldRental.SetFilter("From Date", '<=%1', ToDate);
         OldRental.SetFilter("To Date", '>=%1', FromDate);
+        OldRental.SetFilter("Rental Status", '<>%1', Rental."Rental Status"::Returned);
 
-        if not OldRental.IsEmpty then
-            Error(Text005Err);
+        ActiveRentalsCount := OldRental.Count();
 
-        OldClosedRental.SetRange("Car No.", Rental."Car No.");
-        OldClosedRental.SetRange("Registration No.", Rental."Registration No.");
-        OldClosedRental.SetFilter("From Date", '<=%1', ToDate);
-        OldClosedRental.SetFilter("To Date", '>=%1', FromDate);
-
-        if not OldClosedRental.IsEmpty then
-            Error(Text005Err);
-
-        Service.SetRange("Registration No.", Rental."Registration No.");
+        Service.SetRange("Car No.", Rental."Car No.");
         Service.SetRange(Status, Service.Status::Service);
         Service.SetFilter("From Date", '<=%1', ToDate);
         Service.SetFilter("To Date", '>=%1|%2', FromDate, 0D);
+        ActiveServicesCount := Service.Count();
 
-        if not Service.IsEmpty then
-            Error(Text006Err);
+        AvailableCars := TotalCarsInFlotta - ActiveRentalsCount - ActiveServicesCount;
+
+        if AvailableCars <= 0 then
+            Error(Text004Err);
     end;
 
     procedure UpdateSequenceMileages(CarNo: Code[20]; RegNo: Text[50]; OldEndingMileage: Integer; Diff: Integer)
@@ -130,10 +138,9 @@ codeunit 50102 "Rental Management"
     var
         Text001: Label 'Are you sure to close the %1 rental?';
         Text002: Label 'The rental contract %1 has been successfully closed and archived.';
+        Text003: Label 'The renter, %1 already has an active car rental during the selected period!';
         Text001Err: Label 'The car wasn''t sent to the service.';
         Text002Err: Label 'The car currently is being serviced.';
-        Text003Err: Label 'The From Date %1 must not be behind To Date %2.';
-        Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text005Err: Label 'The car is booked at a specified date. Please choose an other date or car!';
-        Text006Err: Label 'The car currently is being serviced. Please choose an other car!';
+        Text003Err: Label 'You cannot choose an earlier date. Please choose another date!';
+        Text004Err: Label 'The selected car is not available for this period. Please choose another vehicle or date!';
 }

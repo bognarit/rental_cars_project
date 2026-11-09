@@ -15,6 +15,13 @@ table 50102 "Rental"
         {
             Caption = 'Rental Status';
         }
+        field(4; Availability; Option)
+        {
+            Caption = 'Book Status';
+            OptionCaption = 'Available,Booked';
+            OptionMembers = Available,Booked;
+        }
+
         field(5; "Renter No."; Code[20])
         {
             Caption = 'Renter No.';
@@ -160,7 +167,7 @@ table 50102 "Rental"
             var
                 RentalMgt: Codeunit "Rental Management";
             begin
-                if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
+                if (Rec."Renter No." = '') or (Rec."Car No." = '') then
                     Error(Text001Err);
 
                 RentalMgt.ConfigureRentalDaysAndErrorWarning(Rec, Rec."From Date", Rec."To Date");
@@ -180,7 +187,7 @@ table 50102 "Rental"
                 DaysToShift: Integer;
                 RentalMgt: Codeunit "Rental Management";
             begin
-                if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') then
+                if (Rec."Renter No." = '') or (Rec."Car No." = '') then
                     Error(Text001Err);
 
                 // 1. Kiszámoljuk a dátumeltolódást a normál foglalásokhoz

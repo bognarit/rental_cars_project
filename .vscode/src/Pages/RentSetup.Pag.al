@@ -13,6 +13,7 @@ page 50107 "Rent Setup"
             group(General)
             {
                 Caption = 'General';
+                Editable = IsAdminEditable;
 
                 field("Car List No. Series"; Rec."Car List No. Series")
                 {
@@ -37,4 +38,18 @@ page 50107 "Rent Setup"
             }
         }
     }
+
+    trigger OnOpenPage()
+    var
+        UserPermissions: Codeunit "User Permissions";
+    begin
+        if UserPermissions.IsSuper(UserSecurityId()) then begin
+            IsAdminEditable := true;
+        end else begin
+            IsAdminEditable := false;
+        end;
+    end;
+
+    var
+        IsAdminEditable: Boolean;
 }
