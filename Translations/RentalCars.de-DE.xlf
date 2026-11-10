@@ -51,6 +51,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Car Card Lines - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 15449683 - Field 3693927232 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Status</source>
+          <target>Fahrzeugstatus</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Card Lines - Field Car Status - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 15449683 - Field 3407319830 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fuel</source>
           <target>Kraftstoff</target>
@@ -1038,14 +1044,12 @@
         <trans-unit id="Codeunit 1666565541 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
           <source>You cannot choose an earlier date. Please choose another date!</source>
           <target>Sie können ein früheres Datum nicht wählen. Bitte wählen Sie ein anderes Datum!</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Codeunit 1666565541 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
           <source>The selected car is not available for this period. Please choose another vehicle or date!</source>
           <target>Das ausgewählte Fahrzeug ist für diesen Zeitraum nicht verfügbar. Bitte wählen Sie ein anderes Fahrzeug oder Datum!</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text004Err</note>
         </trans-unit>
@@ -1096,6 +1100,12 @@
           <target>Bitte füllen Sie die Felder 'Neue Schadensdetails' und 'Startdatum' im Service aus!</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text006Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1284549866 - NamedType 998548441" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The vehicle is currently rented out and cannot be sent back to service.</source>
+          <target>Das Fahrzeug ist derzeit vermietet und kann nicht erneut in die Werkstatt geschickt werden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text007Err</note>
         </trans-unit>
         <trans-unit id="Page 1634653456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car</source>
@@ -1360,6 +1370,12 @@
           <target>Dieser Servicevertrag (%1) liegt bereits in einer korrigierten Fassung vor. Bereits korrigierte Verträge können nicht nochmals geändert werden.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text006Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3975361464 - NamedType 998548441" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This rental has already been canceled!</source>
+          <target>Dieser Mietvorgang ist bereits storniert.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Rental Card - NamedType Text007Err</note>
         </trans-unit>
         <trans-unit id="Page 3975361464 - Control 1601539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Damages</source>
@@ -1732,6 +1748,31 @@
           <target>Mietmanager</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Profile RentalManagerProfile - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3693927232 - EnumValue 3920084379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Available</source>
+          <target>Verfügbar</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Car Status - EnumValue Available - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3693927232 - EnumValue 3543129988 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Blocked</source>
+          <target>Gesperrt</target>
+          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Car Status - EnumValue Blocked - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3693927232 - EnumValue 1482469392 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rented</source>
+          <target>Vermietet</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Car Status - EnumValue Rented - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3693927232 - EnumValue 2187938695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service</source>
+          <target>Service</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Car Status - EnumValue Service - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3234822284 - EnumValue 723849998 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Diverse</source>

@@ -126,11 +126,11 @@ page 50115 "Service Card"
                     ServiceMgt: Codeunit "Service Management";
                     NewActiveService: Record "Service";
                 begin
-                    if StrPos(Rec."Service No.", '-SER') > 0 then
-                        Error(Text001Err, Rec."Service No.");
-
                     if Rec.Canceled then
                         Error(Text002Err);
+
+                    if StrPos(Rec."Service No.", '-SER') > 0 then
+                        Error(Text001Err, Rec."Service No.");
 
                     if Confirm(Text001, true) then begin
                         NewActiveService := ServiceMgt.PerformServiceCancelAndReopen(Rec);

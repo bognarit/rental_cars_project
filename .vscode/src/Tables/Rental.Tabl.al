@@ -142,7 +142,7 @@ table 50102 "Rental"
         field(90; "Registration No."; Text[50])
         {
             Caption = 'Registration Number';
-            TableRelation = "Car Card Lines"."Registration No." where("No." = field("Car No."));
+            TableRelation = "Car Card Lines"."Registration No." where("No." = field("Car No."), "Car Status" = const("Car Status"::Available));
             trigger OnValidate()
             var
                 CarCardLines: Record "Car Card Lines";
@@ -152,7 +152,6 @@ table 50102 "Rental"
                     CarCardLines.SetRange("Registration No.", Rec."Registration No.");
 
                     if CarCardLines.FindFirst() then begin
-                        CarCardLines.CalcFields("Mileage");
                         Rec."Starting Mileage" := CarCardLines."Mileage";
                     end;
                 end else begin
@@ -190,21 +189,14 @@ table 50102 "Rental"
                 if (Rec."Renter No." = '') or (Rec."Car No." = '') then
                     Error(Text001Err);
 
-                // 1. Kiszámoljuk a dátumeltolódást a normál foglalásokhoz
                 if (xRec."To Date" <> 0D) and (Rec."To Date" <> 0D) then
                     DaysToShift := Rec."To Date" - xRec."To Date";
 
-                // 2. KÖZPONTI SZÁMÍTÁS: A Codeunit kiszámolja a napokat és a sávos árakat 
-                // a normál ÉS a -REV bérleteknél is, de a múltbéli hibát (-REV) nem fogja letiltani!
                 RentalMgt.ConfigureRentalDaysAndErrorWarning(Rec, Rec."From Date", Rec."To Date");
 
-                // 3. NAPTÁR-ÜTKÖZÉSVizsgálat: Csak a vadonatúj, normál foglalásoknál ellenőrizzük az ütközést
                 if StrPos(Rec."No.", '-REV') = 0 then begin
                     RentalMgt.BookedCarAtTheAppointedTime(Rec, Rec."From Date", Rec."To Date");
 
-                    // 4. JÖVŐBELI TOLÁS: Csak az éles, normál szerződéseknél toljuk el a jövőt, ha változott a dátum
-                    // if DaysToShift <> 0 then
-                    //     Rec.ShiftFutureRentals(Rec."Car No.", Rec."Registration No.", xRec."To Date", DaysToShift);
                 end;
 
                 UpdateTotalCost();

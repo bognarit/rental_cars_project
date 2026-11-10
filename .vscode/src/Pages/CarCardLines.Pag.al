@@ -20,6 +20,10 @@ page 50109 "Car Card Lines"
                 {
                     ApplicationArea = All;
                 }
+                field("Car Status"; Rec."Car Status")
+                {
+                    ApplicationArea = All;
+                }
                 field("Manufact. Year"; Rec."Manufact. Year")
                 {
                     ApplicationArea = All;

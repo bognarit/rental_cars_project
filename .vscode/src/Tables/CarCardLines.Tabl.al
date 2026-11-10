@@ -26,11 +26,6 @@ table 50105 "Car Card Lines"
         field(5; Mileage; Integer)
         {
             Caption = 'Mileage(km)';
-            FieldClass = FlowField;
-            CalcFormula = max("Closed Rental"."Ending Mileage" where(
-                "Car No." = field("No."),
-                "Registration No." = field("Registration No."),
-                Canceled = const(false)));
             Editable = false;
         }
         field(6; Transmission; Option)
@@ -48,6 +43,10 @@ table 50105 "Car Card Lines"
             Caption = 'Fuel';
             OptionMembers = ,Electric,Petrol;
             OptionCaption = ',Electric,Petrol';
+        }
+        field(9; "Car Status"; Enum "Car Status")
+        {
+            Caption = 'Car Status';
         }
     }
 

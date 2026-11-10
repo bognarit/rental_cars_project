@@ -361,6 +361,8 @@ page 50103 "Rental Card"
                 Enabled = (Rec."Rental Status" = Rec."Rental Status"::Open);
 
                 trigger OnAction()
+                var
+                    RentalMgt: Codeunit "Rental Management";
                 begin
                     if (Rec."Renter No." = '') or (Rec."Car No." = '') or (Rec."Registration No." = '') or (Rec."From Date" = 0D) or (Rec."To Date" = 0D) then
                         Error(Text004Err);
@@ -371,6 +373,7 @@ page 50103 "Rental Card"
                     if Confirm(Text002, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Released;
                         Rec.Availability := Rec.Availability::Booked;
+                        RentalMgt.UpdateCarStatus(Rec);
                         Rec.Modify(true);
                         CurrPage.Update(false);
                     end;
@@ -388,6 +391,8 @@ page 50103 "Rental Card"
                 Enabled = (Rec."Rental Status" = Rec."Rental Status"::Released);
 
                 trigger OnAction()
+                var
+                    RentalMgt: Codeunit "Rental Management";
                 begin
                     CurrPage.SaveRecord();
 
@@ -399,6 +404,8 @@ page 50103 "Rental Card"
 
                     if Confirm(Text003, true) then begin
                         Rec."Rental Status" := Rec."Rental Status"::Returned;
+                        RentalMgt.UpdateCarStatus(Rec);
+
                         Rec.Modify(true);
                         CurrPage.Update(false);
                     end;
@@ -417,9 +424,11 @@ page 50103 "Rental Card"
 
                 trigger OnAction()
                 var
+                    RentalMgt: Codeunit "Rental Management";
                     ServiceMgt: Codeunit "Service Management";
                 begin
                     ServiceMgt.SendTheCarToTheService(Rec);
+                    RentalMgt.UpdateCarStatus(Rec);
                     Rec.Modify(true);
                     CurrPage.Update(false);
                 end;
@@ -442,6 +451,9 @@ page 50103 "Rental Card"
                     ServiceMgt: Codeunit "Service Management";
                 begin
                     if ServiceHeader.Get(Rec."Service No.", Rec."No.") then begin
+                        if ServiceHeader.Canceled then
+                            Error(Text007Err);
+
                         if StrPos(ServiceHeader."Service No.", '-SER') > 0 then
                             Error(Text006Err, ServiceHeader."Service No.");
 
@@ -507,4 +519,5 @@ page 50103 "Rental Card"
         Text004Err: Label 'Please fill ''Renter No.'', ''Car No.'', ''Registration No.'', ''From Date'' and ''To Date'' fields!';
         Text005Err: Label 'The Ending Mileage cannot be 0 when returning the car. Please enter the current mileage!';
         Text006Err: Label 'This service contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
+        Text007Err: Label 'This rental has already been canceled!';
 }

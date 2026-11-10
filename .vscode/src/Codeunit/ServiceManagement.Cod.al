@@ -5,7 +5,7 @@ codeunit 50103 "Service Management"
         InsuranceCostCalc: Codeunit "Insurance & Cost Calculator";
         RentalList: Record Rental;
         ServiceCardLines: Record "Service Card Lines";
-        ServiceLines: Page "Service Card Lines";
+        CarCardLines: Record "Car Card Lines";
     begin
         ServiceCardLines.SetRange("Service No.", ServiceHeader."Service No.");
         if ServiceCardLines.FindSet() then begin
@@ -38,6 +38,13 @@ codeunit 50103 "Service Management"
                 end;
             end;
 
+            CarCardLines.SetRange("No.", ServiceHeader."Car No.");
+            CarCardLines.SetRange("Registration No.", ServiceHeader."Registration No.");
+            if CarCardLines.FindFirst() then begin
+                CarCardLines."Car Status" := CarCardLines."Car Status"::Available;
+                CarCardLines.Modify(false);
+            end;
+
             Message(Text001);
 
         end else if ServiceHeader.Status = ServiceHeader.Status::Repaired then
@@ -49,11 +56,19 @@ codeunit 50103 "Service Management"
 
     procedure PerformServiceCancelAndReopen(var SourceService: Record "Service") NewService: Record "Service"
     var
+        CarCardLines: Record "Car Card Lines";
         SourceLines: Record "Service Card Lines";
         NewLines: Record "Service Card Lines";
         NewNo: Code[20];
         Rental: Record Rental;
     begin
+        CarCardLines.SetRange("No.", SourceService."Car No.");
+        CarCardLines.SetRange("Registration No.", SourceService."Registration No.");
+        if CarCardLines.FindFirst() then begin
+            if CarCardLines."Car Status" = CarCardLines."Car Status"::Rented then
+                Error(Text007Err);
+        end;
+
         SourceService.Canceled := true;
         SourceService.Modify();
 
@@ -85,6 +100,11 @@ codeunit 50103 "Service Management"
                 NewLines.Status := NewLines.Status::Service;
                 NewLines.Insert(true);
             until SourceLines.Next() = 0;
+        end;
+
+        if CarCardLines.FindFirst() then begin
+            CarCardLines."Car Status" := CarCardLines."Car Status"::Service;
+            CarCardLines.Modify(false);
         end;
 
         exit(NewService);
@@ -138,4 +158,5 @@ codeunit 50103 "Service Management"
         Text004Err: Label 'The car currently is being serviced.';
         Text005Err: Label 'The car has been repaired.';
         Text006Err: Label 'Please fill in the Service ''New Damage Details'' and ''From Date'' fields!';
+        Text007Err: Label 'The vehicle is currently rented out and cannot be sent back to service.';
 }

@@ -78,6 +78,7 @@ codeunit 50102 "Rental Management"
             Error(Text003, Rental."Renter Name");
 
         CarCardLines.SetRange("No.", Rental."Car No.");
+        CarCardLines.SetFilter("Car Status", '<>%1', CarCardLines."Car Status"::Blocked);
         TotalCarsInFlotta := CarCardLines.Count();
 
         OldRental.SetRange("Car No.", Rental."Car No.");
@@ -133,6 +134,30 @@ codeunit 50102 "Rental Management"
                 Rental."Ending Mileage" += Diff;
                 Rental.Modify(true);
             until Rental.Next() = 0;
+    end;
+
+    procedure UpdateCarStatus(Rental: Record Rental)
+    var
+        CarCardLines: Record "Car Card Lines";
+    begin
+        CarCardLines.SetRange("No.", Rental."Car No.");
+        CarCardLines.SetRange("Registration No.", Rental."Registration No.");
+        if CarCardLines.FindFirst() then begin
+            if Rental."Service Status" = Rental."Service Status"::Service then begin
+                CarCardLines."Car Status" := CarCardLines."Car Status"::Service;
+            end else if Rental."Rental Status" = Rental."Rental Status"::Returned then begin
+                CarCardLines.Mileage := Rental."Ending Mileage";
+                if (Rental."Previous Damages" = true) or (Rental."New Damages" = true) then
+                    CarCardLines."Car Status" := CarCardLines."Car Status"::Blocked
+                else begin
+                    CarCardLines."Car Status" := CarCardLines."Car Status"::Available;
+                end
+            end else if Rental."Rental Status" = Rental."Rental Status"::Released then begin
+                CarCardLines."Car Status" := CarCardLines."Car Status"::Rented;
+            end;
+
+            CarCardLines.Modify(false);
+        end;
     end;
 
     var
