@@ -348,12 +348,17 @@ table 50102 "Rental"
 
             trigger OnValidate()
             begin
+                if Rec."Service From Date" = 0D then
+                    exit;
+
                 if Rec."Service From Date" < Today then
-                    Error(Text006Err)
-                else if Rec."To Date" >= Rec."Service From Date" then
-                    Error(Text007Err, Rec."Service From Date", Rec."To Date")
-                else if (Rec."From Date" = 0D) and (Rec."To Date" = 0D) then
-                    Error(Text009Err);
+                    Error(Text006Err);
+
+                if Rec."To Date" > Rec."Service From Date" then
+                    Error(Text007Err, Rec."To Date", Rec."Service From Date");
+
+                if (Date2DWY(Rec."Service From Date", 1) in [6, 7]) then
+                    Error(Text008Err, Rec."Service From Date");
             end;
         }
         field(190; "Service To Date"; Date)
@@ -402,7 +407,7 @@ table 50102 "Rental"
         Text003Err: Label 'The ending mileage must be greater than the starting mileage.';
         Text004Err: Label 'The car currently is being serviced.';
         Text005Err: Label 'The car has been repaired.';
-        Text006Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text007Err: Label 'The To Date %1 must not be behind Service From Date %2';
-        Text009Err: Label 'Please choose a From Date und a To Date first!';
+        Text006Err: Label 'You cannot choose a past date. Please select a valid date.';
+        Text007Err: Label 'The To Date %1 cannot be after Service From Date %2.';
+        Text008Err: Label 'Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.';
 }

@@ -119,6 +119,12 @@ table 50106 "Service"
         if (Rec."From Date" = 0D) or (Rec."To Date" = 0D) then
             exit;
 
+        if (Date2DWY(Rec."From Date", 1) in [6, 7]) then
+            Error(Text005Err, Rec."From Date");
+
+        if (Date2DWY(Rec."To Date", 1) in [6, 7]) then
+            Error(Text005Err, Rec."To Date");
+
         if Rec."From Date" > Rec."To Date" then
             Error(Text003Err, Rec."From Date", Rec."To Date");
 
@@ -133,4 +139,5 @@ table 50106 "Service"
         Text002Err: Label 'The Delivery Date %1 must not be behind To Date %2.';
         Text003Err: Label 'The From Date %1 must not be behind To Date %2.';
         Text004Err: Label 'You cannot choose an earlier date. Please choose another date!';
+        Text005Err: Label 'Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.';
 }

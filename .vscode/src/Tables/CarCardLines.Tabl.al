@@ -8,7 +8,6 @@ table 50105 "Car Card Lines"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            Editable = false;
             TableRelation = "Car"."No.";
         }
         field(2; "Line No."; Integer)
@@ -26,7 +25,6 @@ table 50105 "Car Card Lines"
         field(5; Mileage; Integer)
         {
             Caption = 'Mileage(km)';
-            Editable = false;
         }
         field(6; Transmission; Option)
         {
@@ -47,6 +45,7 @@ table 50105 "Car Card Lines"
         field(9; "Car Status"; Enum "Car Status")
         {
             Caption = 'Car Status';
+            Editable = false;
         }
     }
 

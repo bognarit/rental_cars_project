@@ -8,6 +8,7 @@ codeunit 50103 "Service Management"
         CarCardLines: Record "Car Card Lines";
     begin
         ServiceCardLines.SetRange("Service No.", ServiceHeader."Service No.");
+        // ServiceCardLines.SetLoadFields("Order Date", "Delivery Date", Status);
         if ServiceCardLines.FindSet() then begin
             repeat
                 if (ServiceCardLines."Order Date" > ServiceHeader."To Date") and (ServiceCardLines."Delivery Date" > ServiceHeader."To Date") then
@@ -40,6 +41,7 @@ codeunit 50103 "Service Management"
 
             CarCardLines.SetRange("No.", ServiceHeader."Car No.");
             CarCardLines.SetRange("Registration No.", ServiceHeader."Registration No.");
+            // CarCardLines.SetLoadFields("Car Status");
             if CarCardLines.FindFirst() then begin
                 CarCardLines."Car Status" := CarCardLines."Car Status"::Available;
                 CarCardLines.Modify(false);
@@ -64,6 +66,7 @@ codeunit 50103 "Service Management"
     begin
         CarCardLines.SetRange("No.", SourceService."Car No.");
         CarCardLines.SetRange("Registration No.", SourceService."Registration No.");
+        // CarCardLines.SetLoadFields("Car Status");
         if CarCardLines.FindFirst() then begin
             if CarCardLines."Car Status" = CarCardLines."Car Status"::Rented then
                 Error(Text007Err);
@@ -74,6 +77,8 @@ codeunit 50103 "Service Management"
 
         if SourceService."Rental No." <> '' then begin
             Rental.SetRange("No.", SourceService."Rental No.");
+            // Rental.SetLoadFields("Service To Date", "Service Status");
+            Rental.SetLoadFields("Service Status");
             if Rental.FindFirst() then begin
                 Rental."Service To Date" := 0D;
                 Rental."Service Status" := Rental."Service Status"::Service;

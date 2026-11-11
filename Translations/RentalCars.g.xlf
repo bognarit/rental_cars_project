@@ -379,19 +379,19 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text005Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <source>You cannot choose a past date. Please select a valid date.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - NamedType 998548441" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The To Date %1 must not be behind Service From Date %2</source>
+          <source>The To Date %1 cannot be after Service From Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text007Err</note>
         </trans-unit>
-        <trans-unit id="Table 2513429772 - NamedType 1504301347" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please choose a From Date und a To Date first!</source>
+        <trans-unit id="Table 2513429772 - NamedType 2364520756" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text009Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - NamedType Text008Err</note>
         </trans-unit>
         <trans-unit id="Table 2513429772 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
@@ -688,6 +688,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text004Err</note>
         </trans-unit>
+        <trans-unit id="Table 2187938695 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service - NamedType Text005Err</note>
+        </trans-unit>
         <trans-unit id="Table 2187938695 - Field 3844911025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Canceled</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -754,24 +759,29 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3297013664 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Order Date %1 must not be behind Delivery Date %2.</source>
+          <source>The Order Date %1 cannot be after Delivery Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - NamedType Text001Err</note>
         </trans-unit>
         <trans-unit id="Table 3297013664 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You cannot choose an earlier date. Please choose another date!</source>
+          <source>You cannot choose a past date. Please select a valid date.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Table 3297013664 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Order Date %1 must not be behind From Date %2.</source>
+          <source>The Order Date %1 cannot be before From Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Table 3297013664 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Delivery Date %1 must not be behind To Date %2.</source>
+          <source>The Delivery Date %1 cannot be after To Date %2.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Table 3297013664 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Service Card Lines - NamedType Text005Err</note>
         </trans-unit>
         <trans-unit id="Table 3297013664 - Field 1908298881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car Part</source>

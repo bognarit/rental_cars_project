@@ -106,17 +106,19 @@ codeunit 50102 "Rental Management"
         ClosedRental: Record "Closed Rental";
         Rental: Record "Rental";
     begin
-        // A) Autó frissítése
-        if CarCardLines.Get(CarNo, RegNo) then begin
+        CarCardLines.SetRange("No.", CarNo);
+        CarCardLines.SetRange("Registration No.", RegNo);
+        // CarCardLines.SetLoadFields("Mileage");
+        if CarCardLines.FindFirst() then begin
             CarCardLines."Mileage" += Diff;
             CarCardLines.Modify(true);
         end;
 
-        // B) Későbbi lezárt bérlések eltolása
         ClosedRental.SetRange("Car No.", CarNo);
         ClosedRental.SetRange("Registration No.", RegNo);
         ClosedRental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
         ClosedRental.SetRange(Canceled, false);
+        // ClosedRental.SetLoadFields("Starting Mileage", "Ending Mileage");
         if ClosedRental.FindSet() then
             repeat
                 ClosedRental."Starting Mileage" += Diff;
@@ -124,10 +126,10 @@ codeunit 50102 "Rental Management"
                 ClosedRental.Modify(false); // Átüti a ModifyAllowed = false-t
             until ClosedRental.Next() = 0;
 
-        // C) Jövőbeli aktív foglalások eltolása
         Rental.SetRange("Car No.", CarNo);
         Rental.SetRange("Registration No.", RegNo);
         Rental.SetFilter("Starting Mileage", '>=%1', OldEndingMileage);
+        // Rental.SetLoadFields("Starting Mileage", "Ending Mileage");
         if Rental.FindSet() then
             repeat
                 Rental."Starting Mileage" += Diff;
@@ -142,6 +144,7 @@ codeunit 50102 "Rental Management"
     begin
         CarCardLines.SetRange("No.", Rental."Car No.");
         CarCardLines.SetRange("Registration No.", Rental."Registration No.");
+        // CarCardLines.SetLoadFields("Car Status", Mileage);
         if CarCardLines.FindFirst() then begin
             if Rental."Service Status" = Rental."Service Status"::Service then begin
                 CarCardLines."Car Status" := CarCardLines."Car Status"::Service;

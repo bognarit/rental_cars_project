@@ -105,24 +105,33 @@ table 50108 "Service Card Lines"
             OrderDate := DeliveryDate;
         if DeliveryDate = 0D then
             DeliveryDate := OrderDate;
+
+        if (OrderDate = 0D) and (DeliveryDate = 0D) then
+            exit;
+
         if OrderDate > DeliveryDate then
             Error(Text001Err, OrderDate, DeliveryDate);
+
         if (OrderDate < Today) or (DeliveryDate < Today) then
             Error(Text002Err);
 
-        Service.SetRange("Service No.", Rec."Service No.");
-        if Service.FindSet() then
-            repeat
-                if (OrderDate < Service."From Date") then
-                    Error(Text003Err, OrderDate, Service."From Date");
-                if (DeliveryDate < Service."To Date") then
-                    Error(Text004Err, DeliveryDate, Service."From Date");
-            until Service.Next() = 0;
+        if Service.Get(Rec."Service No.") then begin
+            if OrderDate < Service."From Date" then
+                Error(Text003Err, OrderDate, Service."From Date");
+            if (Service."To Date" <> 0D) and (DeliveryDate > Service."To Date") then
+                Error(Text004Err, DeliveryDate, Service."To Date");
+        end;
+
+        if (Date2DWY(OrderDate, 1) in [6, 7]) then
+            Error(Text005Err, OrderDate);
+        if (Date2DWY(DeliveryDate, 1) in [6, 7]) then
+            Error(Text005Err, DeliveryDate);
     end;
 
     var
-        Text001Err: Label 'The Order Date %1 must not be behind Delivery Date %2.';
-        Text002Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text003Err: Label 'The Order Date %1 must not be behind From Date %2.';
-        Text004Err: Label 'The Delivery Date %1 must not be behind To Date %2.';
+        Text001Err: Label 'The Order Date %1 cannot be after Delivery Date %2.';
+        Text002Err: Label 'You cannot choose a past date. Please select a valid date.';
+        Text003Err: Label 'The Order Date %1 cannot be before From Date %2.';
+        Text004Err: Label 'The Delivery Date %1 cannot be after To Date %2.';
+        Text005Err: Label 'Service operations cannot be scheduled on weekends (%1 is a weekend day). Please select a weekday.';
 }

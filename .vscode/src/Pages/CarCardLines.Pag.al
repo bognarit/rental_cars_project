@@ -15,10 +15,12 @@ page 50109 "Car Card Lines"
                 field("Line No."; Rec."Line No.")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Registration No."; Rec."Registration No.")
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
                 field("Car Status"; Rec."Car Status")
                 {
@@ -27,24 +29,46 @@ page 50109 "Car Card Lines"
                 field("Manufact. Year"; Rec."Manufact. Year")
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
                 field(Mileage; Rec.Mileage)
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
                 field(Transmission; Rec.Transmission)
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
                 field(Power; Rec.Power)
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
                 field(Fuel; Rec.Fuel)
                 {
                     ApplicationArea = All;
+                    Editable = IsLineEditable;
                 }
             }
         }
     }
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        IsLineEditable := true;
+    end;
+
+    trigger OnAfterGetRecord()
+    begin
+        if (Rec."Line No." = 0) or (Rec."Registration No." = '') then
+            IsLineEditable := true
+        else
+            IsLineEditable := false
+
+    end;
+
+    var
+        IsLineEditable: Boolean;
 }
