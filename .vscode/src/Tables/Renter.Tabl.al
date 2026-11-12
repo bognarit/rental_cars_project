@@ -9,6 +9,15 @@ table 50103 "Renter"
         {
             Caption = 'Renter No.';
         }
+        field(2; "Renter Type"; Enum "Renter Type")
+        {
+            Caption = 'Renter Type';
+        }
+        field(3; Gender; Enum "Gender Group")
+        {
+            Caption = 'Gender';
+            DataClassification = CustomerContent;
+        }
         field(4; "Renter Name"; Text[50])
         {
             Caption = 'Renter Name';
@@ -33,6 +42,20 @@ table 50103 "Renter"
         {
             Caption = 'Phone No.';
         }
+        field(14; Email; Text[100])
+        {
+            Caption = 'Email';
+            DataClassification = CustomerContent;
+        }
+        field(15; "Contact Person"; Text[100])
+        {
+            Caption = 'Contact Person';
+        }
+        field(16; "VAT Registration No."; Text[20])
+        {
+            Caption = 'VAT Registration No.';
+        }
+
     }
 
     keys

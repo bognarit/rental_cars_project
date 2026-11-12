@@ -115,12 +115,14 @@ table 50108 "Service Card Lines"
         if (OrderDate < Today) or (DeliveryDate < Today) then
             Error(Text002Err);
 
-        if Service.Get(Rec."Service No.") then begin
-            if OrderDate < Service."From Date" then
-                Error(Text003Err, OrderDate, Service."From Date");
-            if (Service."To Date" <> 0D) and (DeliveryDate > Service."To Date") then
-                Error(Text004Err, DeliveryDate, Service."To Date");
-        end;
+        Service.SetRange("Service No.", Rec."Service No.");
+        if Service.FindSet() then
+            repeat
+                if OrderDate < Service."From Date" then
+                    Error(Text003Err, OrderDate, Service."From Date");
+                if (Service."To Date" <> 0D) and (DeliveryDate > Service."To Date") then
+                    Error(Text004Err, DeliveryDate, Service."To Date");
+            until Service.Next() = 0;
 
         if (Date2DWY(OrderDate, 1) in [6, 7]) then
             Error(Text005Err, OrderDate);

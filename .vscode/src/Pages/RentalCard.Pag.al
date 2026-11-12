@@ -17,7 +17,6 @@ page 50103 "Rental Card"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
-                    ShowMandatory = true;
                     Editable = false;
                 }
                 field("Rental Status"; Rec."Rental Status")
@@ -26,7 +25,6 @@ page 50103 "Rental Card"
                     Editable = false;
                     StyleExpr = StatusStyle;
                 }
-
                 field(Availability; Rec.Availability)
                 {
                     ApplicationArea = All;
@@ -37,11 +35,37 @@ page 50103 "Rental Card"
                     ApplicationArea = All;
                     ShowMandatory = true;
                     Editable = (Rec.Availability = Rec.Availability::Available) and (Rec."Rental Status" = Rec."Rental Status"::Open);
+                    trigger OnValidate()
+                    begin
+                        UpdatePageVisibility();
+                        CurrPage.Update(false);
+                    end;
+                }
+                field("Renter Type"; Rec."Renter Type")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Renter Name"; Rec."Renter Name")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                }
+                group(CompanyDetailsGroup)
+                {
+                    ShowCaption = false;
+                    Visible = isCompany;
+
+                    field("Contact Person"; Rec."Contact Person")
+                    {
+                        ApplicationArea = All;
+                        Editable = false;
+                    }
+                    field("VAT Registration No."; Rec."VAT Registration No.")
+                    {
+                        ApplicationArea = All;
+                        Editable = false;
+                    }
                 }
                 field("Address"; Rec."Address")
                 {
@@ -72,46 +96,63 @@ page 50103 "Rental Card"
             group(InvoiceDetails)
             {
                 Caption = 'Invoice Details';
+                Editable = ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released));
 
                 field(BillRequired; Rec."BillRequired")
                 {
                     ApplicationArea = All;
-                    Editable = ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released)) and IsFieldEditable;
+                    trigger OnValidate()
+                    begin
+                        if Rec.BillRequired then
+                            Rec."Bill-to Same Data" := true
+                        else
+                            Rec."Bill-to Same Data" := false;
+
+                        UpdatePageVisibility();
+                        CurrPage.Update(true);
+                    end;
                 }
-                field("Bill-to Data"; Rec."Bill-to Same Data")
+
+                group(BillSameDataGroup)
                 {
-                    ApplicationArea = All;
-                    Editable = Rec.BillRequired and ((Rec."Rental Status" = Rec."Rental Status"::Open) or (Rec."Rental Status" = Rec."Rental Status"::Released));
+                    ShowCaption = false;
+                    Visible = IsBillRequired;
+
+                    field("Bill-to Data"; Rec."Bill-to Same Data")
+                    {
+                        ApplicationArea = All;
+                        trigger OnValidate()
+                        begin
+                            UpdatePageVisibility();
+                            CurrPage.Update(true);
+                        end;
+                    }
                 }
-                field("Bill-to Name"; Rec."Bill-to Name")
+                group(BillCustomAddressGroup)
                 {
-                    ApplicationArea = All;
-                    Importance = Additional;
-                    Editable = Rec.BillRequired and Rec."Bill-to Same Data" = false;
-                }
-                field("Bill-to Address"; Rec."Bill-to Address")
-                {
-                    ApplicationArea = All;
-                    Importance = Additional;
-                    Editable = Rec.BillRequired and Rec."Bill-to Same Data" = false;
-                }
-                field("Bill-to City"; Rec."Bill-to City")
-                {
-                    ApplicationArea = All;
-                    Importance = Additional;
-                    Editable = Rec.BillRequired and Rec."Bill-to Same Data" = false;
-                }
-                field("Bill-to Post Code"; Rec."Bill-to Post Code")
-                {
-                    ApplicationArea = All;
-                    Importance = Additional;
-                    Editable = Rec.BillRequired and Rec."Bill-to Same Data" = false;
-                }
-                field("Bill-to Country/Region Code"; Rec."Bill-to Country/Region Code")
-                {
-                    ApplicationArea = All;
-                    Importance = Additional;
-                    Editable = Rec.BillRequired and Rec."Bill-to Same Data" = false;
+                    ShowCaption = false;
+                    Visible = ShowCustomBillFields;
+
+                    field("Bill-to Name"; Rec."Bill-to Name")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Address"; Rec."Bill-to Address")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to City"; Rec."Bill-to City")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Post Code"; Rec."Bill-to Post Code")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Country/Region Code"; Rec."Bill-to Country/Region Code")
+                    {
+                        ApplicationArea = All;
+                    }
                 }
             }
             group(CarRental)
@@ -481,6 +522,7 @@ page 50103 "Rental Card"
             StatusStyle := 'Standard';
 
         SetFieldEditableStatus();
+        UpdatePageVisibility();
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
@@ -495,6 +537,8 @@ page 50103 "Rental Card"
         end else begin
             Rec."No." := NoSeries.GetNextNo(RentSetup."Rental List No. Series", WorkDate(), false);
         end;
+
+        UpdatePageVisibility();
     end;
 
     procedure SetFieldEditableStatus()
@@ -506,9 +550,19 @@ page 50103 "Rental Card"
         end;
     end;
 
+    local procedure UpdatePageVisibility()
+    begin
+        IsCompany := (Rec."Renter Type" = Rec."Renter Type"::Company);
+        IsBillRequired := Rec.BillRequired;
+        ShowCustomBillFields := Rec.BillRequired and (not Rec."Bill-to Same Data");
+    end;
+
     var
-        StatusStyle: Text;
+        IsBillRequired: Boolean;
+        isCompany: Boolean;
         IsFieldEditable: Boolean;
+        ShowCustomBillFields: Boolean;
+        StatusStyle: Text;
         Text001: Label 'Are you sure you want to book this car for the selected period?';
         Text002: Label 'Are you sure you want to release the car? This will lock the renter details and departure date.';
         Text003: Label 'Are you sure the car has been returned? This will lock the return date.';

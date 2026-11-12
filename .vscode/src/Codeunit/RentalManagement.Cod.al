@@ -74,8 +74,13 @@ codeunit 50102 "Rental Management"
         RenterRentalCheck.SetFilter("To Date", '>=%1', FromDate);
         RenterRentalCheck.SetFilter("Rental Status", '<>%1', Rental."Rental Status"::Returned);
 
-        if not RenterRentalCheck.IsEmpty then
-            Error(Text003, Rental."Renter Name");
+        if (Rental."Renter Type" = Rental."Renter Type"::Company) then begin
+            if RenterRentalCheck.Count() >= 3 then
+                Error(Text004Err, Rental."Renter Name");
+        end else if (Rental."Renter Type" = Rental."Renter Type"::Private) then begin
+            if RenterRentalCheck.Count() >= 1 then
+                Error(Text005Err, Rental."Renter Name");
+        end;
 
         CarCardLines.SetRange("No.", Rental."Car No.");
         CarCardLines.SetFilter("Car Status", '<>%1', CarCardLines."Car Status"::Blocked);
@@ -97,7 +102,7 @@ codeunit 50102 "Rental Management"
         AvailableCars := TotalCarsInFlotta - ActiveRentalsCount - ActiveServicesCount;
 
         if AvailableCars <= 0 then
-            Error(Text004Err);
+            Error(Text006Err);
     end;
 
     procedure UpdateSequenceMileages(CarNo: Code[20]; RegNo: Text[50]; OldEndingMileage: Integer; Diff: Integer)
@@ -166,9 +171,10 @@ codeunit 50102 "Rental Management"
     var
         Text001: Label 'Are you sure to close the %1 rental?';
         Text002: Label 'The rental contract %1 has been successfully closed and archived.';
-        Text003: Label 'The renter, %1 already has an active car rental during the selected period!';
         Text001Err: Label 'The car wasn''t sent to the service.';
         Text002Err: Label 'The car currently is being serviced.';
         Text003Err: Label 'You cannot choose an earlier date. Please choose another date!';
-        Text004Err: Label 'The selected car is not available for this period. Please choose another vehicle or date!';
+        Text004Err: Label 'Company renter %1 already has 6 active rentals during the selected period. A maximum of 6 vehicles can be rented at the same time.';
+        Text005Err: Label 'Private renter %1 already has an active rental during the selected period.';
+        Text006Err: Label 'The selected car is not available for this period. Please choose another vehicle or date!';
 }

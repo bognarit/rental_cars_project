@@ -573,6 +573,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field City - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 243748095 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact Person</source>
+          <target>Kontaktperson</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Contact Person - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 284764054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Country/Region Code</source>
           <target>Länder-/Regionscode</target>
@@ -699,6 +705,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Renter No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 1407966038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Renter Type</source>
+          <target>Mietertyp</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Renter Type - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2513429772 - Field 797233623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Repair Costs(€)</source>
           <target>Reparaturkosten(€)</target>
@@ -747,6 +759,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field Total Cost - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2513429772 - Field 617267791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Registration No.</source>
+          <target>USt-IdNr.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Rental - Field VAT Registration No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2626893078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Renter</source>
           <target>Mieter</target>
@@ -765,11 +783,29 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field City - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2626893078 - Field 243748095 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact Person</source>
+          <target>Kontaktperson</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Contact Person - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2626893078 - Field 284764054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Country/Region Code</source>
           <target>Länder-/Regionscode</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Country/Region Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2626893078 - Field 1285973296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2626893078">
+          <source>Email</source>
+          <target>E-Mail</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Email - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2626893078 - Field 2303302321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2626893078">
+          <source>Gender</source>
+          <target>Geschlecht</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Gender - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2626893078 - Field 3986423421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Phone No.</source>
@@ -794,6 +830,18 @@
           <target>Mieternr.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Renter No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2626893078 - Field 1407966038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Renter Type</source>
+          <target>Mietertyp</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field Renter Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2626893078 - Field 617267791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Registration No.</source>
+          <target>USt-IdNr.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Renter - Field VAT Registration No. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2187938695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Service</source>
@@ -1047,12 +1095,6 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text002Err</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1666565541 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The renter, %1 already has an active car rental during the selected period!</source>
-          <target>Der Mieter, %1 hat im ausgewählten Zeitraum bereits eine aktive Fahrzeuganmietung!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1666565541 - NamedType 672156893" size-unit="char" translate="yes" xml:space="preserve">
           <source>You cannot choose an earlier date. Please choose another date!</source>
           <target>Sie können ein früheres Datum nicht wählen. Bitte wählen Sie ein anderes Datum!</target>
@@ -1060,10 +1102,22 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text003Err</note>
         </trans-unit>
         <trans-unit id="Codeunit 1666565541 - NamedType 956639880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company renter %1 already has 6 active rentals during the selected period. A maximum of 6 vehicles can be rented at the same time.</source>
+          <target>Der Firmenkunde %1 hat im ausgewählten Zeitraum bereits 6 aktive Vermietungen. Es können maximal 6 Fahrzeuge gleichzeitig gemietet werden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text004Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 2643262487" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Private renter %1 already has an active rental during the selected period.</source>
+          <target>Der Privatkunde %1 hat im ausgewählten Zeitraum bereits eine aktive Vermietung.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text005Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1666565541 - NamedType 1422248010" size-unit="char" translate="yes" xml:space="preserve">
           <source>The selected car is not available for this period. Please choose another vehicle or date!</source>
           <target>Das ausgewählte Fahrzeug ist für diesen Zeitraum nicht verfügbar. Bitte wählen Sie ein anderes Fahrzeug oder Datum!</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text004Err</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Rental Management - NamedType Text006Err</note>
         </trans-unit>
         <trans-unit id="Codeunit 1284549866 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
           <source>The Service has been closed.</source>
@@ -1497,6 +1551,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Renter Card - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2718008658 - NamedType 3391962904" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 77156574">
+          <source>Google Map</source>
+          <target>Google Karte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Renter Card - NamedType Maplink</note>
+        </trans-unit>
         <trans-unit id="Page 2718008658 - Control 2826918962 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental List</source>
           <target>Abgeschlossene Mietliste</target>
@@ -1514,6 +1574,12 @@
           <target>Mietliste</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Renter Card - Control RentalLinesInRenterCard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2718008658 - Action 743942932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2718008658">
+          <source>Send Email</source>
+          <target>E-Mail senden</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Renter Card - Action SendEmail - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 364925268 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Renter List</source>
@@ -1731,30 +1797,6 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Service Invoices - Word - ReportLayout ServiceInvoiceLayout - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2718008658 - NamedType 3391962904" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 77156574">
-          <source>Google Map</source>
-          <target>Google Karte</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Renter Fields Ext - NamedType Maplink</note>
-        </trans-unit>
-        <trans-unit id="Page 2718008658 - Action 743942932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2718008658">
-          <source>Send Email</source>
-          <target>E-Mail senden</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Renter Fields Ext - Action SendEmail - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2626893078 - Field 1285973296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2626893078">
-          <source>Email</source>
-          <target>E-Mail</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Renter Fields Ext - Field Email - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2626893078 - Field 2303302321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2626893078">
-          <source>Gender</source>
-          <target>Geschlecht</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Renter Fields Ext - Field Gender - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Profile 3550479092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rental Manager</source>
           <target>Mietmanager</target>
@@ -1820,6 +1862,18 @@
           <target>Beendet</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Rental Status - EnumValue Returned - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1407966038 - EnumValue 3133801257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company</source>
+          <target>Firma</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Renter Type - EnumValue Company - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1407966038 - EnumValue 3064074535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Private</source>
+          <target>Privatperson</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Renter Type - EnumValue Private - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1418061539 - EnumValue 448741416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Repaired</source>

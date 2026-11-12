@@ -33,7 +33,10 @@ table 50102 "Rental"
             begin
                 if Rec."Renter No." <> '' then begin
                     Renter.Get(Rec."Renter No.");
+                    Rec."Renter Type" := Renter."Renter Type";
                     Rec."Renter Name" := Renter."Renter Name";
+                    Rec."Contact Person" := Renter."Contact Person";
+                    Rec."VAT Registration No." := Renter."VAT Registration No.";
                     Rec.Address := Renter.Address;
                     Rec.City := Renter.City;
                     Rec."Post Code" := Renter."Post Code";
@@ -72,8 +75,12 @@ table 50102 "Rental"
             Caption = 'Bill to Renter is required.';
             trigger OnValidate()
             begin
-                if not Rec."BillRequired" then
-                    Rec."Bill-to Same Data" := false;
+                if not BillRequired then begin
+                    "Bill-to Same Data" := false;
+                    ClearBillToFields();
+                end else begin
+                    "Bill-to Same Data" := true;
+                end;
             end;
         }
         field(45; "Bill-to Same Data"; Boolean)
@@ -81,15 +88,8 @@ table 50102 "Rental"
             Caption = 'Bill to Same Data';
             trigger OnValidate()
             begin
-                if not Rec."BillRequired" then
-                    Rec."Bill-to Same Data" := false
-                else begin
-                    Rec."Bill-to Name" := '';
-                    Rec."Bill-to Address" := '';
-                    Rec."Bill-to City" := '';
-                    Rec."Bill-to Post Code" := '';
-                    Rec."Bill-to Country/Region Code" := '';
-                end;
+                if Rec."Bill-to Same Data" then
+                    ClearBillToFields();
             end;
         }
         field(50; "Bill-to Name"; Text[50])
@@ -373,6 +373,18 @@ table 50102 "Rental"
         {
             Caption = 'Repair Costs(€)';
         }
+        field(205; "Renter Type"; Enum "Renter Type")
+        {
+            Caption = 'Renter Type';
+        }
+        field(210; "Contact Person"; Text[100])
+        {
+            Caption = 'Contact Person';
+        }
+        field(215; "VAT Registration No."; Text[20])
+        {
+            Caption = 'VAT Registration No.';
+        }
     }
 
     keys
@@ -395,6 +407,15 @@ table 50102 "Rental"
         {
         }
     }
+
+    local procedure ClearBillToFields()
+    begin
+        Rec."Bill-to Name" := '';
+        Rec."Bill-to Address" := '';
+        Rec."Bill-to City" := '';
+        Rec."Bill-to Post Code" := '';
+        Rec."Bill-to Country/Region Code" := '';
+    end;
 
     local procedure UpdateTotalCost()
     begin

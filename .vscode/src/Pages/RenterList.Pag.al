@@ -20,6 +20,10 @@ page 50104 "Renter List"
                     ApplicationArea = All;
                     TableRelation = "Renter";
                 }
+                field("Renter Type"; Rec."Renter Type")
+                {
+                    ApplicationArea = All;
+                }
                 field("Renter Name"; Rec."Renter Name")
                 {
                     ApplicationArea = All;
