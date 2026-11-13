@@ -24,6 +24,27 @@ page 50114 "Closed Rental Card"
                     ApplicationArea = All;
                     Style = Unfavorable;
                 }
+                field("Rental Status"; Rec."Rental Status")
+                {
+                    ApplicationArea = All;
+                }
+                field(Availability; Rec.Availability)
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
+                field("Dispatcher No."; Rec."Dispatcher No.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Dispatcher Name"; Rec."Dispatcher Name")
+                {
+                    ApplicationArea = All;
+                }
+                field("Renter Type"; Rec."Renter Type")
+                {
+                    ApplicationArea = All;
+                }
                 field("Renter No."; Rec."Renter No.")
                 {
                     ApplicationArea = All;
@@ -31,6 +52,20 @@ page 50114 "Closed Rental Card"
                 field("Renter Name"; Rec."Renter Name")
                 {
                     ApplicationArea = All;
+                }
+                group(CompanyDetailsGroup)
+                {
+                    ShowCaption = false;
+                    Visible = isCompany;
+
+                    field("Contact Person"; Rec."Contact Person")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("VAT Registration No."; Rec."VAT Registration No.")
+                    {
+                        ApplicationArea = All;
+                    }
                 }
                 field("Address"; Rec."Address")
                 {
@@ -61,29 +96,41 @@ page 50114 "Closed Rental Card"
                 {
                     ApplicationArea = All;
                 }
-                field("Bill-to Data"; Rec."Bill-to Same Data")
+                group(BillSameDataGroup)
                 {
-                    ApplicationArea = All;
+                    ShowCaption = false;
+                    Visible = IsBillRequired;
+
+                    field("Bill-to Data"; Rec."Bill-to Same Data")
+                    {
+                        ApplicationArea = All;
+                    }
                 }
-                field("Bill-to Name"; Rec."Bill-to Name")
+                group(BillCustomAddressGroup)
                 {
-                    ApplicationArea = All;
-                }
-                field("Bill-to Address"; Rec."Bill-to Address")
-                {
-                    ApplicationArea = All;
-                }
-                field("Bill-to City"; Rec."Bill-to City")
-                {
-                    ApplicationArea = All;
-                }
-                field("Bill-to Post Code"; Rec."Bill-to Post Code")
-                {
-                    ApplicationArea = All;
-                }
-                field("Bill-to Country/Region Code"; Rec."Bill-to Country/Region Code")
-                {
-                    ApplicationArea = All;
+                    ShowCaption = false;
+                    Visible = ShowCustomBillFields;
+
+                    field("Bill-to Name"; Rec."Bill-to Name")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Address"; Rec."Bill-to Address")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to City"; Rec."Bill-to City")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Post Code"; Rec."Bill-to Post Code")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Bill-to Country/Region Code"; Rec."Bill-to Country/Region Code")
+                    {
+                        ApplicationArea = All;
+                    }
                 }
             }
             group(CarRental)
@@ -206,6 +253,11 @@ page 50114 "Closed Rental Card"
             {
                 Caption = 'Service';
 
+                field("Service No."; Rec."Service No.")
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
                 field("Service From Date"; Rec."Service From Date")
                 {
                     ApplicationArea = All;
@@ -258,7 +310,6 @@ page 50114 "Closed Rental Card"
                     end;
                 end;
             }
-
             action(CancelAndReopen)
             {
                 Caption = 'Cancel and Reopen';
@@ -299,10 +350,22 @@ page 50114 "Closed Rental Card"
             PageStyle := 'Subordinate'
         else
             PageStyle := 'Standard';
+
+        UpdatePageVisibility();
+    end;
+
+    local procedure UpdatePageVisibility()
+    begin
+        IsCompany := (Rec."Renter Type" = Rec."Renter Type"::Company);
+        IsBillRequired := Rec.BillRequired;
+        ShowCustomBillFields := Rec.BillRequired and (not Rec."Bill-to Same Data");
     end;
 
     var
+        isBillRequired: Boolean;
+        isCompany: Boolean;
         PageStyle: Text;
+        ShowCustomBillFields: Boolean;
         Text001: Label 'Are you sure you want to cancel this closed rental and create a correctable draft?';
         Text001Err: Label 'This contract (%1) is already a corrected version. You cannot modify a corrected contract again!';
         Text002Err: Label 'This rental has already been canceled!';

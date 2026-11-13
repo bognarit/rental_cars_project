@@ -15,13 +15,10 @@ table 50102 "Rental"
         {
             Caption = 'Rental Status';
         }
-        field(4; Availability; Option)
+        field(4; Availability; Enum "Book Status")
         {
             Caption = 'Book Status';
-            OptionCaption = 'Available,Booked';
-            OptionMembers = Available,Booked;
         }
-
         field(5; "Renter No."; Code[20])
         {
             Caption = 'Renter No.';
@@ -373,7 +370,7 @@ table 50102 "Rental"
         {
             Caption = 'Repair Costs(€)';
         }
-        field(205; "Renter Type"; Enum "Renter Type")
+        field(206; "Renter Type"; Enum "Renter Type")
         {
             Caption = 'Renter Type';
         }
@@ -384,6 +381,25 @@ table 50102 "Rental"
         field(215; "VAT Registration No."; Text[20])
         {
             Caption = 'VAT Registration No.';
+        }
+        field(220; "Dispatcher No."; Code[20])
+        {
+            Caption = 'Dispatcher No.';
+            TableRelation = Employee."No." where("Active in Rental" = const(true), "Rent Role" = const(Dispatcher));
+            trigger OnValidate()
+            var
+                Employee: Record Employee;
+            begin
+                If Employee.Get("Dispatcher No.") then
+                    Rec."Dispatcher Name" := Employee.FullName()
+                else
+                    Rec."Dispatcher Name" := ''
+            end;
+        }
+        field(225; "Dispatcher Name"; Text[100])
+        {
+            Caption = 'Dispatcher Name';
+            Editable = false;
         }
     }
 

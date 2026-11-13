@@ -30,6 +30,17 @@ page 50103 "Rental Card"
                     ApplicationArea = All;
                     Visible = false;
                 }
+                field("Dispatcher No."; Rec."Dispatcher No.")
+                {
+                    ApplicationArea = All;
+                    ShowMandatory = true;
+                    Editable = (Rec.Availability = Rec.Availability::Available) and (Rec."Rental Status" = Rec."Rental Status"::Open);
+                }
+                field("Dispatcher Name"; Rec."Dispatcher Name")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 field("Renter No."; Rec."Renter No.")
                 {
                     ApplicationArea = All;

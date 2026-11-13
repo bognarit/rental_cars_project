@@ -16,6 +16,7 @@ page 50108 "Car Card"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field(Brand; Rec.Brand)
                 {

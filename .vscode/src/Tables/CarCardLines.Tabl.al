@@ -26,21 +26,17 @@ table 50105 "Car Card Lines"
         {
             Caption = 'Mileage(km)';
         }
-        field(6; Transmission; Option)
+        field(6; "Transmission Type"; Enum "Transmission Types")
         {
-            Caption = 'Transmission';
-            OptionMembers = ,Automatic,Manual;
-            OptionCaption = ',Automatic,Manual';
+            Caption = 'Transmission Type';
         }
         field(7; Power; Integer)
         {
             Caption = 'Power(kw)';
         }
-        field(8; Fuel; Option)
+        field(8; "Fuel Type"; Enum "Fuel Types")
         {
-            Caption = 'Fuel';
-            OptionMembers = ,Electric,Petrol;
-            OptionCaption = ',Electric,Petrol';
+            Caption = 'Fuel Type';
         }
         field(9; "Car Status"; Enum "Car Status")
         {
@@ -55,13 +51,13 @@ table 50105 "Car Card Lines"
         {
             Clustered = true;
         }
-        key(Key2; "Manufact. Year", Fuel)
+        key(Key2; "Manufact. Year", "Fuel Type")
         {
         }
     }
     fieldgroups
     {
-        fieldgroup(DropDown; "Line No.", "Registration No.", "Manufact. Year", Fuel)
+        fieldgroup(DropDown; "Line No.", "Registration No.", "Manufact. Year", "Fuel Type")
         {
         }
     }

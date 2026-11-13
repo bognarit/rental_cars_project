@@ -30,30 +30,40 @@ page 50117 "Service Card Lines"
                 {
                     ApplicationArea = All;
                 }
+                field("Mechanic No."; Rec."Mechanic No.")
+                {
+                    ApplicationArea = All;
+                    Editable = (Rec.Type = Rec.Type::Wage);
+                }
+                field("Mechanic Name"; Rec."Mechanic Name")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 field("Car Part"; Rec."Car Part")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false);
+                    Editable = (Rec.Type = Rec.Type::CarPart);
                 }
                 field(Manufacturer; Rec.Manufacturer)
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false);
+                    Editable = (Rec.Type = Rec.Type::CarPart);
                 }
                 field("Order Necessary"; Rec."Order Necessary")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false);
+                    Editable = (Rec.Type = Rec.Type::CarPart);
                 }
                 field("Order Date"; Rec."Order Date")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
+                    Editable = (Rec.Type = Rec.Type::CarPart) and (Rec."Order Necessary" = Rec."Order Necessary"::Yes);
                 }
                 field("Delivery Date"; Rec."Delivery Date")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Type = Rec.Type::Wage = false) and (Rec."Order Necessary" = Rec."Order Necessary"::No = false);
+                    Editable = (Rec.Type = Rec.Type::CarPart) and (Rec."Order Necessary" = Rec."Order Necessary"::Yes);
                 }
                 field(Quantity; Rec.Quantity)
                 {

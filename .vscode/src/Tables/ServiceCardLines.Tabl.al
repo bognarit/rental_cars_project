@@ -30,8 +30,14 @@ table 50108 "Service Card Lines"
                     Rec."Order Necessary" := Rec."Order Necessary"::No;
                     Rec."Order Date" := 0D;
                     Rec."Delivery Date" := 0D;
-                    Rec.Cost := 0;
+                end else if Rec.Type = Rec.Type::CarPart then begin
+                    Rec."Mechanic No." := '';
+                    Rec."Mechanic Name" := '';
                 end;
+
+                Rec.Quantity := 0;
+                Rec."Unit Price" := 0;
+                Rec.Cost := 0;
             end;
         }
         field(15; "Car Part"; Text[100])
@@ -87,6 +93,26 @@ table 50108 "Service Card Lines"
         {
             Caption = 'Cost';
             MinValue = 0;
+        }
+        field(55; "Mechanic No."; Code[20])
+        {
+            Caption = 'Mechanic No.';
+            TableRelation = Employee."No." where("Active in Rental" = const(true), "Rent Role" = const(Mechanic));
+
+            trigger OnValidate()
+            var
+                Employee: Record Employee;
+            begin
+                If Employee.Get("Mechanic No.") then
+                    Rec."Mechanic Name" := Employee.FullName()
+                else
+                    Rec."Mechanic Name" := '';
+            end;
+        }
+        field(60; "Mechanic Name"; Text[100])
+        {
+            Caption = 'Mechanic Name';
+            Editable = false;
         }
     }
     keys

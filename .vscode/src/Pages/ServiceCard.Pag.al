@@ -23,6 +23,16 @@ page 50115 "Service Card"
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field("Responsible Employee No."; Rec."Responsible Employee No.")
+                {
+                    ApplicationArea = All;
+                    Editable = (Rec.Status = Rec.Status::Service);
+                }
+                field("Responsible Employee Name"; Rec."Responsible Employee Name")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 field("Rental No."; Rec."Rental No.")
                 {
                     ApplicationArea = All;
@@ -57,7 +67,7 @@ page 50115 "Service Card"
                 field("To Date"; Rec."To Date")
                 {
                     ApplicationArea = All;
-                    Editable = (Rec.Status = Rec.Status::Repaired = false);
+                    Editable = (Rec.Status = Rec.Status::Service);
                 }
                 field(Status; Rec.Status)
                 {

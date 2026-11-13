@@ -36,7 +36,7 @@ page 50109 "Car Card Lines"
                     ApplicationArea = All;
                     Editable = IsLineEditable;
                 }
-                field(Transmission; Rec.Transmission)
+                field("Transmission Type"; Rec."Transmission Type")
                 {
                     ApplicationArea = All;
                     Editable = IsLineEditable;
@@ -46,7 +46,7 @@ page 50109 "Car Card Lines"
                     ApplicationArea = All;
                     Editable = IsLineEditable;
                 }
-                field(Fuel; Rec.Fuel)
+                field("Fuel Type"; Rec."Fuel Type")
                 {
                     ApplicationArea = All;
                     Editable = IsLineEditable;

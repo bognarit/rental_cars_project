@@ -11,6 +11,14 @@ table 50107 "Closed Rental"
         {
             Caption = 'No.';
         }
+        field(3; "Rental Status"; Enum "Rental Status")
+        {
+            Caption = 'Rental Status';
+        }
+        field(4; Availability; Enum "Book Status")
+        {
+            Caption = 'Book Status';
+        }
         field(5; "Renter No."; Code[20])
         {
             Caption = 'Renter No.';
@@ -163,6 +171,10 @@ table 50107 "Closed Rental"
             Caption = 'New Damage Picture';
             Subtype = Bitmap;
         }
+        field(182; "Service No."; Code[20])
+        {
+            Caption = 'Service No.';
+        }
         field(185; "Service From Date"; Date)
         {
             Caption = 'Service From Date';
@@ -183,6 +195,26 @@ table 50107 "Closed Rental"
         {
             Caption = 'Canceled';
             Editable = false;
+        }
+        field(206; "Renter Type"; Enum "Renter Type")
+        {
+            Caption = 'Renter Type';
+        }
+        field(210; "Contact Person"; Text[100])
+        {
+            Caption = 'Contact Person';
+        }
+        field(215; "VAT Registration No."; Text[20])
+        {
+            Caption = 'VAT Registration No.';
+        }
+        field(220; "Dispatcher No."; Code[20])
+        {
+            Caption = 'Dispatcher No.';
+        }
+        field(225; "Dispatcher Name"; Text[100])
+        {
+            Caption = 'Dispatcher Name';
         }
     }
 

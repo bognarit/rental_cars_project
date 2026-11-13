@@ -75,7 +75,7 @@ codeunit 50102 "Rental Management"
         RenterRentalCheck.SetFilter("Rental Status", '<>%1', Rental."Rental Status"::Returned);
 
         if (Rental."Renter Type" = Rental."Renter Type"::Company) then begin
-            if RenterRentalCheck.Count() >= 3 then
+            if RenterRentalCheck.Count() >= 6 then
                 Error(Text004Err, Rental."Renter Name");
         end else if (Rental."Renter Type" = Rental."Renter Type"::Private) then begin
             if RenterRentalCheck.Count() >= 1 then

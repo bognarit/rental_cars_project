@@ -90,6 +90,26 @@ table 50106 "Service"
             Caption = 'Canceled';
             Editable = false;
         }
+        field(60; "Responsible Employee No."; Code[20])
+        {
+            Caption = 'Responsible Employee No.';
+            TableRelation = Employee."No." where("Active in Rental" = const(true), "Rent Role" = const("Service Advisor"));
+
+            trigger OnValidate()
+            var
+                Employee: Record Employee;
+            begin
+                If Employee.Get("Responsible Employee No.") then
+                    Rec."Responsible Employee Name" := Employee.FullName()
+                else
+                    Rec."Responsible Employee Name" := '';
+            end;
+        }
+        field(65; "Responsible Employee Name"; Text[100])
+        {
+            Caption = 'Responsible Employee Name';
+            Editable = false;
+        }
     }
     keys
     {
