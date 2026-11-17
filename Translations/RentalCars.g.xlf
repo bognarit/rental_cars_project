@@ -353,6 +353,96 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Closed Rental - Field VAT Registration No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3354329484 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 458406397 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Ending Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 2187692803 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Profit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Net Profit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 127113374 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Settlement No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Settlement No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 460889064 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Starting Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 2058269980 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Rental Revenue</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Total Rental Revenue - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3354329484 - Field 108688633 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Service Costs</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement - Field Total Service Costs - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 399775988 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Commision %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Commission % - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 4082300179 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Commission Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Commission Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 4078702450 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Completed Count</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Completed Count - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 1480804031 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Employee Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 1964419135 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Employee No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 358052133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Generated Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Generated Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 1177523619 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rent Role</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Rent Role - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1219617322 - Field 127113374 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Settlement No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Monthly Settlement Line - Field Settlement No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3939478382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rent Setup</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1033,6 +1123,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Service Management - NamedType Text007Err</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1418683826 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This monthly settlement is already closed and cannot be modified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Settlement Management - NamedType Text001Err</note>
+        </trans-unit>
         <trans-unit id="Page 1634653456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1187,6 +1282,46 @@
           <source>General</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental List - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement Card</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Are you sure you want to close this monthly settlement? Once closed, it cannot be modified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You can only close months that have already ended.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - Control 1247117663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Control MonthlySettlementLines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - Action 14764091 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculate Settlement</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Action CalculateSettlement - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - Action 2788212405 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Close Settlement</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Action CloseSettlement - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1803798039 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2683755821 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlements - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3939478382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rent Setup</source>
@@ -1412,6 +1547,11 @@
           <source>Closed Rental List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action ClosedRentalList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2473458089 - Action 822845837 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlements</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action MonthlySettlements - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2473458089 - Action 1094609078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rental List</source>
@@ -1682,6 +1822,16 @@
           <source>Service</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Service Status - EnumValue Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1804231243 - EnumValue 1778072510 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Closed</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Settlement Status - EnumValue Closed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1804231243 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Settlement Status - EnumValue Open - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 10395047 - EnumValue 683922871 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Automatic</source>

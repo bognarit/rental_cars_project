@@ -31,6 +31,12 @@ page 50105 "Role Center"
                     Image = Database;
                     RunObject = page "Car List";
                 }
+                action(MonthlySettlements)
+                {
+                    Caption = 'Monthly Settlements';
+                    Image = Database;
+                    RunObject = page "Monthly Settlements";
+                }
                 action(RenterData)
                 {
                     Caption = 'Renter List';
