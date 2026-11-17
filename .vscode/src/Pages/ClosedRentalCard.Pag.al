@@ -284,13 +284,13 @@ page 50114 "Closed Rental Card"
         {
             action(BillToRenterWord)
             {
-                Caption = 'Rental Invoice';
+                Caption = 'Print Rental Invoice';
                 ApplicationArea = All;
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Image = Download;
+                Image = Print;
 
                 trigger OnAction()
                 var

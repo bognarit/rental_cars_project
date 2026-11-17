@@ -68,6 +68,9 @@ page 50118 "Monthly Settlement Card"
                 var
                     SettlementMgt: Codeunit "Settlement Management";
                 begin
+                    if Rec."Starting Date" = 0D then
+                        Error(Text001Err);
+
                     CurrPage.SaveRecord();
                     SettlementMgt.CalculateMonthlySettlement(Rec);
                     CurrPage.Update(false);
@@ -87,15 +90,38 @@ page 50118 "Monthly Settlement Card"
                     SettlementMgt: Codeunit "Settlement Management";
                 begin
                     if Rec."Ending Date" >= Today then
-                        Error(Text001Err);
+                        Error(Text002Err);
 
                     if Confirm(Text001, true) then
                         SettlementMgt.CloseMonthlySettlement(Rec);
                 end;
             }
+            action(PrintSettlement)
+            {
+                Caption = 'Print Settlement';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Print;
+                Enabled = (Rec.Status = Rec.Status::Closed);
+
+                trigger OnAction()
+                var
+                    SettlementRec: Record "Monthly Settlement";
+                    SettlementLines: Record "Monthly Settlement Line";
+                begin
+                    SettlementRec := Rec;
+                    SettlementRec.SetRecFilter();
+                    Report.RunModal(Report::"Monthly Settlement Report", true, false, SettlementRec);
+                end;
+            }
         }
     }
+
     var
         Text001: Label 'Are you sure you want to close this monthly settlement? Once closed, it cannot be modified.';
-        Text001Err: Label 'You can only close months that have already ended.';
+        Text001Err: Label 'Please fill ''Starting Date'' field!';
+        Text002Err: Label 'You can only close months that have already ended.';
 }

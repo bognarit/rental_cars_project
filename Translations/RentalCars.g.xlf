@@ -1254,7 +1254,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Control Service - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2803459194 - Action 2389343952 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Rental Invoice</source>
+          <source>Print Rental Invoice</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Closed Rental Card - Action BillToRenterWord - Property Caption</note>
         </trans-unit>
@@ -1294,9 +1294,14 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 3728766008 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
-          <source>You can only close months that have already ended.</source>
+          <source>Please fill 'Starting Date' field!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Page 3728766008 - NamedType 1858590414" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You can only close months that have already ended.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - NamedType Text002Err</note>
         </trans-unit>
         <trans-unit id="Page 3728766008 - Control 1247117663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Monthly Settlement Lines</source>
@@ -1313,6 +1318,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Action CloseSettlement - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3728766008 - Action 3492823024 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print Settlement</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlement Card - Action PrintSettlement - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1803798039 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Monthly Settlement Lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1322,6 +1332,11 @@
           <source>Monthly Settlement List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlements - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2683755821 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleting monthly settlement is strictly prohibited in this system for security reasons!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlements - NamedType Text001</note>
         </trans-unit>
         <trans-unit id="Page 3939478382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rent Setup</source>
@@ -1647,6 +1662,21 @@
           <source>ClosedRentalInvoicesLayout</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Closed Rental Invoices - Word - ReportLayout RentalInvoiceLayout - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2417672858 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly Settlement Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Monthly Settlement Report - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2417672858 - ReportLayout 3031038389 - Property 2166945456" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Word Layout of Monthly Settlement Invoices.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Monthly Settlement Report - ReportLayout MonthlySettlementInvoiceLayout - Property Summary</note>
+        </trans-unit>
+        <trans-unit id="Report 2417672858 - ReportLayout 3031038389 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SettlementInvoicesLayout</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Monthly Settlement Report - ReportLayout MonthlySettlementInvoiceLayout - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 2049094318 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Rental Invoice</source>

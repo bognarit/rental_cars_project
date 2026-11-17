@@ -6,7 +6,6 @@ page 50100 "Monthly Settlements"
     UsageCategory = Lists;
     CardPageId = "Monthly Settlement Card";
     SourceTable = "Monthly Settlement";
-    Editable = false;
 
     layout
     {
@@ -45,4 +44,13 @@ page 50100 "Monthly Settlements"
             }
         }
     }
+
+    trigger OnDeleteRecord(): Boolean
+    begin
+        Message(Text001);
+        exit(false);
+    end;
+
+    var
+        Text001: Label 'Deleting monthly settlement is strictly prohibited in this system for security reasons!';
 }

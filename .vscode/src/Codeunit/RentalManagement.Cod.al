@@ -128,7 +128,7 @@ codeunit 50102 "Rental Management"
             repeat
                 ClosedRental."Starting Mileage" += Diff;
                 ClosedRental."Ending Mileage" += Diff;
-                ClosedRental.Modify(false); // Átüti a ModifyAllowed = false-t
+                ClosedRental.Modify(false);
             until ClosedRental.Next() = 0;
 
         Rental.SetRange("Car No.", CarNo);
