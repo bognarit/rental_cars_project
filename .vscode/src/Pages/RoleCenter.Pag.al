@@ -5,6 +5,17 @@ page 50105 "Role Center"
     PageType = RoleCenter;
     RefreshOnActivate = true;
 
+    layout
+    {
+        area(RoleCenter)
+        {
+            part(Activities; "Car Rental Activities")
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
+
     actions
     {
         area(Sections)
@@ -30,6 +41,12 @@ page 50105 "Role Center"
                     Caption = 'Car List';
                     Image = Database;
                     RunObject = page "Car List";
+                }
+                action(Employees)
+                {
+                    Caption = 'Employees';
+                    Image = Database;
+                    RunObject = page "Employee List";
                 }
                 action(MonthlySettlements)
                 {
@@ -66,6 +83,23 @@ page 50105 "Role Center"
                     Image = Database;
                     RunObject = Page "Rent Setup";
                 }
+            }
+        }
+        area(Creation)
+        {
+            action(NewRent)
+            {
+                Caption = 'New Rent';
+                RunObject = Page "Rental Card";
+                ApplicationArea = All;
+                RunPageMode = Create;
+            }
+            action(NewService)
+            {
+                Caption = 'New Service';
+                RunObject = Page "Service Card";
+                ApplicationArea = All;
+                RunPageMode = Create;
             }
         }
     }

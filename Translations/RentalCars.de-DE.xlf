@@ -105,6 +105,42 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Car Card Lines - Field Transmission Type - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 996006437 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Rental Cue</source>
+          <target>Autovermietungs-Stapel</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 996006437 - Field 3514026814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Available Cars</source>
+          <target>Verfügbare Fahrzeuge</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Field Available Cars - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 996006437 - Field 3447636227 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cars in Service</source>
+          <target>Fahrzeuge im Service</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Field Cars in Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 996006437 - Field 2121740849 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open Rentals</source>
+          <target>Offene Vermietungen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Field Open Rentals - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 996006437 - Field 2136577430 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open Settlements</source>
+          <target>Offene Abrechnungen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Field Open Settlements - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 996006437 - Field 2602789346 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Released Rentals</source>
+          <target>Freigegebene Vermietungen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Car Rental Cue - Field Released Rentals - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 548883390 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental</source>
           <target>Abgeschlossene Miete</target>
@@ -1437,6 +1473,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Car List - Action UploadData - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2255079325 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Rental Activities</source>
+          <target>Autovermietungsaktivitäten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Car Rental Activities - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2803459194 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Closed Rental</source>
           <target>Abgeschlossene Miete</target>
@@ -1602,7 +1644,6 @@
         <trans-unit id="Page 2683755821 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
           <source>Deleting monthly settlement is strictly prohibited in this system for security reasons!</source>
           <target> Das Löschen einer Monatsabrechnung ist in diesem System aus Sicherheitsgründen strengstens untersagt!</target>
-          <note from="XLIFF Sync" annotates="general" priority="1">Source text has changed. Please review the translation.</note>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Monthly Settlements - NamedType Text001</note>
         </trans-unit>
@@ -1846,6 +1887,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2473458089 - Action 1488819803 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Rent</source>
+          <target>Neue Vermietung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action NewRent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2473458089 - Action 2319902243 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Service</source>
+          <target>Neuer Service</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action NewService - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2473458089 - Action 4093990710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Language</source>
           <target>Sprache</target>
@@ -1875,6 +1928,12 @@
           <target>Abgeschlossene Mietliste</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action ClosedRentalList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2473458089 - Action 347328507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employees</source>
+          <target>Mitarbeiter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Role Center - Action Employees - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2473458089 - Action 822845837 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Monthly Settlements</source>
@@ -2247,6 +2306,24 @@
           <target>Schaltgetriebe</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Transmission Types - EnumValue Manual - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 2417534601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Rental - Full Access</source>
+          <target>Autovermietung - Vollzugriff</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet Car Rental Admin - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 648271290 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Rental - Dispatcher</source>
+          <target>Autovermietung - Disponent</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet Car Rental Disp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 3322178010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Car Rental - Mechanic</source>
+          <target>Autovermietung - Mechaniker</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet Car Rental Mechanic - Property Caption</note>
         </trans-unit>
       </group>
     </body>
