@@ -1389,6 +1389,66 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Settlement Management - NamedType Text001Err</note>
         </trans-unit>
+        <trans-unit id="Page 429771526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Available Cars API</source>
+          <target>Verfügbare Fahrzeuge API</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 4146999645 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Brand</source>
+          <target>Marke</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control brand - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 1264958734 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fuel Type</source>
+          <target>Kraftstoffart</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control fuelType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 2686962215 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>System Id</source>
+          <target>System Id</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 3092981612 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manufact. Year</source>
+          <target>Herstellungsjahr</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control manufactYear - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 2239584538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mileage</source>
+          <target>Kilometerstand</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control mileage - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 2830524473 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target>Typ</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control model - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 980892057 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Power</source>
+          <target>Leistung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control power - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 3875810012 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Registration No.</source>
+          <target>Kennzeichen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control registrationNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 429771526 - Control 3454038514 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transmission Type</source>
+          <target>Getriebeart</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Available Cars API - Control transmissionType - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1634653456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Car</source>
           <target>Wagen</target>

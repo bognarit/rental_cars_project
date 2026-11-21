@@ -37,6 +37,7 @@ permissionset 50100 "Car Rental Admin"
         codeunit "Service Management" = X,
         codeunit "Settlement Management" = X,
         codeunit "Shared Functions" = X,
+        page "Available Cars API" = X,
         page "Car Card" = X,
         page "Car Card Factbox" = X,
         page "Car Card Lines" = X,

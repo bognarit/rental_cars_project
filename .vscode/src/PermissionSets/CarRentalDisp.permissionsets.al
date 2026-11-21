@@ -29,6 +29,7 @@ permissionset 50101 "Car Rental Disp"
         codeunit "Insurance & Cost Calculator" = X,
         codeunit "Rental Management" = X,
         codeunit "Shared Functions" = X,
+        page "Available Cars API" = X,
         page "Car Card" = X,
         page "Car Card Factbox" = X,
         page "Car Card Lines" = X,
